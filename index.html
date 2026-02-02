@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Dla Mojej Jedynej 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            transition: background 1s ease;
+        }
+
+        body.romantic-bg {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a5a 25%, #ff8e8e 50%, #ffb4b4 75%, #ffd4d4 100%);
+        }
+
+        /* Pływające serduszka w tle */
+        .floating-hearts {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart-bg {
+            position: absolute;
+            font-size: 20px;
+            animation: floatHeart 15s infinite ease-in-out;
+            opacity: 0.6;
+        }
+
+        @keyframes floatHeart {
+            0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Główny kontener */
+        .container {
+            text-align: center;
+            z-index: 10;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 25px 50px rgba(255, 100, 100, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            animation: fadeInUp 1s ease;
+            position: relative;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Ozdoby - róże */
+        .decoration {
+            position: absolute;
+            font-size: 40px;
+            animation: pulse 2s infinite;
+        }
+
+        .decoration.top-left { top: -20px; left: -20px; }
+        .decoration.top-right { top: -20px; right: -20px; }
+        .decoration.bottom-left { bottom: -20px; left: -20px; }
+        .decoration.bottom-right { bottom: -20px; right: -20px; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Tytuł */
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #c41e3a;
+            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.8);
+            margin-bottom: 20px;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.05); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.05); }
+        }
+
+        /* Pytanie */
+        .question {
+            font-size: 2rem;
+            color: #8b0000;
+            margin: 30px 0;
+            font-weight: 600;
+            text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Przyciski */
+        .buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+            position: relative;
+            min-height: 80px;
+        }
+
+        .btn {
+            padding: 20px 50px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 65, 108, 0.5);
+            animation: glowing 2s infinite;
+        }
+
+        @keyframes glowing {
+            0%, 100% { box-shadow: 0 10px 30px rgba(255, 65, 108, 0.5); }
+            50% { box-shadow: 0 10px 50px rgba(255, 65, 108, 0.8), 0 0 30px rgba(255, 75, 43, 0.6); }
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(255, 65, 108, 0.7);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            position: absolute;
+            transition: all 0.1s ease;
+        }
+
+        .btn-no:hover {
+            transform: scale(0.9);
+        }
+
+        /* Wielkie emoji zapłakane */
+        .crying-emoji {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 200px;
+            z-index: 1000;
+            animation: cryingAnim 2s forwards;
+        }
+
+        @keyframes cryingAnim {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+        }
+
+        /* Spadające elementy */
+        .falling-element {
+            position: fixed;
+            top: -50px;
+            font-size: 30px;
+            z-index: 100;
+            pointer-events: none;
+            animation: falling 4s linear forwards;
+        }
+
+        @keyframes falling {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0.7; }
+        }
+
+        /* Wielkie pulsujące serce */
+        .big-heart {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 300px;
+            z-index: 1000;
+            animation: bigHeartPulse 2.5s forwards;
+        }
+
+        @keyframes bigHeartPulse {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            30% { transform: translate(-50%, -50%) scale(0.9); }
+            40% { transform: translate(-50%, -50%) scale(1.1); }
+            50% { transform: translate(-50%, -50%) scale(0.95); }
+            60% { transform: translate(-50%, -50%) scale(1.05); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
+        }
+
+        /* Chmurka z komunikatem */
+        .speech-bubble {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 40px 60px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
+            animation: bubbleAppear 1s ease forwards;
+            text-align: center;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 20px solid transparent;
+            border-top-color: white;
+        }
+
+        .speech-bubble h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #c41e3a;
+            animation: textPulse 1s infinite;
+        }
+
+        @keyframes bubbleAppear {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            50% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        @keyframes textPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: fixed;
+            pointer-events: none;
+            font-size: 20px;
+            animation: sparkleAnim 1s forwards;
+            z-index: 500;
+        }
+
+        @keyframes sparkleAnim {
+            0% { opacity: 1; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+            100% { opacity: 0; transform: scale(0.5) rotate(360deg); }
+        }
+
+        /* Konfetti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            z-index: 200;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Ukryj główną zawartość po sukcesie */
+        .container.hidden {
+            animation: fadeOut 0.5s forwards;
+        }
+
+        @keyframes fadeOut {
+            to { opacity: 0; transform: scale(0.8); }
+        }
+
+        /* Romantyczne tło z sercami */
+        .love-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 50;
+            overflow: hidden;
+        }
+
+        /* Mini serduszka dekoracyjne */
+        .mini-heart {
+            position: absolute;
+            animation: miniFloat 3s infinite ease-in-out;
+        }
+
+        @keyframes miniFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-20px) scale(1.1); }
+        }
+
+        /* Responsywność */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .question { font-size: 1.3rem; }
+            .btn { padding: 15px 30px; font-size: 1.2rem; }
+            .container { padding: 20px; margin: 20px; }
+            .decoration { font-size: 25px; }
+            .big-heart { font-size: 150px; }
+            .speech-bubble h2 { font-size: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pływające serduszka w tle -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+
+    <!-- Główny kontener -->
+    <div class="container" id="mainContainer">
+        <!-- Ozdoby -->
+        <span class="decoration top-left">🌹</span>
+        <span class="decoration top-right">🌹</span>
+        <span class="decoration bottom-left">💐</span>
+        <span class="decoration bottom-right">💐</span>
+
+        <h1>💕 Moja Jedyna 💕</h1>
+        
+        <p class="question">Czy zostaniesz moją Walentynką?</p>
+        
+        <div class="buttons">
+            <button class="btn btn-yes" onclick="sayYes()">TAK 💖</button>
+            <button class="btn btn-no" id="noBtn" onmouseover="runAway()" onclick="sayNo()">NIE 💔</button>
+        </div>
+    </div>
+
+    <script>
+        // Tworzenie pływających serduszek w tle
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['💕', '💗', '💖', '💝', '❤️', '💘', '💓', '💞'];
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-bg';
+                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 15 + 's';
+                heart.style.animationDuration = (10 + Math.random() * 10) + 's';
+                heart.style.fontSize = (15 + Math.random() * 25) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        createFloatingHearts();
+
+        // Przycisk NIE ucieka
+        const noBtn = document.getElementById('noBtn');
+        let escapeCount = 0;
+
+        function runAway() {
+            escapeCount++;
+            const container = document.querySelector('.buttons');
+            const containerRect = document.querySelector('.container').getBoundingClientRect();
+            
+            const maxX = containerRect.width - noBtn.offsetWidth - 50;
+            const maxY = 200;
+            
+            let newX = Math.random() * maxX - maxX/2;
+            let newY = Math.random() * maxY - 50;
+            
+            // Coraz szybciej ucieka
+            noBtn.style.transition = `all ${0.2 - escapeCount * 0.01}s ease`;
+            noBtn.style.transform = `translate(${newX}px, ${newY}px)`;
+            
+            // Czasami zmienia tekst
+            const texts = ['NIE 💔', 'Niemożliwe! 🙈', 'Na pewno? 🥺', 'Przemyśl to! 💭', 'Złap mnie! 😜', 'Nie dam się! 🏃'];
+            if (escapeCount % 3 === 0) {
+                noBtn.textContent = texts[Math.min(escapeCount / 3, texts.length - 1)];
+            }
+        }
+
+        // Kliknięcie NIE
+        function sayNo() {
+            const emoji = document.createElement('div');
+            emoji.className = 'crying-emoji';
+            emoji.textContent = '😢';
+            document.body.appendChild(emoji);
+            
+            setTimeout(() => {
+                emoji.remove();
+            }, 2000);
+        }
+
+        // Kliknięcie TAK - wielka celebracja!
+        function sayYes() {
+            document.body.classList.add('romantic-bg');
+            
+            // Spadające elementy
+            const fallingItems = ['🌹', '💕', '💖', '🌸', '💗', '❤️', '🌺', '💝', '🏵️', '💐'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const element = document.createElement('div');
+                    element.className = 'falling-element';
+                    element.textContent = fallingItems[Math.floor(Math.random() * fallingItems.length)];
+                    element.style.left = Math.random() * 100 + 'vw';
+                    element.style.animationDuration = (2 + Math.random() * 3) + 's';
+                    element.style.fontSize = (20 + Math.random() * 40) + 'px';
+                    document.body.appendChild(element);
+                    
+                    setTimeout(() => element.remove(), 5000);
+                }, i * 50);
+            }
+
+            // Konfetti
+            for (let i = 0; i < 150; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + 'vw';
+                    confetti.style.top = '-10px';
+                    confetti.style.background = `hsl(${Math.random() * 60 + 330}, 100%, 60%)`;
+                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                    confetti.style.width = (5 + Math.random() * 10) + 'px';
+                    confetti.style.height = (5 + Math.random() * 10) + 'px';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+
+            // Ukryj główny kontener
+            setTimeout(() => {
+                document.getElementById('mainContainer').classList.add('hidden');
+            }, 500);
+
+            // Wielkie pulsujące serce
+            setTimeout(() => {
+                const bigHeart = document.createElement('div');
+                bigHeart.className = 'big-heart';
+                bigHeart.textContent = '❤️';
+                document.body.appendChild(bigHeart);
+                
+                setTimeout(() => bigHeart.remove(), 2500);
+            }, 800);
+
+            // Chmurka z komunikatem
+            setTimeout(() => {
+                const bubble = document.createElement('div');
+                bubble.className = 'speech-bubble';
+                bubble.innerHTML = '<h2>DOSKONAŁY WYBÓR WIKUSIA 💖</h2>';
+                document.body.appendChild(bubble);
+
+                // Dodaj sparkle efekty wokół chmurki
+                setInterval(() => {
+                    const sparkle = document.createElement('div');
+                    sparkle.className = 'sparkle';
+                    sparkle.textContent = '✨';
+                    sparkle.style.left = (Math.random() * 100) + 'vw';
+                    sparkle.style.top = (Math.random() * 100) + 'vh';
+                    document.body.appendChild(sparkle);
+                    setTimeout(() => sparkle.remove(), 1000);
+                }, 200);
+            }, 3500);
+
+            // Ciągłe spadające serduszka
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.className = 'falling-element';
+                heart.textContent = ['💕', '💖', '❤️', '💗'][Math.floor(Math.random() * 4)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (3 + Math.random() * 2) + 's';
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 5000);
+            }, 300);
+        }
+
+        // Sparkle na ruch myszki
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.9) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle';
+                sparkle.textContent = ['✨', '💫', '⭐'][Math.floor(Math.random() * 3)];
+                sparkle.style.left = e.pageX + 'px';
+                sparkle.style.top = e.pageY + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+    </script>
+</body>
+</html>
