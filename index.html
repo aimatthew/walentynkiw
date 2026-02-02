@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>💕 Dla Wikusi 💕</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,706 +17,1239 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            font-family: 'Nunito', sans-serif;
+            font-family: 'Quicksand', sans-serif;
             overflow: hidden;
             position: relative;
         }
 
-        /* Gwiazdy w tle */
-        .stars {
+        /* ===== PROFESJONALNE TŁO Z WIELOMA WARSTWAMI ===== */
+        
+        .bg-layer {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Warstwa 1: Głęboki gradient */
+        .bg-base {
+            background: 
+                radial-gradient(ellipse at 10% 20%, rgba(120, 50, 80, 0.4) 0%, transparent 50%),
+                radial-gradient(ellipse at 90% 80%, rgba(180, 80, 100, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(60, 20, 40, 0.2) 0%, transparent 70%),
+                linear-gradient(180deg, #1a0a10 0%, #2d1520 30%, #3d1f2d 60%, #2a1018 100%);
             z-index: 1;
         }
 
-        .star {
+        /* Warstwa 2: Animowane smugi świetlne */
+        .bg-aurora {
+            z-index: 2;
+            opacity: 0.4;
+            background: 
+                linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%);
+            animation: auroraMove 15s ease-in-out infinite;
+        }
+
+        @keyframes auroraMove {
+            0%, 100% { 
+                transform: translateX(-30%) rotate(-5deg) scale(1.5);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: translateX(30%) rotate(5deg) scale(1.5);
+                opacity: 0.5;
+            }
+        }
+
+        /* Warstwa 3: Bokeh - rozmyte kółka świetlne */
+        .bg-bokeh {
+            z-index: 3;
+        }
+
+        .bokeh-circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: bokehFloat 20s infinite ease-in-out;
+        }
+
+        .bokeh-circle:nth-child(1) {
+            width: 300px; height: 300px;
+            background: rgba(255, 100, 130, 0.15);
+            top: 10%; left: 5%;
+            animation-delay: 0s;
+        }
+        .bokeh-circle:nth-child(2) {
+            width: 250px; height: 250px;
+            background: rgba(255, 150, 180, 0.12);
+            top: 60%; right: 10%;
+            animation-delay: -5s;
+        }
+        .bokeh-circle:nth-child(3) {
+            width: 200px; height: 200px;
+            background: rgba(255, 80, 120, 0.1);
+            bottom: 20%; left: 20%;
+            animation-delay: -10s;
+        }
+        .bokeh-circle:nth-child(4) {
+            width: 350px; height: 350px;
+            background: rgba(255, 120, 160, 0.08);
+            top: 30%; right: 25%;
+            animation-delay: -15s;
+        }
+
+        @keyframes bokehFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(50px, -30px) scale(1.1); }
+            50% { transform: translate(-30px, 50px) scale(0.95); }
+            75% { transform: translate(40px, 20px) scale(1.05); }
+        }
+
+        /* Warstwa 4: Cząsteczki / Gwiazdy */
+        .bg-particles {
+            z-index: 4;
+        }
+
+        .particle {
             position: absolute;
             background: white;
             border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
+            animation: particleTwinkle 4s infinite ease-in-out;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); }
+        @keyframes particleTwinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.5); }
         }
 
-        /* Delikatne serduszka w tle */
-        .bg-hearts {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+        /* Warstwa 5: Spadające elementy */
+        .bg-falling {
+            z-index: 5;
             pointer-events: none;
-            z-index: 2;
         }
 
-        .bg-heart {
+        .falling-item {
             position: absolute;
-            font-size: 20px;
-            opacity: 0.15;
-            animation: floatUp 20s infinite linear;
+            top: -60px;
+            animation: gentleFall linear infinite;
+            opacity: 0.6;
+            filter: drop-shadow(0 0 10px rgba(255, 150, 180, 0.5));
         }
 
-        @keyframes floatUp {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            10% { opacity: 0.15; }
-            90% { opacity: 0.15; }
-            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+        @keyframes gentleFall {
+            0% { 
+                transform: translateY(0) rotate(0deg) translateX(0);
+                opacity: 0;
+            }
+            5% { opacity: 0.6; }
+            95% { opacity: 0.6; }
+            100% { 
+                transform: translateY(110vh) rotate(360deg) translateX(30px);
+                opacity: 0;
+            }
         }
 
-        /* Główny kontener */
+        /* Warstwa 6: Delikatna siatka / tekstura */
+        .bg-texture {
+            z-index: 6;
+            opacity: 0.03;
+            background-image: 
+                radial-gradient(circle at 1px 1px, white 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* ===== GŁÓWNY KONTENER ===== */
+        
         .container {
             text-align: center;
-            z-index: 10;
-            padding: 50px 70px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
+            z-index: 100;
+            padding: 55px 65px;
+            background: linear-gradient(145deg, 
+                rgba(255, 255, 255, 0.97) 0%, 
+                rgba(255, 252, 253, 0.98) 50%,
+                rgba(255, 248, 250, 0.97) 100%);
+            border-radius: 24px;
             box-shadow: 
-                0 30px 60px rgba(0, 0, 0, 0.4),
-                0 0 0 1px rgba(255, 255, 255, 0.8),
-                inset 0 0 80px rgba(255, 230, 230, 0.3);
+                0 50px 100px rgba(0, 0, 0, 0.4),
+                0 20px 60px rgba(100, 30, 50, 0.3),
+                0 0 0 1px rgba(255, 200, 210, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 1),
+                inset 0 -1px 0 rgba(200, 150, 160, 0.1);
             position: relative;
-            max-width: 600px;
-            animation: containerIn 1s ease-out;
+            max-width: 560px;
+            width: 90%;
+            animation: containerFloat 6s ease-in-out infinite, containerIn 1s ease-out;
         }
 
         @keyframes containerIn {
-            0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+            0% { opacity: 0; transform: translateY(40px) scale(0.95); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Ozdobna ramka */
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Ozdobna linia wewnętrzna */
         .container::before {
             content: '';
             position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-            border: 2px solid #e8b4b8;
-            border-radius: 22px;
+            top: 12px; left: 12px; right: 12px; bottom: 12px;
+            border: 1.5px solid rgba(200, 120, 140, 0.25);
+            border-radius: 16px;
             pointer-events: none;
         }
 
-        /* Ozdoby narożne */
-        .corner {
+        /* Delikatny blask zewnętrzny */
+        .container::after {
+            content: '';
             position: absolute;
-            font-size: 35px;
-            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(135deg, 
+                rgba(255, 180, 200, 0.4), 
+                rgba(255, 150, 180, 0.2),
+                rgba(255, 200, 220, 0.3));
+            border-radius: 26px;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.7;
+            animation: glowPulse 4s ease-in-out infinite;
         }
-        .corner.tl { top: -15px; left: -15px; }
-        .corner.tr { top: -15px; right: -15px; }
-        .corner.bl { bottom: -15px; left: -15px; }
-        .corner.br { bottom: -15px; right: -15px; }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.02); }
+        }
+
+        /* Ozdoby narożne */
+        .corner-decor {
+            position: absolute;
+            font-size: 32px;
+            filter: drop-shadow(0 4px 8px rgba(150, 50, 80, 0.3));
+            animation: cornerPulse 3s ease-in-out infinite;
+        }
+
+        .corner-decor.tl { top: -16px; left: -16px; animation-delay: 0s; }
+        .corner-decor.tr { top: -16px; right: -16px; animation-delay: 0.75s; }
+        .corner-decor.bl { bottom: -16px; left: -16px; animation-delay: 1.5s; }
+        .corner-decor.br { bottom: -16px; right: -16px; animation-delay: 2.25s; }
+
+        @keyframes cornerPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.15) rotate(5deg); }
+        }
 
         /* Tytuł */
-        h1 {
-            font-family: 'Lora', serif;
-            font-size: 2.2rem;
+        .title {
+            margin-bottom: 8px;
+        }
+
+        .title h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.4rem;
             font-weight: 700;
-            color: #c41e3a;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
+            color: #8b2942;
+            letter-spacing: 2px;
+            margin-bottom: 6px;
+        }
+
+        .title-hearts {
+            color: #d64060;
+            font-size: 1.4rem;
+            letter-spacing: 8px;
         }
 
         .subtitle {
-            font-size: 0.95rem;
-            color: #888;
-            margin-bottom: 30px;
-            letter-spacing: 2px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #b08090;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-top: 8px;
+        }
+
+        /* Separator */
+        .separator {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d4a0b0, transparent);
+            margin: 25px auto;
         }
 
         /* Pytanie */
         .question {
-            font-family: 'Lora', serif;
-            font-size: 1.7rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.65rem;
             font-weight: 600;
-            color: #4a4a4a;
-            margin: 30px 0;
-            line-height: 1.5;
+            color: #4a3040;
+            line-height: 1.6;
+            margin: 25px 0;
         }
 
-        .heart-icon {
-            color: #e74c3c;
+        .question-heart {
             display: inline-block;
-            animation: heartPulse 1s infinite;
-        }
-
-        @keyframes heartPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* PRZYCISKI - NAPRAWIONE */
-        .buttons-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 30px;
-            margin-top: 35px;
-            position: relative;
-            height: 70px;
-        }
-
-        .btn {
-            padding: 16px 45px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Nunito', sans-serif;
-            transition: transform 0.3s, box-shadow 0.3s;
-            letter-spacing: 1px;
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
-        }
-
-        .btn-yes:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.5);
-        }
-
-        .btn-no {
-            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
-            color: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            position: absolute;
-            right: 0;
-            transition: none;
-        }
-
-        /* Emoji płaczu */
-        .crying {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 180px;
-            z-index: 2000;
-            animation: cryAnim 2s forwards;
-        }
-
-        @keyframes cryAnim {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
-            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
-        }
-
-        /* ===== SUKCES - PO KLIKNIĘCIU TAK ===== */
-        
-        .success-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #1a1a2e 0%, #2d132c 50%, #801336 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-            animation: successBgIn 1s ease;
-        }
-
-        @keyframes successBgIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        .success-box {
-            text-align: center;
-            padding: 60px 80px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-            animation: successBoxIn 0.8s ease 0.3s both;
-        }
-
-        @keyframes successBoxIn {
-            0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
-            100% { opacity: 1; transform: scale(1) rotate(0deg); }
-        }
-
-        .success-box h2 {
-            font-family: 'Lora', serif;
-            font-size: 2.5rem;
-            color: #c41e3a;
-            margin-bottom: 15px;
-        }
-
-        .success-box p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        .btn-magic {
-            padding: 18px 50px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #9b59b6, #8e44ad);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Nunito', sans-serif;
-            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.4);
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: magicPulse 2s infinite;
-        }
-
-        @keyframes magicPulse {
-            0%, 100% { box-shadow: 0 10px 30px rgba(155, 89, 182, 0.4); }
-            50% { box-shadow: 0 15px 50px rgba(155, 89, 182, 0.6), 0 0 30px rgba(155, 89, 182, 0.3); }
-        }
-
-        .btn-magic:hover {
-            transform: scale(1.1);
-        }
-
-        /* Spadające elementy sukcesu */
-        .falling {
-            position: fixed;
-            top: -50px;
-            font-size: 30px;
-            z-index: 99;
-            pointer-events: none;
-            animation: fall 4s linear forwards;
-        }
-
-        @keyframes fall {
-            0% { transform: translateY(0) rotate(0deg); }
-            100% { transform: translateY(110vh) rotate(720deg); }
-        }
-
-        /* ===== ANIMACJA FILMOWA ===== */
-        
-        .cinema {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1000;
-            overflow: hidden;
-        }
-
-        /* Scena kosmiczna */
-        .scene-space {
-            position: absolute;
-            width: 100%;
-            height: 300%;
-            top: 0;
-            background: linear-gradient(180deg, 
-                #000000 0%, 
-                #0a0a20 20%, 
-                #1a1a3e 40%,
-                #2e1a47 55%,
-                #4a2c6a 65%,
-                #87CEEB 75%,
-                #b4d7e8 85%,
-                #90EE90 95%,
-                #228B22 100%
-            );
-            animation: cameraDrop 8s ease-in-out forwards;
-        }
-
-        @keyframes cameraDrop {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-66.67%); }
-        }
-
-        /* Gwiazdy w kosmosie */
-        .space-star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 10px white;
-        }
-
-        /* Chmury */
-        .cloud {
-            position: absolute;
-            font-size: 80px;
-            opacity: 0.9;
-        }
-
-        /* Ziemia - polana */
-        .ground {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 35%;
-        }
-
-        .grass {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, #90EE90 0%, #228B22 30%, #1a5c1a 100%);
-        }
-
-        .tree {
-            position: absolute;
-            bottom: 50px;
-            font-size: 100px;
-        }
-
-        .bush {
-            position: absolute;
-            bottom: 20px;
-            font-size: 60px;
-        }
-
-        .flower {
-            position: absolute;
-            bottom: 10px;
-            font-size: 30px;
-            animation: sway 2s infinite ease-in-out;
-        }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        /* Postaci */
-        .character {
-            position: absolute;
-            font-size: 80px;
-            opacity: 0;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
-        }
-
-        .girl {
-            bottom: 100px;
-            left: 35%;
-            transform: translateX(-50%);
-        }
-
-        .boy {
-            bottom: 100px;
-            right: 35%;
-            transform: translateX(50%) scaleX(-1);
-        }
-
-        .cupid {
-            top: 25%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 100px;
-        }
-
-        /* Animacje postaci */
-        .girl.falling-in {
-            animation: girlFall 2s ease-out forwards;
-        }
-
-        @keyframes girlFall {
-            0% { 
-                opacity: 1;
-                transform: translateX(-50%) translateY(-500px) rotate(30deg); 
-            }
-            60% { 
-                transform: translateX(-50%) translateY(30px) rotate(-10deg); 
-            }
-            80% { 
-                transform: translateX(-50%) translateY(-10px) rotate(5deg); 
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(-50%) translateY(0) rotate(0deg); 
-            }
-        }
-
-        .girl.dusting {
-            animation: dust 1.5s ease forwards;
-        }
-
-        @keyframes dust {
-            0%, 100% { transform: translateX(-50%) rotate(0deg); }
-            25% { transform: translateX(-50%) rotate(-10deg) translateY(-5px); }
-            50% { transform: translateX(-50%) rotate(10deg) translateY(-5px); }
-            75% { transform: translateX(-50%) rotate(-5deg); }
-        }
-
-        .boy.appearing {
-            animation: boyAppear 1.5s ease forwards;
-        }
-
-        @keyframes boyAppear {
-            0% { 
-                opacity: 0;
-                transform: translateX(100px) scaleX(-1); 
-            }
-            50% { 
-                opacity: 1;
-                transform: translateX(60px) scaleX(-1); 
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(50%) scaleX(-1); 
-            }
-        }
-
-        .cupid.appearing {
-            animation: cupidAppear 1.5s ease forwards;
-        }
-
-        @keyframes cupidAppear {
-            0% { 
-                opacity: 0;
-                transform: translateX(-50%) scale(0); 
-            }
-            50% { 
-                opacity: 1;
-                transform: translateX(-50%) scale(1.3); 
-            }
-            100% { 
-                opacity: 1;
-                transform: translateX(-50%) scale(1); 
-            }
-        }
-
-        /* Bańka Amora */
-        .bubble {
-            position: absolute;
-            top: 20%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,182,193,0.3));
-            border: 3px solid rgba(255,255,255,0.5);
-            opacity: 0;
-            animation: bubblePop 1s ease forwards;
-        }
-
-        @keyframes bubblePop {
-            0% { opacity: 0; transform: translateX(-50%) scale(0); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
-            80% { opacity: 1; transform: translateX(-50%) scale(1); }
-            100% { opacity: 0; transform: translateX(-50%) scale(2); }
-        }
-
-        /* Strzały */
-        .arrow {
-            position: absolute;
-            font-size: 40px;
-            opacity: 0;
-        }
-
-        .arrow.flying {
-            animation: arrowFly 0.8s ease-out forwards;
-        }
-
-        @keyframes arrowFly {
-            0% { 
-                opacity: 1;
-                transform: translate(0, 0) rotate(45deg); 
-            }
-            100% { 
-                opacity: 1;
-                transform: translate(var(--endX), var(--endY)) rotate(45deg); 
-            }
-        }
-
-        /* Efekt trafienia */
-        .hit-effect {
-            position: absolute;
-            font-size: 50px;
-            opacity: 0;
-            animation: hitPop 0.5s ease forwards;
-        }
-
-        @keyframes hitPop {
-            0% { opacity: 0; transform: scale(0); }
-            50% { opacity: 1; transform: scale(1.5); }
-            100% { opacity: 0; transform: scale(0.5); }
-        }
-
-        /* Serduszka latające */
-        .love-heart {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0;
-            animation: loveFloat 3s ease forwards;
-        }
-
-        @keyframes loveFloat {
-            0% { 
-                opacity: 0;
-                transform: translateY(0) scale(0); 
-            }
-            20% { 
-                opacity: 1;
-                transform: translateY(-20px) scale(1); 
-            }
-            100% { 
-                opacity: 0;
-                transform: translateY(-150px) scale(0.5); 
-            }
-        }
-
-        /* Przytulanie */
-        .hugging {
-            position: absolute;
-            bottom: 100px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 120px;
-            opacity: 0;
-        }
-
-        .hugging.show {
-            animation: hugAppear 1.5s ease forwards;
-        }
-
-        @keyframes hugAppear {
-            0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
-            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
-            100% { opacity: 1; transform: translateX(-50%) scale(1); }
-        }
-
-        /* Ściemnienie końcowe */
-        .fade-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: black;
-            opacity: 0;
-            z-index: 10;
-        }
-
-        .fade-overlay.active {
-            animation: fadeToBlack 2s ease forwards;
-        }
-
-        @keyframes fadeToBlack {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
-
-        /* Napis końcowy */
-        .end-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 20;
-            opacity: 0;
-        }
-
-        .end-text.show {
-            animation: endTextIn 2s ease forwards;
-        }
-
-        @keyframes endTextIn {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        }
-
-        .end-text h1 {
-            font-family: 'Lora', serif;
-            font-size: 3rem;
-            color: white;
-            text-shadow: 0 0 30px rgba(255,255,255,0.5);
-            letter-spacing: 3px;
-        }
-
-        .end-text .heart-end {
-            font-size: 60px;
-            margin-top: 30px;
-            animation: heartBeat 1s infinite;
+            color: #d64060;
+            animation: heartBeat 1.2s ease-in-out infinite;
+            margin-left: 5px;
         }
 
         @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            15% { transform: scale(1.25); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.2); }
+            60% { transform: scale(1); }
+        }
+
+        /* ===== PRZYCISKI - POPRAWIONE ===== */
+        
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            font-family: 'Quicksand', sans-serif;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 140px;
+            text-align: center;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #d64060 0%, #b8304a 100%);
+            color: white;
+            box-shadow: 
+                0 8px 30px rgba(214, 64, 96, 0.4),
+                0 4px 15px rgba(184, 48, 74, 0.3);
+        }
+
+        .btn-yes:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 15px 40px rgba(214, 64, 96, 0.5),
+                0 8px 20px rgba(184, 48, 74, 0.4);
+        }
+
+        .btn-yes:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* Przycisk NIE - NAPRAWIONY */
+        .btn-no {
+            background: linear-gradient(135deg, #9ca3af 0%, #6b7280 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            /* WAŻNE: Stałe wymiary */
+            width: 140px;
+            min-width: 140px;
+            max-width: 140px;
+            height: 52px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-no:hover {
+            background: linear-gradient(135deg, #7c838f 0%, #5b6270 100%);
+        }
+
+        /* Emoji płaczu */
+        .sad-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: sadIn 0.3s ease;
+        }
+
+        @keyframes sadIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .sad-emoji {
+            font-size: 200px;
+            animation: sadBounce 0.6s ease;
+        }
+
+        @keyframes sadBounce {
+            0% { transform: scale(0) rotate(-20deg); }
+            50% { transform: scale(1.2) rotate(10deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* ===== EKRAN SUKCESU ===== */
+        
+        .success-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Tło sukcesu - romantyczne */
+        .success-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 30% 20%, rgba(180, 50, 80, 0.3) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, rgba(200, 80, 120, 0.25) 0%, transparent 50%),
+                linear-gradient(180deg, #2a0f18 0%, #4a1a2a 40%, #5c2035 70%, #3d1525 100%);
+            animation: successBgPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes successBgPulse {
+            0%, 100% { filter: brightness(1); }
+            50% { filter: brightness(1.15); }
+        }
+
+        .success-card {
+            text-align: center;
+            padding: 50px 60px;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 24px;
+            box-shadow: 
+                0 40px 80px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 200, 210, 0.3);
+            z-index: 10;
+            animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        @keyframes cardPop {
+            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .success-card h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.3rem;
+            color: #8b2942;
+            margin-bottom: 10px;
+        }
+
+        .success-card p {
+            font-size: 1.2rem;
+            color: #6a4a55;
+            margin-bottom: 30px;
+        }
+
+        .btn-magic {
+            padding: 18px 45px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 35px rgba(139, 92, 246, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: magicGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes magicGlow {
+            0%, 100% { 
+                box-shadow: 0 10px 35px rgba(139, 92, 246, 0.4); 
+            }
+            50% { 
+                box-shadow: 0 15px 50px rgba(139, 92, 246, 0.6), 0 0 40px rgba(139, 92, 246, 0.3); 
+            }
+        }
+
+        .btn-magic:hover {
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* ===== ANIMACJA FILMOWA ===== */
+        
+        .cinema-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10000;
+            overflow: hidden;
+            background: #000;
+        }
+
+        /* Scena - scroll wertykalny */
+        .scene-scroll {
+            position: absolute;
+            width: 100%;
+            height: 400%;
+            top: 0;
+            left: 0;
+        }
+
+        /* Kosmos */
+        .layer-space {
+            position: absolute;
+            width: 100%;
+            height: 25%;
+            top: 0;
+            background: linear-gradient(180deg, #000000 0%, #0a0015 40%, #150025 70%, #1a0030 100%);
+        }
+
+        .star-field {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cinema-star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, white, transparent);
+            animation: shoot 3s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% { transform: translateX(-100px) translateY(0); opacity: 0; }
+            10% { opacity: 1; }
+            100% { transform: translateX(400px) translateY(200px); opacity: 0; }
+        }
+
+        /* Planety */
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .planet-1 {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle at 30% 30%, #ffd89b, #ff6b6b);
+            top: 10%;
+            right: 15%;
+            box-shadow: 0 0 30px rgba(255, 150, 100, 0.4);
+        }
+
+        .planet-2 {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #a8edea, #7ec8e3);
+            top: 20%;
+            left: 20%;
+            box-shadow: 0 0 20px rgba(120, 200, 230, 0.4);
+        }
+
+        /* Atmosfera */
+        .layer-atmosphere {
+            position: absolute;
+            width: 100%;
+            height: 25%;
+            top: 25%;
+            background: linear-gradient(180deg, 
+                #1a0030 0%, 
+                #2d1b4e 15%,
+                #4a2c6a 30%,
+                #6b4380 45%,
+                #8660a0 55%,
+                #ff9a9e 70%,
+                #fecfef 85%,
+                #87CEEB 100%);
+        }
+
+        .cloud {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50px;
+            filter: blur(3px);
+        }
+
+        /* Niebo */
+        .layer-sky {
+            position: absolute;
+            width: 100%;
+            height: 25%;
+            top: 50%;
+            background: linear-gradient(180deg, 
+                #87CEEB 0%, 
+                #98d4ee 30%,
+                #b0e0f0 60%,
+                #c8ebf5 100%);
+        }
+
+        .cloud-fluffy {
+            position: absolute;
+            font-size: 60px;
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Ziemia / Polana */
+        .layer-ground {
+            position: absolute;
+            width: 100%;
+            height: 25%;
+            top: 75%;
+            background: linear-gradient(180deg, 
+                #c8ebf5 0%,
+                #90c695 5%,
+                #68b36b 15%,
+                #4a9f4d 40%,
+                #3d8b40 70%,
+                #2d7530 100%);
+            overflow: hidden;
+        }
+
+        /* Słońce */
+        .sun {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fff9c4 0%, #ffeb3b 50%, #ff9800 100%);
+            border-radius: 50%;
+            top: 10%;
+            right: 20%;
+            box-shadow: 0 0 60px 20px rgba(255, 235, 59, 0.5);
+            animation: sunGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes sunGlow {
+            0%, 100% { box-shadow: 0 0 60px 20px rgba(255, 235, 59, 0.5); }
+            50% { box-shadow: 0 0 80px 30px rgba(255, 235, 59, 0.7); }
+        }
+
+        /* Drzewa - CSS Art */
+        .tree-css {
+            position: absolute;
+            bottom: 0;
+        }
+
+        .tree-trunk {
+            width: 20px;
+            height: 60px;
+            background: linear-gradient(90deg, #5d4037, #8b6f47, #5d4037);
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+
+        .tree-leaves {
+            position: relative;
+            bottom: 10px;
+        }
+
+        .tree-leaves::before,
+        .tree-leaves::after,
+        .tree-leaves span {
+            content: '';
+            position: absolute;
+            background: linear-gradient(180deg, #2e7d32, #4caf50, #2e7d32);
+            border-radius: 50%;
+        }
+
+        .tree-leaves::before {
+            width: 70px;
+            height: 70px;
+            left: -25px;
+            bottom: 0;
+        }
+
+        .tree-leaves::after {
+            width: 60px;
+            height: 60px;
+            left: -20px;
+            bottom: 30px;
+        }
+
+        .tree-leaves span {
+            width: 50px;
+            height: 50px;
+            left: -15px;
+            bottom: 55px;
+        }
+
+        /* Krzewy */
+        .bush-css {
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .bush-body {
+            width: 80px;
+            height: 50px;
+            background: linear-gradient(180deg, #388e3c, #4caf50);
+            border-radius: 50px 50px 20px 20px;
+            position: relative;
+        }
+
+        .bush-body::before,
+        .bush-body::after {
+            content: '';
+            position: absolute;
+            background: linear-gradient(180deg, #43a047, #66bb6a);
+            border-radius: 50%;
+        }
+
+        .bush-body::before {
+            width: 40px;
+            height: 35px;
+            left: -15px;
+            top: 10px;
+        }
+
+        .bush-body::after {
+            width: 45px;
+            height: 40px;
+            right: -20px;
+            top: 5px;
+        }
+
+        /* Kwiaty */
+        .flower-css {
+            position: absolute;
+            bottom: 5px;
+        }
+
+        .flower-stem {
+            width: 3px;
+            height: 30px;
+            background: #4caf50;
+            margin: 0 auto;
+        }
+
+        .flower-head {
+            width: 20px;
+            height: 20px;
+            background: var(--color, #ff69b4);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            bottom: 5px;
+            animation: flowerSway 3s ease-in-out infinite;
+        }
+
+        .flower-head::before {
+            content: '';
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: #ffeb3b;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes flowerSway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* ===== POSTACI - CSS ART ===== */
+        
+        .character-container {
+            position: absolute;
+            opacity: 0;
+            z-index: 100;
+        }
+
+        /* Dziewczyna */
+        .girl-character {
+            bottom: 15%;
+            left: 30%;
+        }
+
+        .person {
+            position: relative;
+            width: 60px;
+        }
+
+        /* Głowa */
+        .head {
+            width: 40px;
+            height: 45px;
+            background: linear-gradient(180deg, #fdbf91, #e8a676);
+            border-radius: 50% 50% 45% 45%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Oczy */
+        .eyes {
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .eye {
+            width: 6px;
+            height: 8px;
+            background: #3e2723;
+            border-radius: 50%;
+            position: relative;
+        }
+
+        .eye::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            top: 1px;
+            left: 1px;
+        }
+
+        /* Usta */
+        .mouth {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 5px;
+            background: #e57373;
+            border-radius: 0 0 10px 10px;
+        }
+
+        /* Rumieńce */
+        .blush {
+            position: absolute;
+            width: 8px;
+            height: 5px;
+            background: rgba(255, 138, 128, 0.6);
+            border-radius: 50%;
+            top: 25px;
+        }
+
+        .blush.left { left: 3px; }
+        .blush.right { right: 3px; }
+
+        /* Włosy dziewczyny - czarne */
+        .hair-girl {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            width: 56px;
+            height: 40px;
+            background: #1a1a1a;
+            border-radius: 50% 50% 0 0;
+            z-index: -1;
+        }
+
+        .hair-girl::before {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 55px;
+            background: #1a1a1a;
+            top: 20px;
+            left: -5px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .hair-girl::after {
+            content: '';
+            position: absolute;
+            width: 15px;
+            height: 55px;
+            background: #1a1a1a;
+            top: 20px;
+            right: -5px;
+            border-radius: 0 0 20px 20px;
+        }
+
+        /* Włosy chłopaka - ciemny blond */
+        .hair-boy {
+            position: absolute;
+            top: -5px;
+            left: -3px;
+            width: 46px;
+            height: 25px;
+            background: linear-gradient(180deg, #8b7355, #a08060);
+            border-radius: 50% 50% 0 0;
+            z-index: -1;
+        }
+
+        /* Ciało */
+        .body {
+            width: 35px;
+            height: 50px;
+            margin: 0 auto;
+            margin-top: -5px;
+            border-radius: 15px 15px 5px 5px;
+            position: relative;
+        }
+
+        .girl-body {
+            background: linear-gradient(180deg, #f48fb1, #f06292);
+        }
+
+        .boy-body {
+            background: linear-gradient(180deg, #64b5f6, #42a5f5);
+        }
+
+        /* Nogi */
+        .legs {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-top: -3px;
+        }
+
+        .leg {
+            width: 12px;
+            height: 40px;
+            background: linear-gradient(180deg, #5c6bc0, #3f51b5);
+            border-radius: 5px;
+        }
+
+        /* Ręce */
+        .arms {
+            position: absolute;
+            top: 5px;
+            width: 100%;
+        }
+
+        .arm {
+            position: absolute;
+            width: 10px;
+            height: 35px;
+            border-radius: 5px;
+        }
+
+        .arm.left { left: -8px; }
+        .arm.right { right: -8px; }
+
+        .girl-arm {
+            background: #fdbf91;
+        }
+
+        .boy-arm {
+            background: #fdbf91;
+        }
+
+        /* Chłopak */
+        .boy-character {
+            bottom: 15%;
+            right: 30%;
+        }
+
+        /* Amor */
+        .cupid-character {
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%) scale(0.9);
+        }
+
+        .cupid-body {
+            position: relative;
+        }
+
+        .cupid-head {
+            width: 35px;
+            height: 38px;
+            background: linear-gradient(180deg, #ffecd2, #fcb69f);
+            border-radius: 50%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cupid-hair {
+            position: absolute;
+            top: -5px;
+            left: -3px;
+            width: 41px;
+            height: 22px;
+            background: linear-gradient(180deg, #ffd54f, #ffb300);
+            border-radius: 50% 50% 0 0;
+            z-index: -1;
+        }
+
+        .cupid-torso {
+            width: 30px;
+            height: 25px;
+            background: linear-gradient(180deg, #fff, #ffe0e0);
+            margin: 0 auto;
+            margin-top: -3px;
+            border-radius: 10px;
+        }
+
+        .cupid-wings {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .wing {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,220,220,0.7));
+            border-radius: 100% 0 100% 0;
+            animation: wingFlap 0.5s ease-in-out infinite alternate;
+        }
+
+        .wing.left {
+            left: -50px;
+            transform: rotate(-20deg);
+        }
+
+        .wing.right {
+            right: -50px;
+            transform: rotate(20deg) scaleX(-1);
+        }
+
+        @keyframes wingFlap {
+            0% { transform: rotate(-20deg); }
+            100% { transform: rotate(-35deg); }
+        }
+
+        .wing.right {
+            animation-name: wingFlapRight;
+        }
+
+        @keyframes wingFlapRight {
+            0% { transform: rotate(20deg) scaleX(-1); }
+            100% { transform: rotate(35deg) scaleX(-1); }
+        }
+
+        /* Łuk i strzała */
+        .bow {
+            position: absolute;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .bow-curve {
+            width: 8px;
+            height: 50px;
+            border: 4px solid #8b4513;
+            border-right: none;
+            border-radius: 50px 0 0 50px;
+        }
+
+        .bow-string {
+            position: absolute;
+            width: 2px;
+            height: 50px;
+            background: #ddd;
+            right: 2px;
+            top: 0;
+        }
+
+        /* Strzały lecące */
+        .flying-arrow {
+            position: absolute;
+            z-index: 200;
+            opacity: 0;
+        }
+
+        .arrow-body {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #8b4513, #a0522d);
+            position: relative;
+        }
+
+        .arrow-head {
+            position: absolute;
+            right: -10px;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid #ff69b4;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        .arrow-feather {
+            position: absolute;
+            left: -5px;
+            top: -4px;
+            width: 15px;
+            height: 12px;
+            background: #e91e63;
+            clip-path: polygon(100% 50%, 0 0, 0 100%);
+        }
+
+        /* Efekt trafienia - serduszko przy pupie */
+        .hit-heart {
+            position: absolute;
+            font-size: 30px;
+            z-index: 300;
+            opacity: 0;
+        }
+
+        /* Przytulająca się para */
+        .couple-hug {
+            position: absolute;
+            bottom: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            z-index: 150;
+        }
+
+        .hug-container {
+            position: relative;
+            width: 100px;
+        }
+
+        /* Serduszka unoszące się */
+        .floating-love {
+            position: absolute;
+            font-size: 25px;
+            opacity: 0;
+            z-index: 160;
+        }
+
+        /* Ściemnienie */
+        .cinema-fade {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            opacity: 0;
+            z-index: 500;
+        }
+
+        /* Napis końcowy */
+        .cinema-end-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 600;
+            opacity: 0;
+        }
+
+        .cinema-end-text h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            color: white;
+            font-weight: 600;
+            letter-spacing: 4px;
+            line-height: 1.5;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .cinema-end-text .final-heart {
+            font-size: 50px;
+            margin-top: 30px;
+            display: block;
+            animation: finalHeartBeat 1s ease-in-out infinite;
+        }
+
+        @keyframes finalHeartBeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
 
         /* Responsywność */
-        @media (max-width: 650px) {
+        @media (max-width: 600px) {
             .container {
-                padding: 35px 25px;
-                margin: 20px;
-            }
-            
-            h1 { font-size: 1.6rem; }
-            .question { font-size: 1.3rem; }
-            .btn { padding: 14px 30px; font-size: 1rem; }
-            .corner { font-size: 25px; }
-            
-            .buttons-wrapper {
-                flex-direction: column;
-                height: auto;
-                gap: 15px;
-            }
-            
-            .btn-no {
-                position: relative !important;
-                right: auto !important;
-            }
-            
-            .success-box {
                 padding: 40px 30px;
-                margin: 20px;
+                margin: 15px;
             }
             
-            .success-box h2 { font-size: 1.8rem; }
-            .success-box p { font-size: 1.1rem; }
+            .title h1 { font-size: 1.8rem; }
+            .question { font-size: 1.35rem; }
+            .btn { min-width: 110px; padding: 12px 25px; font-size: 1rem; }
+            .btn-no { width: 110px; min-width: 110px; max-width: 110px; height: 46px; }
+            .buttons-container { gap: 15px; }
+            .corner-decor { font-size: 24px; }
             
-            .end-text h1 { font-size: 1.8rem; }
-            .end-text .heart-end { font-size: 40px; }
+            .success-card { padding: 35px 25px; }
+            .success-card h2 { font-size: 1.8rem; }
             
-            .character { font-size: 60px; }
-            .cupid { font-size: 70px; }
-            .tree { font-size: 70px; }
+            .cinema-end-text h1 { font-size: 1.6rem; }
+            
+            .person { transform: scale(0.8); }
+            .cupid-body { transform: scale(0.7); }
         }
     </style>
 </head>
 <body>
-    <!-- Gwiazdy w tle -->
-    <div class="stars" id="stars"></div>
-    
-    <!-- Delikatne serduszka -->
-    <div class="bg-hearts" id="bgHearts"></div>
+    <!-- ===== TŁO WIELOWARSTWOWE ===== -->
+    <div class="bg-layer bg-base"></div>
+    <div class="bg-layer bg-aurora"></div>
+    <div class="bg-layer bg-bokeh" id="bokehLayer">
+        <div class="bokeh-circle"></div>
+        <div class="bokeh-circle"></div>
+        <div class="bokeh-circle"></div>
+        <div class="bokeh-circle"></div>
+    </div>
+    <div class="bg-layer bg-particles" id="particlesLayer"></div>
+    <div class="bg-layer bg-falling" id="fallingLayer"></div>
+    <div class="bg-layer bg-texture"></div>
 
-    <!-- Główny kontener -->
+    <!-- ===== GŁÓWNY KONTENER ===== -->
     <div class="container" id="mainContainer">
-        <span class="corner tl">🌹</span>
-        <span class="corner tr">🌹</span>
-        <span class="corner bl">💐</span>
-        <span class="corner br">💐</span>
+        <span class="corner-decor tl">🌹</span>
+        <span class="corner-decor tr">🌹</span>
+        <span class="corner-decor bl">💐</span>
+        <span class="corner-decor br">💐</span>
 
-        <h1>💕 Dla Mojej Jedynej 💕</h1>
-        <p class="subtitle">WALENTYNKI 2025</p>
+        <div class="title">
+            <h1>Dla Mojej Jedynej</h1>
+            <div class="title-hearts">💕 💕 💕</div>
+            <p class="subtitle">Walentynki 2025</p>
+        </div>
+        
+        <div class="separator"></div>
         
         <p class="question">
-            Czy zostaniesz moją Walentynką? <span class="heart-icon">❤️</span>
+            Czy zostaniesz moją Walentynką? <span class="question-heart">❤️</span>
         </p>
         
-        <div class="buttons-wrapper" id="btnWrapper">
-            <button class="btn btn-yes" onclick="sayYes()">TAK 💖</button>
+        <div class="buttons-container">
+            <button class="btn btn-yes" id="yesBtn">TAK 💖</button>
             <button class="btn btn-no" id="noBtn">NIE 💔</button>
         </div>
     </div>
@@ -724,73 +1257,65 @@
     <script>
         // ===== INICJALIZACJA TŁA =====
         
-        function createStars() {
-            const container = document.getElementById('stars');
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                star.style.width = (1 + Math.random() * 3) + 'px';
-                star.style.height = star.style.width;
-                star.style.animationDelay = Math.random() * 3 + 's';
-                container.appendChild(star);
+        // Particles / Gwiazdy
+        function createParticles() {
+            const container = document.getElementById('particlesLayer');
+            for (let i = 0; i < 80; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.top = Math.random() * 100 + '%';
+                p.style.width = (1 + Math.random() * 2.5) + 'px';
+                p.style.height = p.style.width;
+                p.style.animationDelay = Math.random() * 4 + 's';
+                p.style.animationDuration = (3 + Math.random() * 3) + 's';
+                container.appendChild(p);
             }
         }
-        createStars();
+        createParticles();
 
-        function createBgHearts() {
-            const container = document.getElementById('bgHearts');
-            const hearts = ['💕', '💗', '💖', '❤️'];
-            for (let i = 0; i < 15; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'bg-heart';
-                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 20 + 's';
-                heart.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(heart);
+        // Spadające elementy
+        function createFallingElements() {
+            const container = document.getElementById('fallingLayer');
+            const items = ['💕', '🌸', '💗', '✨', '🌹', '💖', '🦋'];
+            
+            function addFalling() {
+                const el = document.createElement('div');
+                el.className = 'falling-item';
+                el.textContent = items[Math.floor(Math.random() * items.length)];
+                el.style.left = Math.random() * 100 + '%';
+                el.style.fontSize = (18 + Math.random() * 20) + 'px';
+                el.style.animationDuration = (8 + Math.random() * 8) + 's';
+                el.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(el);
+                
+                setTimeout(() => el.remove(), 18000);
             }
+            
+            // Początkowe elementy
+            for (let i = 0; i < 12; i++) {
+                setTimeout(addFalling, i * 300);
+            }
+            
+            // Ciągłe dodawanie
+            setInterval(addFalling, 1500);
         }
-        createBgHearts();
+        createFallingElements();
 
         // ===== PRZYCISK NIE - PŁYNNE UCIEKANIE =====
         
         const noBtn = document.getElementById('noBtn');
-        const btnWrapper = document.getElementById('btnWrapper');
-        let noBtnX = 0;
-        let noBtnY = 0;
-        let escapeCount = 0;
-        let isMobile = 'ontouchstart' in window;
-
-        // Pozycja startowa przycisku NIE
-        function initNoBtn() {
-            const wrapperRect = btnWrapper.getBoundingClientRect();
-            const yesBtn = document.querySelector('.btn-yes');
-            const yesBtnRect = yesBtn.getBoundingClientRect();
-            
-            noBtnX = wrapperRect.width / 2 + 20;
-            noBtnY = 0;
-            
-            noBtn.style.position = 'absolute';
-            noBtn.style.left = '50%';
-            noBtn.style.marginLeft = '60px';
-            noBtn.style.top = '50%';
-            noBtn.style.transform = 'translateY(-50%)';
-        }
+        const yesBtn = document.getElementById('yesBtn');
+        const mainContainer = document.getElementById('mainContainer');
         
-        window.addEventListener('load', () => {
-            if (!isMobile) initNoBtn();
-        });
-
-        // Desktop - płynne odpychanie przez kursor
+        let isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        let isEscaping = false;
+        let escapeCount = 0;
+        let noBtnPos = { x: 0, y: 0 };
+        let targetPos = { x: 0, y: 0 };
+        
+        // DESKTOP - płynne odpychanie
         if (!isMobile) {
-            let targetX = 0;
-            let targetY = 0;
-            let currentX = 0;
-            let currentY = 0;
-            let isEscaping = false;
-
             document.addEventListener('mousemove', (e) => {
                 const btnRect = noBtn.getBoundingClientRect();
                 const btnCenterX = btnRect.left + btnRect.width / 2;
@@ -800,307 +1325,583 @@
                 const dy = e.clientY - btnCenterY;
                 const distance = Math.sqrt(dx * dx + dy * dy);
                 
-                const escapeRadius = 180;
+                const escapeRadius = 130;
                 
-                if (distance < escapeRadius) {
+                if (distance < escapeRadius && !isEscaping) {
                     isEscaping = true;
+                    escapeCount++;
                     
-                    // Kierunek ucieczki - przeciwny do kursora
-                    const force = (escapeRadius - distance) / escapeRadius;
+                    // Oblicz kierunek ucieczki
                     const angle = Math.atan2(dy, dx);
+                    const pushDistance = 180 + Math.random() * 100;
                     
-                    const pushX = -Math.cos(angle) * force * 250;
-                    const pushY = -Math.sin(angle) * force * 250;
+                    // Nowa pozycja
+                    let newX = btnRect.left - Math.cos(angle) * pushDistance;
+                    let newY = btnRect.top - Math.sin(angle) * pushDistance;
                     
-                    // Granice ekranu
-                    const maxX = window.innerWidth - btnRect.width - 20;
-                    const maxY = window.innerHeight - btnRect.height - 20;
+                    // Granice
+                    const padding = 20;
+                    newX = Math.max(padding, Math.min(window.innerWidth - btnRect.width - padding, newX));
+                    newY = Math.max(padding, Math.min(window.innerHeight - btnRect.height - padding, newY));
                     
-                    targetX = Math.max(20, Math.min(maxX, btnRect.left + pushX)) - (window.innerWidth / 2 - btnRect.width / 2);
-                    targetY = Math.max(20, Math.min(maxY, btnRect.top + pushY)) - (window.innerHeight / 2 - btnRect.height / 2);
-                }
-            });
-
-            // Płynna animacja
-            function animateBtn() {
-                if (isEscaping) {
-                    currentX += (targetX - currentX) * 0.15;
-                    currentY += (targetY - currentY) * 0.15;
+                    // Jeśli pierwszy raz - wyciągnij z kontenera
+                    if (escapeCount === 1) {
+                        noBtn.style.position = 'fixed';
+                    }
                     
                     noBtn.style.position = 'fixed';
-                    noBtn.style.left = '50%';
-                    noBtn.style.top = '50%';
-                    noBtn.style.marginLeft = '0';
-                    noBtn.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+                    noBtn.style.transition = 'left 0.4s ease-out, top 0.4s ease-out';
+                    noBtn.style.left = newX + 'px';
+                    noBtn.style.top = newY + 'px';
+                    
+                    // Zmiana tekstu
+                    const texts = ['NIE 💔', 'Nie! 🙈', 'Haha! 😜', 'Złap mnie! 🏃', 'Niemożliwe! ✨', 'Wybierz TAK! 💕'];
+                    if (escapeCount <= texts.length) {
+                        noBtn.textContent = texts[Math.min(escapeCount - 1, texts.length - 1)];
+                    }
+                    
+                    setTimeout(() => {
+                        isEscaping = false;
+                    }, 400);
                 }
-                requestAnimationFrame(animateBtn);
-            }
-            animateBtn();
+            });
         }
-
-        // Mobile - uciekanie przy dotknięciu
+        
+        // MOBILE - uciekanie przy dotknięciu
         if (isMobile) {
             noBtn.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 escapeCount++;
                 
                 const padding = 20;
-                const maxX = window.innerWidth - noBtn.offsetWidth - padding;
-                const maxY = window.innerHeight - noBtn.offsetHeight - padding;
-                
-                const newX = padding + Math.random() * (maxX - padding);
-                const newY = padding + Math.random() * (maxY - padding);
+                const newX = padding + Math.random() * (window.innerWidth - noBtn.offsetWidth - padding * 2);
+                const newY = padding + Math.random() * (window.innerHeight - noBtn.offsetHeight - padding * 2);
                 
                 noBtn.style.position = 'fixed';
-                noBtn.style.transition = 'all 0.3s ease-out';
+                noBtn.style.transition = 'left 0.3s ease-out, top 0.3s ease-out';
                 noBtn.style.left = newX + 'px';
                 noBtn.style.top = newY + 'px';
-                noBtn.style.marginLeft = '0';
-                noBtn.style.transform = 'none';
                 
-                const texts = ['NIE 💔', 'Nie! 🙈', 'Hej! 😅', 'Złap! 🏃', 'Haha! 😜'];
+                const texts = ['NIE 💔', 'Nie! 🙈', 'Haha! 😜', 'Złap! 🏃', 'TAK > NIE 💕'];
                 noBtn.textContent = texts[Math.min(escapeCount - 1, texts.length - 1)];
             });
         }
-
-        // Kliknięcie NIE (gdyby się udało)
-        noBtn.addEventListener('click', () => {
+        
+        // Kliknięcie NIE
+        noBtn.addEventListener('click', (e) => {
             if (isMobile) return;
-            const cry = document.createElement('div');
-            cry.className = 'crying';
-            cry.textContent = '😢';
-            document.body.appendChild(cry);
-            setTimeout(() => cry.remove(), 2000);
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'sad-overlay';
+            overlay.innerHTML = '<div class="sad-emoji">😢</div>';
+            document.body.appendChild(overlay);
+            
+            setTimeout(() => overlay.remove(), 1800);
         });
 
         // ===== PRZYCISK TAK =====
         
-        function sayYes() {
-            document.getElementById('mainContainer').style.display = 'none';
+        yesBtn.addEventListener('click', () => {
+            showSuccessScreen();
+        });
+        
+        function showSuccessScreen() {
+            // Ukryj main
+            mainContainer.style.transition = 'opacity 0.5s, transform 0.5s';
+            mainContainer.style.opacity = '0';
+            mainContainer.style.transform = 'scale(0.9)';
             noBtn.style.display = 'none';
             
-            // Spadające elementy
-            const items = ['🌹', '💕', '💖', '🌸', '❤️', '💐', '✨'];
-            for (let i = 0; i < 60; i++) {
-                setTimeout(() => {
-                    const el = document.createElement('div');
-                    el.className = 'falling';
-                    el.textContent = items[Math.floor(Math.random() * items.length)];
-                    el.style.left = Math.random() * 100 + 'vw';
-                    el.style.animationDuration = (3 + Math.random() * 2) + 's';
-                    document.body.appendChild(el);
-                    setTimeout(() => el.remove(), 5000);
-                }, i * 80);
-            }
-            
-            // Ekran sukcesu
             setTimeout(() => {
-                const success = document.createElement('div');
-                success.className = 'success-container';
-                success.innerHTML = `
-                    <div class="success-box">
+                mainContainer.style.display = 'none';
+                
+                // Utwórz ekran sukcesu
+                const successScreen = document.createElement('div');
+                successScreen.className = 'success-screen';
+                successScreen.id = 'successScreen';
+                successScreen.innerHTML = `
+                    <div class="success-bg"></div>
+                    <div class="bg-layer bg-falling" id="successFalling"></div>
+                    <div class="success-card">
                         <h2>DOSKONAŁY WYBÓR WIKUSIA 💖</h2>
                         <p>Kocham Cię najbardziej na świecie! 💕</p>
-                        <button class="btn-magic" onclick="startCinema()">✨ To teraz czary ✨</button>
+                        <button class="btn-magic" id="magicBtn">✨ To teraz czary ✨</button>
                     </div>
                 `;
-                document.body.appendChild(success);
+                document.body.appendChild(successScreen);
+                
+                // Spadające elementy na ekranie sukcesu
+                const successFalling = document.getElementById('successFalling');
+                const items = ['💕', '🌸', '💗', '✨', '🌹', '💖', '❤️'];
+                
+                function addSuccessFalling() {
+                    const el = document.createElement('div');
+                    el.className = 'falling-item';
+                    el.textContent = items[Math.floor(Math.random() * items.length)];
+                    el.style.left = Math.random() * 100 + '%';
+                    el.style.fontSize = (20 + Math.random() * 25) + 'px';
+                    el.style.animationDuration = (6 + Math.random() * 6) + 's';
+                    el.style.opacity = '0.7';
+                    successFalling.appendChild(el);
+                    setTimeout(() => el.remove(), 14000);
+                }
+                
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(addSuccessFalling, i * 200);
+                }
+                setInterval(addSuccessFalling, 800);
+                
+                // Button magic
+                document.getElementById('magicBtn').addEventListener('click', startCinema);
+                
             }, 500);
         }
 
         // ===== ANIMACJA FILMOWA =====
         
         function startCinema() {
-            document.querySelector('.success-container').remove();
+            document.getElementById('successScreen').remove();
             
-            // Tworzenie sceny
             const cinema = document.createElement('div');
-            cinema.className = 'cinema';
+            cinema.className = 'cinema-container';
+            cinema.id = 'cinema';
             cinema.innerHTML = `
-                <div class="scene-space" id="sceneSpace"></div>
-                <div class="ground" id="ground" style="opacity: 0;">
-                    <div class="grass"></div>
+                <div class="scene-scroll" id="sceneScroll">
+                    <!-- KOSMOS -->
+                    <div class="layer-space">
+                        <div class="star-field" id="starField"></div>
+                        <div class="planet planet-1"></div>
+                        <div class="planet planet-2"></div>
+                        <div class="shooting-star" style="top: 15%; left: 10%;"></div>
+                        <div class="shooting-star" style="top: 25%; left: 60%; animation-delay: 1.5s;"></div>
+                    </div>
+                    
+                    <!-- ATMOSFERA -->
+                    <div class="layer-atmosphere" id="atmosphere"></div>
+                    
+                    <!-- NIEBO -->
+                    <div class="layer-sky">
+                        <div class="sun"></div>
+                        <div class="cloud-fluffy" style="top: 20%; left: 10%;">☁️</div>
+                        <div class="cloud-fluffy" style="top: 35%; left: 70%; font-size: 80px;">☁️</div>
+                        <div class="cloud-fluffy" style="top: 50%; left: 40%; font-size: 50px;">☁️</div>
+                    </div>
+                    
+                    <!-- ZIEMIA -->
+                    <div class="layer-ground" id="groundLayer"></div>
                 </div>
-                <div class="character girl" id="girl">👩‍🦱</div>
-                <div class="character boy" id="boy">👱‍♂️</div>
-                <div class="cupid character" id="cupid">👼</div>
-                <div class="bubble" id="bubble"></div>
-                <div class="hugging" id="hug">👩‍❤️‍👨</div>
-                <div class="fade-overlay" id="fadeOverlay"></div>
-                <div class="end-text" id="endText">
+                
+                <!-- POSTACI -->
+                <div class="character-container girl-character" id="girlChar">
+                    <div class="person">
+                        <div class="head">
+                            <div class="hair-girl"></div>
+                            <div class="eyes">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="mouth"></div>
+                            <div class="blush left"></div>
+                            <div class="blush right"></div>
+                        </div>
+                        <div class="body girl-body">
+                            <div class="arms">
+                                <div class="arm left girl-arm"></div>
+                                <div class="arm right girl-arm"></div>
+                            </div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg"></div>
+                            <div class="leg"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="character-container boy-character" id="boyChar">
+                    <div class="person">
+                        <div class="head">
+                            <div class="hair-boy"></div>
+                            <div class="eyes">
+                                <div class="eye"></div>
+                                <div class="eye"></div>
+                            </div>
+                            <div class="mouth"></div>
+                        </div>
+                        <div class="body boy-body">
+                            <div class="arms">
+                                <div class="arm left boy-arm"></div>
+                                <div class="arm right boy-arm"></div>
+                            </div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg"></div>
+                            <div class="leg"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="character-container cupid-character" id="cupidChar">
+                    <div class="cupid-body">
+                        <div class="cupid-wings">
+                            <div class="wing left"></div>
+                            <div class="wing right"></div>
+                        </div>
+                        <div class="cupid-head">
+                            <div class="cupid-hair"></div>
+                            <div class="eyes" style="top: 14px;">
+                                <div class="eye" style="width: 4px; height: 5px;"></div>
+                                <div class="eye" style="width: 4px; height: 5px;"></div>
+                            </div>
+                            <div class="mouth" style="bottom: 8px; width: 6px; height: 3px;"></div>
+                        </div>
+                        <div class="cupid-torso"></div>
+                        <div class="bow">
+                            <div class="bow-curve"></div>
+                            <div class="bow-string"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Przytulająca się para -->
+                <div class="couple-hug" id="coupleHug">
+                    <div style="font-size: 100px;">👩‍❤️‍👨</div>
+                </div>
+                
+                <!-- Efekty -->
+                <div class="cinema-fade" id="cinemaFade"></div>
+                <div class="cinema-end-text" id="cinemaEndText">
                     <h1>DZIĘKUJĘ ZA KOLEJNY<br>WSPANIAŁY ROK</h1>
-                    <div class="heart-end">💕</div>
+                    <span class="final-heart">💕</span>
                 </div>
             `;
             document.body.appendChild(cinema);
             
-            const spaceScene = document.getElementById('sceneSpace');
-            const ground = document.getElementById('ground');
-            
-            // Dodaj gwiazdy do kosmosu
-            for (let i = 0; i < 200; i++) {
+            // Dodaj gwiazdy
+            const starField = document.getElementById('starField');
+            for (let i = 0; i < 150; i++) {
                 const star = document.createElement('div');
-                star.className = 'space-star';
+                star.className = 'cinema-star';
                 star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 40 + '%';
-                star.style.width = (1 + Math.random() * 3) + 'px';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (1 + Math.random() * 2) + 'px';
                 star.style.height = star.style.width;
-                spaceScene.appendChild(star);
+                starField.appendChild(star);
             }
             
-            // Dodaj chmury
-            for (let i = 0; i < 8; i++) {
+            // Dodaj chmury w atmosferze
+            const atmosphere = document.getElementById('atmosphere');
+            for (let i = 0; i < 10; i++) {
                 const cloud = document.createElement('div');
                 cloud.className = 'cloud';
-                cloud.textContent = '☁️';
                 cloud.style.left = Math.random() * 100 + '%';
-                cloud.style.top = (50 + Math.random() * 15) + '%';
-                cloud.style.fontSize = (50 + Math.random() * 80) + 'px';
-                spaceScene.appendChild(cloud);
+                cloud.style.top = (60 + Math.random() * 30) + '%';
+                cloud.style.width = (80 + Math.random() * 150) + 'px';
+                cloud.style.height = (30 + Math.random() * 40) + 'px';
+                atmosphere.appendChild(cloud);
             }
             
-            // Dodaj drzewa i krzewy
-            const trees = ['🌲', '🌳', '🌴'];
-            const positions = [5, 15, 75, 88, 95];
-            positions.forEach(pos => {
+            // Dodaj drzewa, krzewy, kwiaty
+            const ground = document.getElementById('groundLayer');
+            
+            // Drzewa
+            const treePositions = [5, 15, 80, 92];
+            treePositions.forEach(pos => {
                 const tree = document.createElement('div');
-                tree.className = 'tree';
-                tree.textContent = trees[Math.floor(Math.random() * trees.length)];
+                tree.className = 'tree-css';
                 tree.style.left = pos + '%';
+                tree.innerHTML = `
+                    <div class="tree-leaves"><span></span></div>
+                    <div class="tree-trunk"></div>
+                `;
                 ground.appendChild(tree);
             });
             
             // Krzewy
-            for (let i = 0; i < 6; i++) {
+            const bushPositions = [25, 45, 70];
+            bushPositions.forEach(pos => {
                 const bush = document.createElement('div');
-                bush.className = 'bush';
-                bush.textContent = '🌿';
-                bush.style.left = (10 + i * 15) + '%';
+                bush.className = 'bush-css';
+                bush.style.left = pos + '%';
+                bush.innerHTML = '<div class="bush-body"></div>';
                 ground.appendChild(bush);
-            }
+            });
             
-            // Kwiatki
-            const flowers = ['🌸', '🌺', '🌼', '🌷', '💮'];
-            for (let i = 0; i < 15; i++) {
+            // Kwiaty
+            const flowerColors = ['#ff69b4', '#ff6b6b', '#ffd54f', '#ba68c8', '#4fc3f7'];
+            for (let i = 0; i < 20; i++) {
                 const flower = document.createElement('div');
-                flower.className = 'flower';
-                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
-                flower.style.left = Math.random() * 100 + '%';
+                flower.className = 'flower-css';
+                flower.style.left = (5 + Math.random() * 90) + '%';
+                flower.style.setProperty('--color', flowerColors[Math.floor(Math.random() * flowerColors.length)]);
                 flower.style.animationDelay = Math.random() * 2 + 's';
+                flower.innerHTML = `
+                    <div class="flower-head"></div>
+                    <div class="flower-stem"></div>
+                `;
                 ground.appendChild(flower);
             }
             
-            // TIMELINE ANIMACJI
-            const girl = document.getElementById('girl');
-            const boy = document.getElementById('boy');
-            const cupid = document.getElementById('cupid');
-            const bubble = document.getElementById('bubble');
-            const hug = document.getElementById('hug');
-            const fadeOverlay = document.getElementById('fadeOverlay');
-            const endText = document.getElementById('endText');
+            // ===== ANIMACJA TIMELINE =====
             
-            // 0-8s: Kamera leci w dół
+            const sceneScroll = document.getElementById('sceneScroll');
+            const girlChar = document.getElementById('girlChar');
+            const boyChar = document.getElementById('boyChar');
+            const cupidChar = document.getElementById('cupidChar');
+            const coupleHug = document.getElementById('coupleHug');
+            const cinemaFade = document.getElementById('cinemaFade');
+            const cinemaEndText = document.getElementById('cinemaEndText');
             
-            // 6s: Pokaż ziemię
+            // Funkcja animacji kamery
+            function animateCamera(duration, targetPercent) {
+                sceneScroll.style.transition = `transform ${duration}s ease-in-out`;
+                sceneScroll.style.transform = `translateY(-${targetPercent}%)`;
+            }
+            
+            // 0-6s: Kamera leci przez kosmos
+            setTimeout(() => animateCamera(6, 25), 100);
+            
+            // 6-10s: Przez atmosferę
+            setTimeout(() => animateCamera(4, 50), 6000);
+            
+            // 10-13s: Przez niebo na ziemię
+            setTimeout(() => animateCamera(3, 75), 10000);
+            
+            // 14s: Dziewczyna spada z nieba
             setTimeout(() => {
-                ground.style.transition = 'opacity 2s';
-                ground.style.opacity = '1';
-            }, 6000);
+                girlChar.style.opacity = '1';
+                girlChar.style.animation = 'girlFallIn 2s ease-out forwards';
+            }, 14000);
             
-            // 9s: Dziewczyna spada
-            setTimeout(() => {
-                girl.classList.add('falling-in');
-            }, 9000);
+            // Dodaj keyframes dynamicznie
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes girlFallIn {
+                    0% { transform: translateY(-400px) rotate(20deg); }
+                    60% { transform: translateY(20px) rotate(-10deg); }
+                    80% { transform: translateY(-10px) rotate(5deg); }
+                    100% { transform: translateY(0) rotate(0deg); }
+                }
+                @keyframes dustOff {
+                    0%, 100% { transform: rotate(0deg); }
+                    25% { transform: rotate(-8deg) translateY(-5px); }
+                    75% { transform: rotate(8deg) translateY(-5px); }
+                }
+                @keyframes boyWalkIn {
+                    0% { transform: translateX(100px); opacity: 0; }
+                    100% { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes bubblePop {
+                    0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+                    50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+                    100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+                }
+                @keyframes cupidAppear {
+                    0% { opacity: 0; transform: translateX(-50%) scale(0); }
+                    100% { opacity: 1; transform: translateX(-50%) scale(0.9); }
+                }
+                @keyframes arrowFlyToGirl {
+                    0% { transform: translate(0, 0) rotate(35deg); opacity: 1; }
+                    100% { transform: translate(-200px, 250px) rotate(35deg); opacity: 1; }
+                }
+                @keyframes arrowFlyToBoy {
+                    0% { transform: translate(0, 0) rotate(-35deg); opacity: 1; }
+                    100% { transform: translate(200px, 250px) rotate(-35deg); opacity: 1; }
+                }
+                @keyframes hitHeartPop {
+                    0% { transform: scale(0); opacity: 0; }
+                    50% { transform: scale(1.3); opacity: 1; }
+                    100% { transform: scale(1); opacity: 1; }
+                }
+                @keyframes floatUpLove {
+                    0% { transform: translateY(0) scale(1); opacity: 1; }
+                    100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+                }
+                @keyframes hugAppear {
+                    0% { transform: translateX(-50%) scale(0); opacity: 0; }
+                    100% { transform: translateX(-50%) scale(1); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
             
-            // 11s: Otrzepuje się
+            // 16s: Otrzepuje się
             setTimeout(() => {
-                girl.classList.remove('falling-in');
-                girl.style.opacity = '1';
-                girl.classList.add('dusting');
-            }, 11000);
-            
-            // 13s: Chłopak wychodzi
-            setTimeout(() => {
-                boy.classList.add('appearing');
-            }, 13000);
-            
-            // 15s: Bańka się pojawia
-            setTimeout(() => {
-                bubble.style.animation = 'bubblePop 1.5s ease forwards';
-            }, 15000);
-            
-            // 16s: Amor się pojawia
-            setTimeout(() => {
-                cupid.classList.add('appearing');
+                girlChar.style.animation = 'dustOff 1.5s ease';
             }, 16000);
             
-            // 17.5s: Strzały lecą
+            // 18s: Chłopak wychodzi zza krzaków
+            setTimeout(() => {
+                boyChar.style.opacity = '1';
+                boyChar.style.animation = 'boyWalkIn 1.5s ease forwards';
+            }, 18000);
+            
+            // 20s: Bańka pojawia się na niebie
+            setTimeout(() => {
+                const bubble = document.createElement('div');
+                bubble.style.cssText = `
+                    position: absolute;
+                    top: 30%;
+                    left: 50%;
+                    width: 120px;
+                    height: 120px;
+                    border-radius: 50%;
+                    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,200,220,0.4));
+                    animation: bubblePop 1s ease forwards;
+                    z-index: 90;
+                `;
+                document.getElementById('cinema').appendChild(bubble);
+                
+                setTimeout(() => bubble.remove(), 1500);
+            }, 20000);
+            
+            // 21s: Amor się pojawia
+            setTimeout(() => {
+                cupidChar.style.opacity = '1';
+                cupidChar.style.animation = 'cupidAppear 1s ease forwards';
+            }, 21000);
+            
+            // 23s: Strzały lecą
             setTimeout(() => {
                 // Strzała do dziewczyny
                 const arrow1 = document.createElement('div');
-                arrow1.className = 'arrow';
-                arrow1.textContent = '💘';
-                arrow1.style.top = '30%';
-                arrow1.style.left = '50%';
-                arrow1.style.setProperty('--endX', '-150px');
-                arrow1.style.setProperty('--endY', '200px');
-                arrow1.classList.add('flying');
-                cinema.appendChild(arrow1);
+                arrow1.className = 'flying-arrow';
+                arrow1.innerHTML = `
+                    <div class="arrow-body">
+                        <div class="arrow-head"></div>
+                        <div class="arrow-feather"></div>
+                    </div>
+                `;
+                arrow1.style.cssText = `
+                    position: absolute;
+                    top: 25%;
+                    left: 48%;
+                    opacity: 1;
+                    animation: arrowFlyToGirl 0.8s ease-in forwards;
+                    z-index: 200;
+                `;
+                document.getElementById('cinema').appendChild(arrow1);
                 
                 // Strzała do chłopaka
                 setTimeout(() => {
                     const arrow2 = document.createElement('div');
-                    arrow2.className = 'arrow';
-                    arrow2.textContent = '💘';
-                    arrow2.style.top = '30%';
-                    arrow2.style.left = '50%';
-                    arrow2.style.setProperty('--endX', '150px');
-                    arrow2.style.setProperty('--endY', '200px');
-                    arrow2.classList.add('flying');
-                    cinema.appendChild(arrow2);
-                }, 300);
-            }, 17500);
+                    arrow2.className = 'flying-arrow';
+                    arrow2.innerHTML = `
+                        <div class="arrow-body">
+                            <div class="arrow-head"></div>
+                            <div class="arrow-feather"></div>
+                        </div>
+                    `;
+                    arrow2.style.cssText = `
+                        position: absolute;
+                        top: 25%;
+                        left: 52%;
+                        opacity: 1;
+                        animation: arrowFlyToBoy 0.8s ease-in forwards;
+                        z-index: 200;
+                    `;
+                    document.getElementById('cinema').appendChild(arrow2);
+                }, 400);
+            }, 23000);
             
-            // 18.5s: Efekty trafienia + serduszka
+            // 24s: Efekty trafienia - serduszka przy pupach
             setTimeout(() => {
-                // Latające serduszka
+                // Serduszko przy dziewczynie (pupa)
+                const hit1 = document.createElement('div');
+                hit1.className = 'hit-heart';
+                hit1.textContent = '💘';
+                hit1.style.cssText = `
+                    position: absolute;
+                    bottom: 18%;
+                    left: 32%;
+                    opacity: 1;
+                    font-size: 35px;
+                    animation: hitHeartPop 0.5s ease forwards;
+                `;
+                document.getElementById('cinema').appendChild(hit1);
+                
+                // Serduszko przy chłopaku (pupa)
+                const hit2 = document.createElement('div');
+                hit2.className = 'hit-heart';
+                hit2.textContent = '💘';
+                hit2.style.cssText = `
+                    position: absolute;
+                    bottom: 18%;
+                    right: 32%;
+                    opacity: 1;
+                    font-size: 35px;
+                    animation: hitHeartPop 0.5s ease forwards;
+                    animation-delay: 0.3s;
+                `;
+                document.getElementById('cinema').appendChild(hit2);
+            }, 24000);
+            
+            // 25s: Patrzą na siebie, serduszka w tle
+            setTimeout(() => {
+                // Unoszące się serduszka
+                for (let i = 0; i < 20; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.className = 'floating-love';
+                        heart.textContent = ['💕', '💖', '❤️', '💗'][Math.floor(Math.random() * 4)];
+                        heart.style.cssText = `
+                            position: absolute;
+                            bottom: 20%;
+                            left: ${35 + Math.random() * 30}%;
+                            opacity: 1;
+                            font-size: ${20 + Math.random() * 15}px;
+                            animation: floatUpLove 3s ease forwards;
+                        `;
+                        document.getElementById('cinema').appendChild(heart);
+                        setTimeout(() => heart.remove(), 3000);
+                    }, i * 150);
+                }
+            }, 25000);
+            
+            // 27s: Postaci znikają, para się przytula
+            setTimeout(() => {
+                girlChar.style.transition = 'opacity 0.5s';
+                boyChar.style.transition = 'opacity 0.5s';
+                cupidChar.style.transition = 'opacity 0.8s';
+                girlChar.style.opacity = '0';
+                boyChar.style.opacity = '0';
+                cupidChar.style.opacity = '0';
+                
+                setTimeout(() => {
+                    coupleHug.style.opacity = '1';
+                    coupleHug.style.animation = 'hugAppear 1s ease forwards';
+                }, 500);
+            }, 27000);
+            
+            // 30s: Więcej serduszek
+            setTimeout(() => {
                 for (let i = 0; i < 30; i++) {
                     setTimeout(() => {
                         const heart = document.createElement('div');
-                        heart.className = 'love-heart';
-                        heart.textContent = ['💕', '💖', '❤️', '💗'][Math.floor(Math.random() * 4)];
-                        heart.style.left = (30 + Math.random() * 40) + '%';
-                        heart.style.bottom = '150px';
-                        heart.style.animationDelay = (Math.random() * 0.5) + 's';
-                        cinema.appendChild(heart);
-                        setTimeout(() => heart.remove(), 3500);
+                        heart.textContent = ['💕', '💖', '❤️', '💗', '💘'][Math.floor(Math.random() * 5)];
+                        heart.style.cssText = `
+                            position: absolute;
+                            bottom: 15%;
+                            left: ${20 + Math.random() * 60}%;
+                            font-size: ${25 + Math.random() * 20}px;
+                            animation: floatUpLove 4s ease forwards;
+                            z-index: 160;
+                        `;
+                        document.getElementById('cinema').appendChild(heart);
+                        setTimeout(() => heart.remove(), 4000);
                     }, i * 100);
                 }
-            }, 18500);
+            }, 30000);
             
-            // 20s: Ukryj postacie osobno, pokaż przytulanie
+            // 33s: Fade to black
             setTimeout(() => {
-                girl.style.transition = 'opacity 0.5s';
-                boy.style.transition = 'opacity 0.5s';
-                girl.style.opacity = '0';
-                boy.style.opacity = '0';
-                cupid.style.transition = 'opacity 1s';
-                cupid.style.opacity = '0';
-                
-                setTimeout(() => {
-                    hug.classList.add('show');
-                }, 500);
-            }, 20000);
+                cinemaFade.style.transition = 'opacity 2s ease';
+                cinemaFade.style.opacity = '1';
+            }, 33000);
             
-            // 24s: Fade to black
+            // 35.5s: Napis końcowy
             setTimeout(() => {
-                fadeOverlay.classList.add('active');
-            }, 24000);
-            
-            // 26s: Napis końcowy
-            setTimeout(() => {
-                endText.classList.add('show');
-            }, 26000);
+                cinemaEndText.style.transition = 'opacity 1.5s ease';
+                cinemaEndText.style.opacity = '1';
+            }, 35500);
         }
     </script>
 </body>
