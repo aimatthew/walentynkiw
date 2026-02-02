@@ -140,19 +140,11 @@
         .btn-magic:hover { transform: translateY(-3px) scale(1.05); }
 
         .cinema-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; background: #000; }
-        #cinemaCanvas { width: 100%; height: 100%; display: block; }
-        
-        .cinema-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
         
         .cinema-end { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 100; opacity: 0; transition: opacity 2s ease; }
         .cinema-end h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: white; letter-spacing: 4px; line-height: 1.6; text-shadow: 0 0 40px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 100, 150, 0.3); }
         .cinema-end .final-heart { font-size: 60px; margin-top: 30px; display: block; animation: finalBeat 1s ease-in-out infinite; }
         @keyframes finalBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
-
-        .loading-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
-        .loading-screen h2 { color: white; font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px; }
-        .loading-bar { width: 200px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; }
-        .loading-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #ff69b4, #ff1493); transition: width 0.3s; }
 
         @media (max-width: 600px) {
             .container { padding: 40px 25px; margin: 15px; }
@@ -206,16 +198,19 @@
         </div>
     </div>
 
-    <!-- Three.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
-    
-    <script>
-        // ===== STRONA 1 - ZACHOWANA BEZ ZMIAN =====
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+
+    <script type="module">
+        import * as THREE from 'three';
+
+        // ===== STRONA 1 - BEZ ZMIAN =====
         function createParticles() {
             const container = document.getElementById('particlesLayer');
             for (let i = 0; i < 80; i++) {
@@ -363,17 +358,13 @@
             }, 500);
         }
 
-        // ===== PROFESJONALNA ANIMACJA 3D THREE.JS =====
+        // ===== ANIMACJA 3D THREE.JS =====
         function startCinema() {
             document.getElementById('successScreen').remove();
             
             const cinema = document.createElement('div');
             cinema.className = 'cinema-container';
             cinema.innerHTML = `
-                <div class="loading-screen" id="loadingScreen">
-                    <h2>✨ Przygotowuję magię... ✨</h2>
-                    <div class="loading-bar"><div class="loading-bar-fill" id="loadingFill"></div></div>
-                </div>
                 <div class="cinema-end" id="cinemaEnd">
                     <h1>DZIĘKUJĘ ZA KOLEJNY<br>WSPANIAŁY ROK</h1>
                     <span class="final-heart">💕</span>
@@ -381,65 +372,24 @@
             `;
             document.body.appendChild(cinema);
 
-            // Loading simulation
-            let loadProgress = 0;
-            const loadingFill = document.getElementById('loadingFill');
-            const loadingInterval = setInterval(() => {
-                loadProgress += Math.random() * 15;
-                if (loadProgress >= 100) {
-                    loadProgress = 100;
-                    clearInterval(loadingInterval);
-                    setTimeout(() => {
-                        document.getElementById('loadingScreen').style.opacity = '0';
-                        setTimeout(() => {
-                            document.getElementById('loadingScreen').remove();
-                            initThreeJS(cinema);
-                        }, 500);
-                    }, 300);
-                }
-                loadingFill.style.width = loadProgress + '%';
-            }, 100);
-        }
-
-        function initThreeJS(container) {
-            // Scene setup
+            // Three.js Setup
             const scene = new THREE.Scene();
             const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
             
-            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            const renderer = new THREE.WebGLRenderer({ antialias: true });
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
             renderer.shadowMap.enabled = true;
-            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
             renderer.toneMapping = THREE.ACESFilmicToneMapping;
-            renderer.toneMappingExposure = 1.2;
-            container.insertBefore(renderer.domElement, container.firstChild);
+            cinema.insertBefore(renderer.domElement, cinema.firstChild);
 
-            // Post-processing
-            const composer = new THREE.EffectComposer(renderer);
-            const renderPass = new THREE.RenderPass(scene, camera);
-            composer.addPass(renderPass);
-            
-            const bloomPass = new THREE.UnrealBloomPass(
-                new THREE.Vector2(window.innerWidth, window.innerHeight),
-                0.8, 0.4, 0.85
-            );
-            composer.addPass(bloomPass);
-
-            // ===== MATERIALS =====
-            const toonMaterial = (color) => new THREE.MeshToonMaterial({ color: color });
-            const glowMaterial = (color) => new THREE.MeshBasicMaterial({ color: color });
-
-            // ===== ENVIRONMENT =====
-            
-            // Skybox gradient
-            const skyGeo = new THREE.SphereGeometry(500, 32, 32);
+            // Sky gradient
+            const skyGeo = new THREE.SphereGeometry(800, 32, 32);
             const skyMat = new THREE.ShaderMaterial({
                 uniforms: {
-                    topColor: { value: new THREE.Color(0x000011) },
-                    bottomColor: { value: new THREE.Color(0x87CEEB) },
-                    offset: { value: 0 },
-                    exponent: { value: 0.6 }
+                    topColor: { value: new THREE.Color(0x000022) },
+                    bottomColor: { value: new THREE.Color(0x000044) },
+                    progress: { value: 0 }
                 },
                 vertexShader: `
                     varying vec3 vWorldPosition;
@@ -452,12 +402,17 @@
                 fragmentShader: `
                     uniform vec3 topColor;
                     uniform vec3 bottomColor;
-                    uniform float offset;
-                    uniform float exponent;
+                    uniform float progress;
                     varying vec3 vWorldPosition;
                     void main() {
-                        float h = normalize(vWorldPosition + offset).y;
-                        gl_FragColor = vec4(mix(bottomColor, topColor, max(pow(max(h, 0.0), exponent), 0.0)), 1.0);
+                        float h = normalize(vWorldPosition).y * 0.5 + 0.5;
+                        vec3 spaceTop = vec3(0.0, 0.0, 0.05);
+                        vec3 spaceBottom = vec3(0.0, 0.0, 0.15);
+                        vec3 skyTop = vec3(0.4, 0.7, 1.0);
+                        vec3 skyBottom = vec3(0.7, 0.85, 1.0);
+                        vec3 finalTop = mix(spaceTop, skyTop, progress);
+                        vec3 finalBottom = mix(spaceBottom, skyBottom, progress);
+                        gl_FragColor = vec4(mix(finalBottom, finalTop, h), 1.0);
                     }
                 `,
                 side: THREE.BackSide
@@ -466,219 +421,127 @@
             scene.add(sky);
 
             // Stars
-            const starsGeometry = new THREE.BufferGeometry();
-            const starsCount = 3000;
-            const starsPositions = new Float32Array(starsCount * 3);
-            const starsSizes = new Float32Array(starsCount);
-            
+            const starsGeo = new THREE.BufferGeometry();
+            const starsCount = 2000;
+            const starPos = new Float32Array(starsCount * 3);
             for (let i = 0; i < starsCount; i++) {
+                const r = 500 + Math.random() * 200;
                 const theta = Math.random() * Math.PI * 2;
                 const phi = Math.acos(2 * Math.random() - 1);
-                const r = 400 + Math.random() * 100;
-                
-                starsPositions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
-                starsPositions[i * 3 + 1] = r * Math.cos(phi);
-                starsPositions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
-                starsSizes[i] = Math.random() * 2 + 0.5;
+                starPos[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+                starPos[i * 3 + 1] = r * Math.cos(phi);
+                starPos[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
             }
-            
-            starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
-            starsGeometry.setAttribute('size', new THREE.BufferAttribute(starsSizes, 1));
-            
-            const starsMaterial = new THREE.PointsMaterial({
-                color: 0xffffff,
-                size: 2,
-                transparent: true,
-                opacity: 0.8,
-                sizeAttenuation: true
-            });
-            
-            const stars = new THREE.Points(starsGeometry, starsMaterial);
+            starsGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+            const starsMat = new THREE.PointsMaterial({ color: 0xffffff, size: 2, transparent: true, opacity: 1 });
+            const stars = new THREE.Points(starsGeo, starsMat);
             scene.add(stars);
 
             // Moon
-            const moonGeo = new THREE.SphereGeometry(15, 32, 32);
-            const moonMat = new THREE.MeshStandardMaterial({
-                color: 0xffffee,
-                emissive: 0x444433,
-                roughness: 0.8
-            });
+            const moonGeo = new THREE.SphereGeometry(20, 32, 32);
+            const moonMat = new THREE.MeshStandardMaterial({ color: 0xffffee, emissive: 0x333322, roughness: 0.8 });
             const moon = new THREE.Mesh(moonGeo, moonMat);
-            moon.position.set(100, 150, -200);
+            moon.position.set(150, 180, -300);
             scene.add(moon);
 
-            // Moon glow
-            const moonGlowGeo = new THREE.SphereGeometry(20, 32, 32);
-            const moonGlowMat = new THREE.MeshBasicMaterial({
-                color: 0xffffdd,
-                transparent: true,
-                opacity: 0.3
-            });
-            const moonGlow = new THREE.Mesh(moonGlowGeo, moonGlowMat);
-            moonGlow.position.copy(moon.position);
-            scene.add(moonGlow);
-
             // Sun
-            const sunGeo = new THREE.SphereGeometry(25, 32, 32);
+            const sunGeo = new THREE.SphereGeometry(30, 32, 32);
             const sunMat = new THREE.MeshBasicMaterial({ color: 0xffdd44 });
             const sun = new THREE.Mesh(sunGeo, sunMat);
-            sun.position.set(150, 80, -100);
+            sun.position.set(200, 100, -200);
+            sun.visible = false;
             scene.add(sun);
 
-            // Sun glow
-            const sunGlowGeo = new THREE.SphereGeometry(35, 32, 32);
-            const sunGlowMat = new THREE.MeshBasicMaterial({
-                color: 0xffaa00,
-                transparent: true,
-                opacity: 0.4
-            });
-            const sunGlow = new THREE.Mesh(sunGlowGeo, sunGlowMat);
-            sunGlow.position.copy(sun.position);
-            scene.add(sunGlow);
-
             // Ground
-            const groundGeo = new THREE.PlaneGeometry(500, 500, 50, 50);
-            
-            // Add some hills
+            const groundGeo = new THREE.PlaneGeometry(600, 600, 100, 100);
             const posAttr = groundGeo.getAttribute('position');
             for (let i = 0; i < posAttr.count; i++) {
                 const x = posAttr.getX(i);
                 const y = posAttr.getY(i);
-                const z = Math.sin(x * 0.02) * 3 + Math.cos(y * 0.02) * 3 + Math.random() * 0.5;
-                posAttr.setZ(i, z);
+                posAttr.setZ(i, Math.sin(x * 0.02) * 3 + Math.cos(y * 0.02) * 3);
             }
             groundGeo.computeVertexNormals();
-            
-            const groundMat = new THREE.MeshToonMaterial({ color: 0x4CAF50 });
+            const groundMat = new THREE.MeshLambertMaterial({ color: 0x4CAF50 });
             const ground = new THREE.Mesh(groundGeo, groundMat);
             ground.rotation.x = -Math.PI / 2;
-            ground.position.y = -20;
+            ground.position.y = -25;
             ground.receiveShadow = true;
             scene.add(ground);
 
-            // Grass patches
-            for (let i = 0; i < 200; i++) {
-                const grassGeo = new THREE.ConeGeometry(0.2, 2, 4);
-                const grassMat = new THREE.MeshToonMaterial({ 
-                    color: new THREE.Color().setHSL(0.3, 0.7, 0.3 + Math.random() * 0.2) 
-                });
-                const grass = new THREE.Mesh(grassGeo, grassMat);
-                grass.position.set(
-                    (Math.random() - 0.5) * 150,
-                    -19,
-                    (Math.random() - 0.5) * 150
-                );
-                grass.rotation.x = (Math.random() - 0.5) * 0.3;
-                scene.add(grass);
-            }
-
-            // Trees function
+            // Trees
             function createTree(x, z, scale = 1) {
                 const tree = new THREE.Group();
                 
-                // Trunk
-                const trunkGeo = new THREE.CylinderGeometry(0.8 * scale, 1.2 * scale, 8 * scale, 8);
-                const trunkMat = new THREE.MeshToonMaterial({ color: 0x8B4513 });
+                const trunkGeo = new THREE.CylinderGeometry(0.8 * scale, 1.2 * scale, 10 * scale, 8);
+                const trunkMat = new THREE.MeshLambertMaterial({ color: 0x8B4513 });
                 const trunk = new THREE.Mesh(trunkGeo, trunkMat);
-                trunk.position.y = 4 * scale;
+                trunk.position.y = 5 * scale;
                 trunk.castShadow = true;
                 tree.add(trunk);
                 
-                // Foliage layers
                 const colors = [0x228B22, 0x2E8B2E, 0x32CD32];
                 for (let i = 0; i < 3; i++) {
-                    const foliageGeo = new THREE.ConeGeometry(
-                        (6 - i * 1.5) * scale,
-                        (8 - i * 2) * scale,
-                        8
-                    );
-                    const foliageMat = new THREE.MeshToonMaterial({ color: colors[i] });
-                    const foliage = new THREE.Mesh(foliageGeo, foliageMat);
-                    foliage.position.y = (10 + i * 4) * scale;
-                    foliage.castShadow = true;
-                    tree.add(foliage);
+                    const leafGeo = new THREE.ConeGeometry((7 - i * 1.5) * scale, (10 - i * 2) * scale, 8);
+                    const leafMat = new THREE.MeshLambertMaterial({ color: colors[i] });
+                    const leaf = new THREE.Mesh(leafGeo, leafMat);
+                    leaf.position.y = (12 + i * 5) * scale;
+                    leaf.castShadow = true;
+                    tree.add(leaf);
                 }
                 
-                tree.position.set(x, -20, z);
+                tree.position.set(x, -25, z);
                 return tree;
             }
 
-            // Add trees
-            const treePositions = [
-                [-60, -30, 1.2], [-40, -50, 0.8], [50, -40, 1], [70, -25, 0.9],
-                [-70, 20, 1.1], [80, 30, 0.7], [-50, 60, 0.85], [60, 50, 1.15]
-            ];
-            treePositions.forEach(([x, z, s]) => scene.add(createTree(x, z, s)));
+            const treePositions = [[-70, -40], [-50, -60], [60, -50], [80, -30], [-80, 30], [90, 40]];
+            treePositions.forEach(([x, z]) => scene.add(createTree(x, z, 0.8 + Math.random() * 0.4)));
 
             // Flowers
-            function createFlower(x, z) {
-                const flower = new THREE.Group();
+            const flowers = [];
+            for (let i = 0; i < 40; i++) {
+                const flowerGroup = new THREE.Group();
                 
                 const stemGeo = new THREE.CylinderGeometry(0.1, 0.1, 3, 8);
-                const stemMat = new THREE.MeshToonMaterial({ color: 0x228B22 });
+                const stemMat = new THREE.MeshLambertMaterial({ color: 0x228B22 });
                 const stem = new THREE.Mesh(stemGeo, stemMat);
                 stem.position.y = 1.5;
-                flower.add(stem);
+                flowerGroup.add(stem);
                 
-                const colors = [0xff69b4, 0xff1493, 0xffb6c1, 0xff6b6b, 0xffd700];
-                const petalColor = colors[Math.floor(Math.random() * colors.length)];
+                const petalColors = [0xff69b4, 0xff1493, 0xffb6c1, 0xff6b6b, 0xffd700];
+                const petalColor = petalColors[Math.floor(Math.random() * petalColors.length)];
                 
-                for (let i = 0; i < 6; i++) {
-                    const petalGeo = new THREE.SphereGeometry(0.5, 8, 8);
-                    petalGeo.scale(1, 0.3, 0.5);
-                    const petalMat = new THREE.MeshToonMaterial({ color: petalColor });
+                for (let j = 0; j < 6; j++) {
+                    const petalGeo = new THREE.SphereGeometry(0.4, 8, 8);
+                    const petalMat = new THREE.MeshLambertMaterial({ color: petalColor });
                     const petal = new THREE.Mesh(petalGeo, petalMat);
-                    petal.position.y = 3;
-                    petal.position.x = Math.cos(i / 6 * Math.PI * 2) * 0.8;
-                    petal.position.z = Math.sin(i / 6 * Math.PI * 2) * 0.8;
-                    petal.rotation.z = Math.PI / 4;
-                    petal.rotation.y = i / 6 * Math.PI * 2;
-                    flower.add(petal);
+                    const angle = (j / 6) * Math.PI * 2;
+                    petal.position.set(Math.cos(angle) * 0.6, 3, Math.sin(angle) * 0.6);
+                    petal.scale.set(1, 0.4, 0.6);
+                    flowerGroup.add(petal);
                 }
                 
-                const centerGeo = new THREE.SphereGeometry(0.4, 16, 16);
-                const centerMat = new THREE.MeshToonMaterial({ color: 0xffff00 });
+                const centerGeo = new THREE.SphereGeometry(0.3, 16, 16);
+                const centerMat = new THREE.MeshLambertMaterial({ color: 0xffff00 });
                 const center = new THREE.Mesh(centerGeo, centerMat);
                 center.position.y = 3;
-                flower.add(center);
+                flowerGroup.add(center);
                 
-                flower.position.set(x, -20, z);
-                flower.userData.phase = Math.random() * Math.PI * 2;
-                return flower;
-            }
-
-            const flowers = [];
-            for (let i = 0; i < 50; i++) {
-                const flower = createFlower(
-                    (Math.random() - 0.5) * 120,
-                    (Math.random() - 0.5) * 120
-                );
-                flowers.push(flower);
-                scene.add(flower);
+                flowerGroup.position.set((Math.random() - 0.5) * 150, -25, (Math.random() - 0.5) * 150);
+                flowerGroup.userData.phase = Math.random() * Math.PI * 2;
+                flowers.push(flowerGroup);
+                scene.add(flowerGroup);
             }
 
             // Clouds
             function createCloud(x, y, z) {
                 const cloud = new THREE.Group();
-                const cloudMat = new THREE.MeshToonMaterial({ 
-                    color: 0xffffff,
-                    transparent: true,
-                    opacity: 0.9
-                });
-                
-                const sizes = [
-                    [4, 3, 3], [3, 2.5, 2.5], [3.5, 2.8, 2.8],
-                    [2.5, 2, 2], [3, 2.2, 2.2]
-                ];
-                const positions = [
-                    [0, 0, 0], [-3, 0.5, 0], [3, 0.3, 0],
-                    [-1.5, 1, 1], [1.5, 0.8, -1]
-                ];
+                const cloudMat = new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.9 });
                 
                 for (let i = 0; i < 5; i++) {
-                    const geo = new THREE.SphereGeometry(...sizes[i], 16, 16);
-                    const part = new THREE.Mesh(geo, cloudMat);
-                    part.position.set(...positions[i]);
+                    const size = 3 + Math.random() * 4;
+                    const partGeo = new THREE.SphereGeometry(size, 16, 16);
+                    const part = new THREE.Mesh(partGeo, cloudMat);
+                    part.position.set((Math.random() - 0.5) * 8, (Math.random() - 0.5) * 3, (Math.random() - 0.5) * 5);
                     cloud.add(part);
                 }
                 
@@ -688,162 +551,119 @@
             }
 
             const clouds = [];
-            for (let i = 0; i < 10; i++) {
-                const cloud = createCloud(
-                    (Math.random() - 0.5) * 300,
-                    40 + Math.random() * 60,
-                    -100 - Math.random() * 100
-                );
+            for (let i = 0; i < 8; i++) {
+                const cloud = createCloud((Math.random() - 0.5) * 400, 50 + Math.random() * 40, -150 - Math.random() * 100);
                 clouds.push(cloud);
                 scene.add(cloud);
             }
 
-            // ===== CHARACTERS =====
-            
-            // Character creator function
+            // Character creator
             function createCharacter(isGirl) {
-                const character = new THREE.Group();
+                const char = new THREE.Group();
                 
                 // Body
-                const bodyGeo = new THREE.CapsuleGeometry(2, 4, 8, 16);
-                const bodyColor = isGirl ? 0xff69b4 : 0x4169e1;
-                const bodyMat = new THREE.MeshToonMaterial({ color: bodyColor });
+                const bodyGeo = new THREE.CapsuleGeometry(2.5, 5, 8, 16);
+                const bodyMat = new THREE.MeshLambertMaterial({ color: isGirl ? 0xff69b4 : 0x4169e1 });
                 const body = new THREE.Mesh(bodyGeo, bodyMat);
-                body.position.y = 5;
+                body.position.y = 6;
                 body.castShadow = true;
-                character.add(body);
+                char.add(body);
                 
                 // Head
-                const headGeo = new THREE.SphereGeometry(2.2, 32, 32);
-                const headMat = new THREE.MeshToonMaterial({ color: 0xfdbf91 });
+                const headGeo = new THREE.SphereGeometry(2.8, 32, 32);
+                const headMat = new THREE.MeshLambertMaterial({ color: 0xfdbf91 });
                 const head = new THREE.Mesh(headGeo, headMat);
-                head.position.y = 10;
+                head.position.y = 12;
                 head.castShadow = true;
-                character.add(head);
+                char.add(head);
                 
                 // Hair
                 if (isGirl) {
-                    // Long black hair
-                    const hairGeo = new THREE.SphereGeometry(2.5, 32, 32);
-                    hairGeo.scale(1, 1.3, 1);
-                    const hairMat = new THREE.MeshToonMaterial({ color: 0x1a1a1a });
+                    const hairGeo = new THREE.SphereGeometry(3.2, 32, 32);
+                    hairGeo.scale(1, 1.4, 1);
+                    const hairMat = new THREE.MeshLambertMaterial({ color: 0x1a1a1a });
                     const hair = new THREE.Mesh(hairGeo, hairMat);
-                    hair.position.y = 10.5;
-                    character.add(hair);
+                    hair.position.y = 12.5;
+                    char.add(hair);
                     
-                    // Hair sides
                     for (let side of [-1, 1]) {
-                        const sideHairGeo = new THREE.CapsuleGeometry(0.8, 6, 8, 16);
+                        const sideHairGeo = new THREE.CapsuleGeometry(1, 8, 8, 16);
                         const sideHair = new THREE.Mesh(sideHairGeo, hairMat);
-                        sideHair.position.set(side * 2, 7, 0);
-                        sideHair.rotation.z = side * 0.2;
-                        character.add(sideHair);
+                        sideHair.position.set(side * 2.5, 8, 0);
+                        char.add(sideHair);
                     }
                 } else {
-                    // Short dark blonde hair
-                    const hairGeo = new THREE.SphereGeometry(2.4, 32, 32);
-                    hairGeo.scale(1, 0.8, 1);
-                    const hairMat = new THREE.MeshToonMaterial({ color: 0x8b7355 });
+                    const hairGeo = new THREE.SphereGeometry(3, 32, 32);
+                    hairGeo.scale(1, 0.7, 1);
+                    const hairMat = new THREE.MeshLambertMaterial({ color: 0x8b7355 });
                     const hair = new THREE.Mesh(hairGeo, hairMat);
-                    hair.position.y = 11;
-                    character.add(hair);
+                    hair.position.y = 13.5;
+                    char.add(hair);
                 }
                 
                 // Eyes
-                for (let side of [-0.8, 0.8]) {
-                    const eyeWhiteGeo = new THREE.SphereGeometry(0.4, 16, 16);
-                    const eyeWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-                    const eyeWhite = new THREE.Mesh(eyeWhiteGeo, eyeWhiteMat);
-                    eyeWhite.position.set(side, 10, 2);
-                    character.add(eyeWhite);
-                    
-                    const pupilGeo = new THREE.SphereGeometry(0.2, 16, 16);
-                    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x3e2723 });
-                    const pupil = new THREE.Mesh(pupilGeo, pupilMat);
-                    pupil.position.set(side, 10, 2.3);
-                    character.add(pupil);
+                for (let side of [-1, 1]) {
+                    const eyeGeo = new THREE.SphereGeometry(0.5, 16, 16);
+                    const eyeMat = new THREE.MeshBasicMaterial({ color: 0x3e2723 });
+                    const eye = new THREE.Mesh(eyeGeo, eyeMat);
+                    eye.position.set(side * 1, 12.5, 2.5);
+                    char.add(eye);
                 }
                 
-                // Blush
-                if (isGirl) {
-                    for (let side of [-1.5, 1.5]) {
-                        const blushGeo = new THREE.CircleGeometry(0.4, 16);
-                        const blushMat = new THREE.MeshBasicMaterial({ 
-                            color: 0xff8a80,
-                            transparent: true,
-                            opacity: 0.5
-                        });
-                        const blush = new THREE.Mesh(blushGeo, blushMat);
-                        blush.position.set(side, 9.3, 2);
-                        blush.rotation.y = side > 0 ? -0.3 : 0.3;
-                        character.add(blush);
-                    }
-                }
-                
-                // Mouth (smile)
-                const smileGeo = new THREE.TorusGeometry(0.4, 0.1, 8, 16, Math.PI);
+                // Smile
+                const smileGeo = new THREE.TorusGeometry(0.6, 0.15, 8, 16, Math.PI);
                 const smileMat = new THREE.MeshBasicMaterial({ color: 0xe57373 });
                 const smile = new THREE.Mesh(smileGeo, smileMat);
-                smile.position.set(0, 8.8, 2);
+                smile.position.set(0, 10.5, 2.5);
                 smile.rotation.x = Math.PI;
-                character.add(smile);
+                char.add(smile);
                 
                 // Arms
-                character.userData.arms = [];
+                char.userData.arms = [];
                 for (let side of [-1, 1]) {
                     const armGroup = new THREE.Group();
-                    
-                    const armGeo = new THREE.CapsuleGeometry(0.5, 3, 8, 16);
-                    const armMat = new THREE.MeshToonMaterial({ color: 0xfdbf91 });
+                    const armGeo = new THREE.CapsuleGeometry(0.6, 5, 8, 16);
+                    const armMat = new THREE.MeshLambertMaterial({ color: 0xfdbf91 });
                     const arm = new THREE.Mesh(armGeo, armMat);
-                    arm.position.y = -1.5;
+                    arm.position.y = -2;
                     armGroup.add(arm);
-                    
-                    // Hand
-                    const handGeo = new THREE.SphereGeometry(0.6, 16, 16);
-                    const hand = new THREE.Mesh(handGeo, armMat);
-                    hand.position.y = -3.5;
-                    armGroup.add(hand);
-                    
-                    armGroup.position.set(side * 2.5, 7, 0);
-                    character.add(armGroup);
-                    character.userData.arms.push(armGroup);
+                    armGroup.position.set(side * 3.2, 8, 0);
+                    char.add(armGroup);
+                    char.userData.arms.push(armGroup);
                 }
                 
                 // Legs
-                character.userData.legs = [];
+                char.userData.legs = [];
                 for (let side of [-1, 1]) {
                     const legGroup = new THREE.Group();
-                    
-                    const legGeo = new THREE.CapsuleGeometry(0.7, 4, 8, 16);
-                    const legMat = new THREE.MeshToonMaterial({ color: 0x3f51b5 });
+                    const legGeo = new THREE.CapsuleGeometry(0.8, 6, 8, 16);
+                    const legMat = new THREE.MeshLambertMaterial({ color: 0x3f51b5 });
                     const leg = new THREE.Mesh(legGeo, legMat);
-                    leg.position.y = -2;
+                    leg.position.y = -3;
                     legGroup.add(leg);
                     
-                    // Shoe
-                    const shoeGeo = new THREE.BoxGeometry(1.2, 0.8, 2);
-                    const shoeMat = new THREE.MeshToonMaterial({ color: isGirl ? 0xe91e63 : 0x212121 });
+                    const shoeGeo = new THREE.BoxGeometry(1.5, 1, 2.5);
+                    const shoeMat = new THREE.MeshLambertMaterial({ color: isGirl ? 0xe91e63 : 0x212121 });
                     const shoe = new THREE.Mesh(shoeGeo, shoeMat);
-                    shoe.position.set(0, -4.5, 0.3);
+                    shoe.position.set(0, -6.5, 0.3);
                     legGroup.add(shoe);
                     
-                    legGroup.position.set(side * 1, 2, 0);
-                    character.add(legGroup);
-                    character.userData.legs.push(legGroup);
+                    legGroup.position.set(side * 1.2, 2, 0);
+                    char.add(legGroup);
+                    char.userData.legs.push(legGroup);
                 }
                 
-                return character;
+                return char;
             }
 
-            // Create characters
+            // Characters
             const girl = createCharacter(true);
-            girl.position.set(-15, 100, 0);
+            girl.position.set(-18, 150, 0);
             girl.visible = false;
             scene.add(girl);
 
             const boy = createCharacter(false);
-            boy.position.set(60, -20, 0);
+            boy.position.set(80, -25, 0);
             boy.visible = false;
             scene.add(boy);
 
@@ -851,174 +671,83 @@
             function createCupid() {
                 const cupid = new THREE.Group();
                 
-                // Body (cherub style)
-                const bodyGeo = new THREE.SphereGeometry(2, 32, 32);
-                bodyGeo.scale(1, 1.2, 0.8);
-                const bodyMat = new THREE.MeshToonMaterial({ color: 0xffecd2 });
+                const bodyGeo = new THREE.SphereGeometry(2.5, 32, 32);
+                bodyGeo.scale(1, 1.3, 0.8);
+                const bodyMat = new THREE.MeshLambertMaterial({ color: 0xffecd2 });
                 const body = new THREE.Mesh(bodyGeo, bodyMat);
-                body.position.y = 0;
                 cupid.add(body);
                 
-                // Head
-                const headGeo = new THREE.SphereGeometry(1.8, 32, 32);
+                const headGeo = new THREE.SphereGeometry(2.2, 32, 32);
                 const head = new THREE.Mesh(headGeo, bodyMat);
-                head.position.y = 3;
+                head.position.y = 4;
                 cupid.add(head);
                 
-                // Golden curly hair
-                const hairMat = new THREE.MeshToonMaterial({ color: 0xffd700 });
-                for (let i = 0; i < 10; i++) {
-                    const curlGeo = new THREE.SphereGeometry(0.5, 16, 16);
+                const hairMat = new THREE.MeshLambertMaterial({ color: 0xffd700 });
+                for (let i = 0; i < 12; i++) {
+                    const curlGeo = new THREE.SphereGeometry(0.6, 16, 16);
                     const curl = new THREE.Mesh(curlGeo, hairMat);
-                    const angle = (i / 10) * Math.PI * 2;
-                    curl.position.set(
-                        Math.cos(angle) * 1.5,
-                        3.5 + Math.sin(angle * 3) * 0.3,
-                        Math.sin(angle) * 1.5
-                    );
+                    const angle = (i / 12) * Math.PI * 2;
+                    curl.position.set(Math.cos(angle) * 1.8, 4.5 + Math.sin(i) * 0.3, Math.sin(angle) * 1.8);
                     cupid.add(curl);
                 }
                 
-                // Eyes
-                for (let side of [-0.5, 0.5]) {
-                    const eyeGeo = new THREE.SphereGeometry(0.25, 16, 16);
+                for (let side of [-0.7, 0.7]) {
+                    const eyeGeo = new THREE.SphereGeometry(0.35, 16, 16);
                     const eyeMat = new THREE.MeshBasicMaterial({ color: 0x4a90d9 });
                     const eye = new THREE.Mesh(eyeGeo, eyeMat);
-                    eye.position.set(side, 3.2, 1.5);
+                    eye.position.set(side, 4.3, 1.9);
                     cupid.add(eye);
                 }
                 
-                // Cute smile
-                const smileGeo = new THREE.TorusGeometry(0.3, 0.08, 8, 16, Math.PI);
-                const smileMat = new THREE.MeshBasicMaterial({ color: 0xff9999 });
-                const smile = new THREE.Mesh(smileGeo, smileMat);
-                smile.position.set(0, 2.5, 1.5);
-                smile.rotation.x = Math.PI;
-                cupid.add(smile);
-                
-                // Wings
                 cupid.userData.wings = [];
-                const wingMat = new THREE.MeshToonMaterial({ 
-                    color: 0xffffff,
-                    transparent: true,
-                    opacity: 0.9,
-                    side: THREE.DoubleSide
-                });
+                const wingMat = new THREE.MeshLambertMaterial({ color: 0xffffff, transparent: true, opacity: 0.9, side: THREE.DoubleSide });
                 
                 for (let side of [-1, 1]) {
                     const wingShape = new THREE.Shape();
                     wingShape.moveTo(0, 0);
-                    wingShape.bezierCurveTo(side * 2, 2, side * 4, 3, side * 5, 0);
-                    wingShape.bezierCurveTo(side * 4, -1, side * 2, -1, 0, 0);
+                    wingShape.bezierCurveTo(side * 3, 3, side * 6, 4, side * 7, 0);
+                    wingShape.bezierCurveTo(side * 6, -2, side * 3, -2, 0, 0);
                     
                     const wingGeo = new THREE.ShapeGeometry(wingShape);
                     const wing = new THREE.Mesh(wingGeo, wingMat);
-                    wing.position.set(side * 1.5, 1, -1);
-                    wing.rotation.y = side * 0.3;
+                    wing.position.set(side * 2, 1, -1);
                     cupid.add(wing);
                     cupid.userData.wings.push(wing);
                 }
-                
-                // Bow
-                const bow = new THREE.Group();
-                const bowCurveGeo = new THREE.TorusGeometry(2, 0.15, 8, 32, Math.PI);
-                const bowMat = new THREE.MeshToonMaterial({ color: 0xdaa520 });
-                const bowCurve = new THREE.Mesh(bowCurveGeo, bowMat);
-                bowCurve.rotation.z = Math.PI / 2;
-                bow.add(bowCurve);
-                
-                // Bowstring
-                const stringGeo = new THREE.CylinderGeometry(0.02, 0.02, 4, 8);
-                const stringMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-                const string = new THREE.Mesh(stringGeo, stringMat);
-                string.position.x = 2;
-                bow.add(string);
-                
-                bow.position.set(-3, 0, 0);
-                bow.rotation.z = -0.3;
-                cupid.add(bow);
                 
                 return cupid;
             }
 
             const cupid = createCupid();
-            cupid.position.set(0, 100, 30);
+            cupid.position.set(0, 150, 40);
             cupid.visible = false;
             scene.add(cupid);
-
-            // Hearts particle system
-            const heartsGeometry = new THREE.BufferGeometry();
-            const heartsCount = 100;
-            const heartsPositions = new Float32Array(heartsCount * 3);
-            const heartsSizes = new Float32Array(heartsCount);
-            const heartsAlphas = new Float32Array(heartsCount);
-            
-            for (let i = 0; i < heartsCount; i++) {
-                heartsPositions[i * 3] = 0;
-                heartsPositions[i * 3 + 1] = -1000;
-                heartsPositions[i * 3 + 2] = 0;
-                heartsSizes[i] = 0;
-                heartsAlphas[i] = 0;
-            }
-            
-            heartsGeometry.setAttribute('position', new THREE.BufferAttribute(heartsPositions, 3));
-            
-            // Heart shape for particles
-            const heartShape = new THREE.Shape();
-            heartShape.moveTo(0, 0);
-            heartShape.bezierCurveTo(0, -0.5, -1, -1, -1, 0);
-            heartShape.bezierCurveTo(-1, 1, 0, 1.5, 0, 2);
-            heartShape.bezierCurveTo(0, 1.5, 1, 1, 1, 0);
-            heartShape.bezierCurveTo(1, -1, 0, -0.5, 0, 0);
-            
-            const heartGeo = new THREE.ShapeGeometry(heartShape);
-            const heartMat = new THREE.MeshBasicMaterial({ 
-                color: 0xff69b4,
-                transparent: true,
-                opacity: 0.8,
-                side: THREE.DoubleSide
-            });
-            
-            const floatingHearts = [];
 
             // Arrow
             function createArrow() {
                 const arrow = new THREE.Group();
                 
-                const shaftGeo = new THREE.CylinderGeometry(0.1, 0.1, 5, 8);
-                const shaftMat = new THREE.MeshToonMaterial({ color: 0x8b4513 });
+                const shaftGeo = new THREE.CylinderGeometry(0.15, 0.15, 8, 8);
+                shaftGeo.rotateZ(Math.PI / 2);
+                const shaftMat = new THREE.MeshLambertMaterial({ color: 0x8b4513 });
                 const shaft = new THREE.Mesh(shaftGeo, shaftMat);
-                shaft.rotation.z = Math.PI / 2;
                 arrow.add(shaft);
                 
-                // Heart tip
-                const tipShape = new THREE.Shape();
-                tipShape.moveTo(0, 0);
-                tipShape.bezierCurveTo(0.3, 0.3, 0.5, 0, 0.5, -0.3);
-                tipShape.bezierCurveTo(0.5, -0.5, 0, -0.8, 0, -1);
-                tipShape.bezierCurveTo(0, -0.8, -0.5, -0.5, -0.5, -0.3);
-                tipShape.bezierCurveTo(-0.5, 0, -0.3, 0.3, 0, 0);
+                const heartShape = new THREE.Shape();
+                heartShape.moveTo(0, 0);
+                heartShape.bezierCurveTo(0.5, 0.5, 1, 0, 1, -0.5);
+                heartShape.bezierCurveTo(1, -1, 0, -1.5, 0, -2);
+                heartShape.bezierCurveTo(0, -1.5, -1, -1, -1, -0.5);
+                heartShape.bezierCurveTo(-1, 0, -0.5, 0.5, 0, 0);
                 
-                const tipGeo = new THREE.ExtrudeGeometry(tipShape, { depth: 0.3, bevelEnabled: false });
-                const tipMat = new THREE.MeshToonMaterial({ color: 0xff1493 });
-                const tip = new THREE.Mesh(tipGeo, tipMat);
-                tip.rotation.x = -Math.PI / 2;
-                tip.rotation.z = Math.PI;
-                tip.position.x = 3;
-                tip.scale.set(1.5, 1.5, 1.5);
-                arrow.add(tip);
-                
-                // Feathers
-                const featherMat = new THREE.MeshToonMaterial({ color: 0xff69b4 });
-                for (let i = 0; i < 3; i++) {
-                    const featherGeo = new THREE.ConeGeometry(0.3, 1.5, 4);
-                    const feather = new THREE.Mesh(featherGeo, featherMat);
-                    feather.position.x = -2.5;
-                    feather.position.y = Math.sin(i / 3 * Math.PI * 2) * 0.5;
-                    feather.position.z = Math.cos(i / 3 * Math.PI * 2) * 0.5;
-                    feather.rotation.z = Math.PI / 2;
-                    arrow.add(feather);
-                }
+                const heartGeo = new THREE.ExtrudeGeometry(heartShape, { depth: 0.5, bevelEnabled: false });
+                const heartMat = new THREE.MeshLambertMaterial({ color: 0xff1493 });
+                const heart = new THREE.Mesh(heartGeo, heartMat);
+                heart.rotation.x = -Math.PI / 2;
+                heart.rotation.y = Math.PI;
+                heart.position.x = 5;
+                heart.scale.setScalar(0.8);
+                arrow.add(heart);
                 
                 return arrow;
             }
@@ -1029,306 +758,246 @@
             const hugCouple = new THREE.Group();
             hugCouple.visible = false;
             
-            // Combined body
-            const hugBodyGeo = new THREE.CapsuleGeometry(4, 5, 16, 32);
-            const hugBodyMat = new THREE.MeshToonMaterial({ color: 0xdda0dd });
+            const hugBodyGeo = new THREE.CapsuleGeometry(5, 6, 16, 32);
+            const hugBodyMat = new THREE.MeshLambertMaterial({ color: 0xdda0dd });
             const hugBody = new THREE.Mesh(hugBodyGeo, hugBodyMat);
-            hugBody.position.y = 4;
+            hugBody.position.y = 5;
             hugCouple.add(hugBody);
             
-            // Two heads close together
-            const hugGirlHead = new THREE.SphereGeometry(2, 32, 32);
-            const hugGirlHeadMesh = new THREE.Mesh(hugGirlHead, new THREE.MeshToonMaterial({ color: 0xfdbf91 }));
-            hugGirlHeadMesh.position.set(-1.5, 10, 0);
-            hugCouple.add(hugGirlHeadMesh);
+            const hugHeadMat = new THREE.MeshLambertMaterial({ color: 0xfdbf91 });
+            const hugGirlHead = new THREE.Mesh(new THREE.SphereGeometry(2.5, 32, 32), hugHeadMat);
+            hugGirlHead.position.set(-2, 12, 0);
+            hugCouple.add(hugGirlHead);
             
-            const hugBoyHead = new THREE.SphereGeometry(2, 32, 32);
-            const hugBoyHeadMesh = new THREE.Mesh(hugBoyHead, new THREE.MeshToonMaterial({ color: 0xfdbf91 }));
-            hugBoyHeadMesh.position.set(1.5, 10, 0);
-            hugCouple.add(hugBoyHeadMesh);
+            const hugBoyHead = new THREE.Mesh(new THREE.SphereGeometry(2.5, 32, 32), hugHeadMat);
+            hugBoyHead.position.set(2, 12, 0);
+            hugCouple.add(hugBoyHead);
             
-            // Hair
-            const hugGirlHair = new THREE.Mesh(
-                new THREE.SphereGeometry(2.3, 32, 32),
-                new THREE.MeshToonMaterial({ color: 0x1a1a1a })
-            );
-            hugGirlHair.position.set(-1.5, 10.5, -0.5);
+            const hugGirlHair = new THREE.Mesh(new THREE.SphereGeometry(2.8, 32, 32), new THREE.MeshLambertMaterial({ color: 0x1a1a1a }));
+            hugGirlHair.position.set(-2, 12.5, -0.5);
             hugGirlHair.scale.set(1, 1.3, 1);
             hugCouple.add(hugGirlHair);
             
-            const hugBoyHair = new THREE.Mesh(
-                new THREE.SphereGeometry(2.2, 32, 32),
-                new THREE.MeshToonMaterial({ color: 0x8b7355 })
-            );
-            hugBoyHair.position.set(1.5, 11, -0.3);
-            hugBoyHair.scale.set(1, 0.7, 1);
+            const hugBoyHair = new THREE.Mesh(new THREE.SphereGeometry(2.7, 32, 32), new THREE.MeshLambertMaterial({ color: 0x8b7355 }));
+            hugBoyHair.position.set(2, 13.5, -0.3);
+            hugBoyHair.scale.set(1, 0.6, 1);
             hugCouple.add(hugBoyHair);
             
-            // Arms around each other
-            for (let side of [-1, 1]) {
-                const armGeo = new THREE.CapsuleGeometry(0.6, 4, 8, 16);
-                const armMat = new THREE.MeshToonMaterial({ color: 0xfdbf91 });
-                const arm = new THREE.Mesh(armGeo, armMat);
-                arm.position.set(side * 4, 6, side * 1);
-                arm.rotation.z = side * 0.8;
-                hugCouple.add(arm);
-            }
-            
-            hugCouple.position.set(0, -20, 0);
+            hugCouple.position.set(0, -25, 0);
             scene.add(hugCouple);
 
+            // Floating hearts
+            const floatingHearts = [];
+            
+            function createHeart3D() {
+                const shape = new THREE.Shape();
+                shape.moveTo(0, 0);
+                shape.bezierCurveTo(0.5, 0.5, 1, 0, 1, -0.5);
+                shape.bezierCurveTo(1, -1, 0, -1.5, 0, -2);
+                shape.bezierCurveTo(0, -1.5, -1, -1, -1, -0.5);
+                shape.bezierCurveTo(-1, 0, -0.5, 0.5, 0, 0);
+                
+                const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.3, bevelEnabled: true, bevelSize: 0.1, bevelThickness: 0.1 });
+                const mat = new THREE.MeshLambertMaterial({ color: 0xff69b4 });
+                return new THREE.Mesh(geo, mat);
+            }
+
             // Lighting
-            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            const ambientLight = new THREE.AmbientLight(0x404060, 0.5);
             scene.add(ambientLight);
             
             const sunLight = new THREE.DirectionalLight(0xffffff, 1);
-            sunLight.position.set(50, 100, 50);
+            sunLight.position.set(100, 150, 50);
             sunLight.castShadow = true;
             sunLight.shadow.mapSize.width = 2048;
             sunLight.shadow.mapSize.height = 2048;
-            sunLight.shadow.camera.near = 0.5;
-            sunLight.shadow.camera.far = 500;
-            sunLight.shadow.camera.left = -100;
-            sunLight.shadow.camera.right = 100;
-            sunLight.shadow.camera.top = 100;
-            sunLight.shadow.camera.bottom = -100;
             scene.add(sunLight);
             
-            const moonLight = new THREE.PointLight(0xaaaaff, 0.5, 300);
+            const moonLight = new THREE.PointLight(0x8888ff, 0.8, 500);
             moonLight.position.copy(moon.position);
             scene.add(moonLight);
 
-            // Camera animation path
-            camera.position.set(0, 200, 50);
+            // Camera start position
+            camera.position.set(0, 250, 80);
             camera.lookAt(0, 0, 0);
 
             // Animation state
             let time = 0;
-            let phase = 'space'; // space, descend, ground, characters
-            let girlFalling = false;
-            let girlLanded = false;
-            let boyWalking = false;
-            let boyArrived = false;
-            let cupidVisible = false;
-            let arrowsShot = 0;
-            let showingHug = false;
-            let fadingOut = false;
-            let fadeAlpha = 0;
+            let animationPhase = 0;
 
             // Animation loop
             function animate() {
                 requestAnimationFrame(animate);
                 time += 0.016;
                 
-                // Sky color transition
-                const skyProgress = Math.min(1, Math.max(0, (time - 2) / 6));
-                skyMat.uniforms.topColor.value.lerpColors(
-                    new THREE.Color(0x000011),
-                    new THREE.Color(0x1e90ff),
-                    skyProgress
-                );
-                skyMat.uniforms.bottomColor.value.lerpColors(
-                    new THREE.Color(0x000033),
-                    new THREE.Color(0x87CEEB),
-                    skyProgress
-                );
+                // Sky transition
+                const skyProgress = Math.min(1, Math.max(0, (time - 2) / 8));
+                skyMat.uniforms.progress.value = skyProgress;
+                
+                // Stars fade
+                starsMat.opacity = Math.max(0, 1 - skyProgress * 1.5);
+                
+                // Moon/Sun visibility
+                moon.visible = skyProgress < 0.7;
+                moonLight.intensity = Math.max(0, 0.8 - skyProgress);
+                sun.visible = skyProgress > 0.3;
+                sunLight.intensity = skyProgress;
                 
                 // Camera animation
-                if (time < 8) {
-                    // Descending from space
-                    camera.position.y = 200 - time * 25;
-                    camera.position.z = 50 + time * 5;
-                    camera.lookAt(0, camera.position.y - 50, 0);
-                    
-                    // Stars fade
-                    starsMaterial.opacity = Math.max(0, 1 - time / 4);
-                    
-                    // Moon and sun visibility
-                    moon.visible = time < 4;
-                    moonGlow.visible = time < 4;
-                    sun.visible = time > 3;
-                    sunGlow.visible = time > 3;
-                } else if (time < 12) {
-                    // Landing on ground
-                    const t = (time - 8) / 4;
-                    camera.position.y = Math.max(10, 20 - t * 10);
-                    camera.position.z = 90 - t * 40;
-                    camera.lookAt(0, 0, 0);
+                if (time < 10) {
+                    camera.position.y = 250 - time * 25;
+                    camera.position.z = 80 + time * 3;
+                    camera.lookAt(0, Math.max(-25, camera.position.y - 80), 0);
+                } else if (time < 14) {
+                    const t = (time - 10) / 4;
+                    camera.position.y = 10 + (1 - t) * 10;
+                    camera.position.z = 110 - t * 50;
+                    camera.lookAt(0, -5, 0);
                 } else {
-                    // Ground level
-                    camera.position.set(0, 15, 50);
+                    camera.position.set(0, 18, 60);
                     camera.lookAt(0, 0, 0);
+                }
+                
+                // Character animations
+                if (time > 14 && animationPhase === 0) {
+                    animationPhase = 1;
+                    girl.visible = true;
+                }
+                
+                if (animationPhase >= 1 && girl.position.y > -25) {
+                    girl.position.y -= 3;
+                    girl.rotation.z = Math.sin(time * 8) * 0.4;
+                    girl.userData.arms.forEach((arm, i) => arm.rotation.z = Math.sin(time * 10 + i * Math.PI) * 1);
                     
-                    // Character animations
-                    if (time > 13 && !girlFalling) {
-                        girlFalling = true;
-                        girl.visible = true;
+                    if (girl.position.y <= -25) {
+                        girl.position.y = -25;
+                        girl.rotation.z = 0;
+                        animationPhase = 2;
                     }
-                    
-                    if (girlFalling && !girlLanded) {
-                        girl.position.y += (-20 - girl.position.y) * 0.05;
-                        girl.rotation.z = Math.sin(time * 5) * 0.3;
-                        
-                        // Arm flailing
-                        girl.userData.arms.forEach((arm, i) => {
-                            arm.rotation.z = Math.sin(time * 8 + i * Math.PI) * 0.8;
-                        });
-                        
-                        if (girl.position.y < -18) {
-                            girlLanded = true;
-                            girl.rotation.z = 0;
-                        }
-                    }
-                    
-                    if (girlLanded && time > 16 && time < 18) {
-                        // Dusting off animation
-                        girl.userData.arms.forEach((arm, i) => {
-                            arm.rotation.z = Math.sin(time * 10 + i * Math.PI) * 0.5;
-                            arm.rotation.x = Math.sin(time * 10) * 0.3;
-                        });
-                    }
-                    
-                    if (time > 18 && !boyWalking) {
-                        boyWalking = true;
-                        boy.visible = true;
-                    }
-                    
-                    if (boyWalking && !boyArrived) {
-                        boy.position.x += (15 - boy.position.x) * 0.03;
-                        
-                        // Walking animation
-                        boy.userData.legs.forEach((leg, i) => {
-                            leg.rotation.x = Math.sin(time * 8 + i * Math.PI) * 0.5;
-                        });
-                        boy.userData.arms.forEach((arm, i) => {
-                            arm.rotation.x = Math.sin(time * 8 + i * Math.PI + Math.PI / 2) * 0.3;
-                        });
-                        
-                        if (boy.position.x < 16) {
-                            boyArrived = true;
-                        }
-                    }
-                    
-                    if (boyArrived && time > 21 && !cupidVisible) {
-                        cupidVisible = true;
-                        cupid.visible = true;
-                    }
-                    
-                    if (cupidVisible) {
-                        cupid.position.y += (30 - cupid.position.y) * 0.05;
-                        
-                        // Wing flapping
-                        cupid.userData.wings.forEach((wing, i) => {
-                            wing.rotation.y = (i === 0 ? -1 : 1) * (0.3 + Math.sin(time * 10) * 0.2);
-                        });
-                        
-                        // Shoot arrows
-                        if (time > 23 && arrowsShot === 0) {
-                            const arrow1 = createArrow();
-                            arrow1.position.copy(cupid.position);
-                            arrow1.userData.target = girl.position.clone();
-                            arrow1.userData.progress = 0;
-                            arrows.push(arrow1);
-                            scene.add(arrow1);
-                            arrowsShot = 1;
-                        }
-                        
-                        if (time > 24 && arrowsShot === 1) {
-                            const arrow2 = createArrow();
-                            arrow2.position.copy(cupid.position);
-                            arrow2.userData.target = boy.position.clone();
-                            arrow2.userData.progress = 0;
-                            arrows.push(arrow2);
-                            scene.add(arrow2);
-                            arrowsShot = 2;
-                        }
-                    }
-                    
-                    // Arrow animation
-                    arrows.forEach(arrow => {
-                        if (arrow.userData.progress < 1) {
-                            arrow.userData.progress += 0.03;
-                            const p = arrow.userData.progress;
-                            
-                            arrow.position.lerpVectors(
-                                cupid.position,
-                                arrow.userData.target.clone().add(new THREE.Vector3(0, 5, 0)),
-                                p
-                            );
-                            
-                            // Arc
-                            arrow.position.y += Math.sin(p * Math.PI) * 10;
-                            
-                            // Rotation
-                            const dir = arrow.userData.target.clone().sub(cupid.position).normalize();
-                            arrow.lookAt(arrow.userData.target);
-                            arrow.rotation.z = Math.PI / 2;
-                        }
+                }
+                
+                if (animationPhase === 2 && time > 18) {
+                    girl.userData.arms.forEach((arm, i) => {
+                        arm.rotation.z = Math.sin(time * 12 + i) * 0.6;
+                        arm.rotation.x = Math.sin(time * 12) * 0.4;
                     });
+                    if (time > 20) animationPhase = 3;
+                }
+                
+                if (animationPhase === 3 && !boy.visible) {
+                    boy.visible = true;
+                }
+                
+                if (animationPhase >= 3 && boy.position.x > 18) {
+                    boy.position.x -= 0.8;
+                    boy.userData.legs.forEach((leg, i) => leg.rotation.x = Math.sin(time * 10 + i * Math.PI) * 0.6);
+                    boy.userData.arms.forEach((arm, i) => arm.rotation.x = Math.sin(time * 10 + i * Math.PI + Math.PI/2) * 0.4);
                     
-                    // Hearts floating up
-                    if (arrowsShot === 2 && time > 26) {
-                        if (Math.random() < 0.1) {
-                            const heart = new THREE.Mesh(heartGeo.clone(), heartMat.clone());
-                            heart.position.set(
-                                (Math.random() - 0.5) * 40,
-                                -15,
-                                (Math.random() - 0.5) * 20
-                            );
-                            heart.userData.speed = 0.2 + Math.random() * 0.3;
-                            heart.userData.rotSpeed = (Math.random() - 0.5) * 0.1;
-                            heart.scale.setScalar(0.5 + Math.random() * 0.5);
-                            floatingHearts.push(heart);
-                            scene.add(heart);
-                        }
+                    if (boy.position.x <= 18) {
+                        animationPhase = 4;
+                        boy.userData.legs.forEach(leg => leg.rotation.x = 0);
+                        boy.userData.arms.forEach(arm => arm.rotation.x = 0);
                     }
-                    
-                    floatingHearts.forEach((heart, i) => {
-                        heart.position.y += heart.userData.speed;
-                        heart.rotation.z += heart.userData.rotSpeed;
-                        heart.rotation.y = Math.sin(time * 2 + i) * 0.3;
-                        
-                        if (heart.position.y > 50) {
-                            scene.remove(heart);
-                            floatingHearts.splice(i, 1);
-                        }
+                }
+                
+                if (animationPhase === 4 && time > 24 && !cupid.visible) {
+                    cupid.visible = true;
+                    animationPhase = 5;
+                }
+                
+                if (animationPhase >= 5 && cupid.position.y > 40) {
+                    cupid.position.y -= 1.5;
+                    cupid.userData.wings.forEach((wing, i) => {
+                        wing.rotation.y = (i === 0 ? -1 : 1) * (0.3 + Math.sin(time * 15) * 0.3);
                     });
-                    
-                    // Transition to hug
-                    if (time > 29 && !showingHug) {
-                        showingHug = true;
-                        girl.visible = false;
-                        boy.visible = false;
-                        cupid.visible = false;
-                        arrows.forEach(a => scene.remove(a));
-                        hugCouple.visible = true;
-                    }
-                    
-                    // Hug animation
-                    if (showingHug) {
-                        hugCouple.rotation.y = Math.sin(time * 0.5) * 0.1;
-                        hugCouple.position.y = -20 + Math.sin(time * 2) * 0.5;
-                    }
-                    
-                    // Fade out
-                    if (time > 34 && !fadingOut) {
-                        fadingOut = true;
-                    }
-                    
-                    if (fadingOut) {
-                        fadeAlpha = Math.min(1, fadeAlpha + 0.01);
-                        renderer.domElement.style.opacity = 1 - fadeAlpha;
+                }
+                
+                if (animationPhase === 5 && cupid.position.y <= 40 && time > 27 && arrows.length === 0) {
+                    const arrow1 = createArrow();
+                    arrow1.position.copy(cupid.position);
+                    arrow1.userData.target = girl.position.clone().add(new THREE.Vector3(0, 5, 0));
+                    arrow1.userData.start = cupid.position.clone();
+                    arrow1.userData.progress = 0;
+                    arrows.push(arrow1);
+                    scene.add(arrow1);
+                    animationPhase = 6;
+                }
+                
+                if (animationPhase === 6 && time > 28 && arrows.length === 1) {
+                    const arrow2 = createArrow();
+                    arrow2.position.copy(cupid.position);
+                    arrow2.userData.target = boy.position.clone().add(new THREE.Vector3(0, 5, 0));
+                    arrow2.userData.start = cupid.position.clone();
+                    arrow2.userData.progress = 0;
+                    arrows.push(arrow2);
+                    scene.add(arrow2);
+                }
+                
+                // Arrow animation
+                arrows.forEach(arrow => {
+                    if (arrow.userData.progress < 1) {
+                        arrow.userData.progress += 0.025;
+                        const p = arrow.userData.progress;
                         
-                        if (fadeAlpha >= 1) {
-                            document.getElementById('cinemaEnd').style.opacity = '1';
-                        }
+                        arrow.position.lerpVectors(arrow.userData.start, arrow.userData.target, p);
+                        arrow.position.y += Math.sin(p * Math.PI) * 15;
+                        
+                        const dir = arrow.userData.target.clone().sub(arrow.position).normalize();
+                        arrow.lookAt(arrow.position.clone().add(dir));
+                    }
+                });
+                
+                // Hearts
+                if (arrows.length === 2 && arrows[1].userData.progress > 0.9 && time % 0.1 < 0.02) {
+                    const heart = createHeart3D();
+                    heart.position.set((Math.random() - 0.5) * 50, -20, (Math.random() - 0.5) * 30);
+                    heart.userData.speed = 0.3 + Math.random() * 0.4;
+                    heart.userData.rotSpeed = (Math.random() - 0.5) * 0.1;
+                    heart.scale.setScalar(0.3 + Math.random() * 0.4);
+                    floatingHearts.push(heart);
+                    scene.add(heart);
+                    
+                    if (animationPhase < 7) animationPhase = 7;
+                }
+                
+                floatingHearts.forEach((heart, i) => {
+                    heart.position.y += heart.userData.speed;
+                    heart.rotation.y += heart.userData.rotSpeed;
+                    heart.rotation.z = Math.sin(time * 3 + i) * 0.3;
+                    
+                    if (heart.position.y > 60) {
+                        scene.remove(heart);
+                        floatingHearts.splice(i, 1);
+                    }
+                });
+                
+                // Hug transition
+                if (animationPhase === 7 && time > 34) {
+                    girl.visible = false;
+                    boy.visible = false;
+                    cupid.visible = false;
+                    arrows.forEach(a => scene.remove(a));
+                    hugCouple.visible = true;
+                    animationPhase = 8;
+                }
+                
+                if (animationPhase === 8) {
+                    hugCouple.rotation.y = Math.sin(time * 0.8) * 0.15;
+                    hugCouple.position.y = -25 + Math.sin(time * 2) * 0.5;
+                }
+                
+                // Fade out
+                if (time > 40) {
+                    renderer.domElement.style.opacity = Math.max(0, 1 - (time - 40) / 3);
+                    if (time > 43) {
+                        document.getElementById('cinemaEnd').style.opacity = '1';
                     }
                 }
                 
                 // Animate clouds
                 clouds.forEach(cloud => {
                     cloud.position.x += cloud.userData.speed;
-                    if (cloud.position.x > 200) cloud.position.x = -200;
+                    if (cloud.position.x > 250) cloud.position.x = -250;
                 });
                 
                 // Animate flowers
@@ -1336,10 +1005,17 @@
                     flower.rotation.z = Math.sin(time * 2 + flower.userData.phase) * 0.1;
                 });
                 
-                // Rotate stars slowly
-                stars.rotation.y += 0.0001;
+                // Rotate stars
+                stars.rotation.y += 0.0002;
                 
-                composer.render();
+                // Cupid wing flap
+                if (cupid.visible) {
+                    cupid.userData.wings.forEach((wing, i) => {
+                        wing.rotation.y = (i === 0 ? -1 : 1) * (0.3 + Math.sin(time * 12) * 0.25);
+                    });
+                }
+                
+                renderer.render(scene, camera);
             }
             
             animate();
@@ -1349,7 +1025,6 @@
                 camera.aspect = window.innerWidth / window.innerHeight;
                 camera.updateProjectionMatrix();
                 renderer.setSize(window.innerWidth, window.innerHeight);
-                composer.setSize(window.innerWidth, window.innerHeight);
             });
         }
     </script>
