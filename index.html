@@ -6,11 +6,7 @@
     <title>💕 Dla Wikusi 💕</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             min-height: 100vh;
@@ -22,16 +18,7 @@
             position: relative;
         }
 
-        /* ===== TŁO ===== */
-        
-        .bg-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 0;
-        }
+        .bg-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
 
         .bg-base {
             background: 
@@ -43,8 +30,7 @@
         }
 
         .bg-aurora {
-            z-index: 2;
-            opacity: 0.4;
+            z-index: 2; opacity: 0.4;
             background: linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%);
             animation: auroraMove 15s ease-in-out infinite;
         }
@@ -55,14 +41,7 @@
         }
 
         .bg-bokeh { z-index: 3; }
-
-        .bokeh-circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            animation: bokehFloat 20s infinite ease-in-out;
-        }
-
+        .bokeh-circle { position: absolute; border-radius: 50%; filter: blur(40px); animation: bokehFloat 20s infinite ease-in-out; }
         .bokeh-circle:nth-child(1) { width: 300px; height: 300px; background: rgba(255, 100, 130, 0.15); top: 10%; left: 5%; }
         .bokeh-circle:nth-child(2) { width: 250px; height: 250px; background: rgba(255, 150, 180, 0.12); top: 60%; right: 10%; animation-delay: -5s; }
         .bokeh-circle:nth-child(3) { width: 200px; height: 200px; background: rgba(255, 80, 120, 0.1); bottom: 20%; left: 20%; animation-delay: -10s; }
@@ -76,13 +55,7 @@
         }
 
         .bg-particles { z-index: 4; }
-
-        .particle {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: particleTwinkle 4s infinite ease-in-out;
-        }
+        .particle { position: absolute; background: white; border-radius: 50%; animation: particleTwinkle 4s infinite ease-in-out; }
 
         @keyframes particleTwinkle {
             0%, 100% { opacity: 0.2; transform: scale(1); }
@@ -90,14 +63,7 @@
         }
 
         .bg-falling { z-index: 5; pointer-events: none; }
-
-        .falling-item {
-            position: absolute;
-            top: -60px;
-            animation: gentleFall linear infinite;
-            opacity: 0.6;
-            filter: drop-shadow(0 0 10px rgba(255, 150, 180, 0.5));
-        }
+        .falling-item { position: absolute; top: -60px; animation: gentleFall linear infinite; opacity: 0.6; filter: drop-shadow(0 0 10px rgba(255, 150, 180, 0.5)); }
 
         @keyframes gentleFall {
             0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
@@ -106,363 +72,88 @@
             100% { transform: translateY(110vh) rotate(360deg) translateX(30px); opacity: 0; }
         }
 
-        .bg-texture {
-            z-index: 6;
-            opacity: 0.03;
-            background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 1px);
-            background-size: 50px 50px;
-        }
+        .bg-texture { z-index: 6; opacity: 0.03; background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 1px); background-size: 50px 50px; }
 
-        /* ===== KONTENER ===== */
-        
         .container {
-            text-align: center;
-            z-index: 100;
-            padding: 55px 65px;
+            text-align: center; z-index: 100; padding: 55px 65px;
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 252, 253, 0.98) 50%, rgba(255, 248, 250, 0.97) 100%);
             border-radius: 24px;
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(100, 30, 50, 0.3), 0 0 0 1px rgba(255, 200, 210, 0.5), inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(200, 150, 160, 0.1);
-            position: relative;
-            max-width: 560px;
-            width: 90%;
+            position: relative; max-width: 560px; width: 90%;
             animation: containerFloat 6s ease-in-out infinite, containerIn 1s ease-out;
         }
 
-        @keyframes containerIn {
-            0% { opacity: 0; transform: translateY(40px) scale(0.95); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
+        @keyframes containerIn { 0% { opacity: 0; transform: translateY(40px) scale(0.95); } 100% { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes containerFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 
-        @keyframes containerFloat {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-8px); }
-        }
+        .container::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px; border: 1.5px solid rgba(200, 120, 140, 0.25); border-radius: 16px; pointer-events: none; }
+        .container::after { content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px; background: linear-gradient(135deg, rgba(255, 180, 200, 0.4), rgba(255, 150, 180, 0.2), rgba(255, 200, 220, 0.3)); border-radius: 26px; z-index: -1; filter: blur(20px); opacity: 0.7; animation: glowPulse 4s ease-in-out infinite; }
 
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 12px; left: 12px; right: 12px; bottom: 12px;
-            border: 1.5px solid rgba(200, 120, 140, 0.25);
-            border-radius: 16px;
-            pointer-events: none;
-        }
+        @keyframes glowPulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 0.8; transform: scale(1.02); } }
 
-        .container::after {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(135deg, rgba(255, 180, 200, 0.4), rgba(255, 150, 180, 0.2), rgba(255, 200, 220, 0.3));
-            border-radius: 26px;
-            z-index: -1;
-            filter: blur(20px);
-            opacity: 0.7;
-            animation: glowPulse 4s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(1.02); }
-        }
-
-        .corner-decor {
-            position: absolute;
-            font-size: 32px;
-            filter: drop-shadow(0 4px 8px rgba(150, 50, 80, 0.3));
-            animation: cornerPulse 3s ease-in-out infinite;
-        }
-
+        .corner-decor { position: absolute; font-size: 32px; filter: drop-shadow(0 4px 8px rgba(150, 50, 80, 0.3)); animation: cornerPulse 3s ease-in-out infinite; }
         .corner-decor.tl { top: -16px; left: -16px; }
         .corner-decor.tr { top: -16px; right: -16px; animation-delay: 0.75s; }
         .corner-decor.bl { bottom: -16px; left: -16px; animation-delay: 1.5s; }
         .corner-decor.br { bottom: -16px; right: -16px; animation-delay: 2.25s; }
 
-        @keyframes cornerPulse {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.15) rotate(5deg); }
-        }
+        @keyframes cornerPulse { 0%, 100% { transform: scale(1) rotate(0deg); } 50% { transform: scale(1.15) rotate(5deg); } }
 
         .title { margin-bottom: 8px; }
-
-        .title h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: #8b2942;
-            letter-spacing: 2px;
-            margin-bottom: 6px;
-        }
-
+        .title h1 { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-weight: 700; color: #8b2942; letter-spacing: 2px; margin-bottom: 6px; }
         .title-hearts { color: #d64060; font-size: 1.4rem; letter-spacing: 8px; }
+        .subtitle { font-size: 0.75rem; font-weight: 600; color: #b08090; letter-spacing: 5px; text-transform: uppercase; margin-top: 8px; }
+        .separator { width: 80px; height: 2px; background: linear-gradient(90deg, transparent, #d4a0b0, transparent); margin: 25px auto; }
+        .question { font-family: 'Cormorant Garamond', serif; font-size: 1.65rem; font-weight: 600; color: #4a3040; line-height: 1.6; margin: 25px 0; }
+        .question-heart { display: inline-block; color: #d64060; animation: heartBeat 1.2s ease-in-out infinite; margin-left: 5px; }
 
-        .subtitle {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #b08090;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-top: 8px;
-        }
+        @keyframes heartBeat { 0%, 100% { transform: scale(1); } 15% { transform: scale(1.25); } 30% { transform: scale(1); } 45% { transform: scale(1.2); } 60% { transform: scale(1); } }
 
-        .separator {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #d4a0b0, transparent);
-            margin: 25px auto;
-        }
+        .buttons-container { display: flex; justify-content: center; align-items: center; gap: 25px; margin-top: 35px; position: relative; min-height: 60px; }
+        .btn { padding: 15px 40px; font-size: 1.1rem; font-weight: 700; font-family: 'Quicksand', sans-serif; border: none; border-radius: 50px; cursor: pointer; letter-spacing: 1px; transition: transform 0.3s ease, box-shadow 0.3s ease; min-width: 140px; text-align: center; }
+        .btn-yes { background: linear-gradient(135deg, #a24857 0%, #8b2942 50%, #6d1f35 100%); color: #fff; box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 150, 180, 0.3); }
+        .btn-yes:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 15px 40px rgba(139, 41, 66, 0.6), 0 8px 20px rgba(109, 31, 53, 0.5), 0 0 20px rgba(255, 100, 130, 0.3); }
+        .btn-no { background: linear-gradient(135deg, #5a4a50 0%, #4a3a42 50%, #3a2a32 100%); color: rgba(255, 255, 255, 0.9); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 200, 210, 0.2); width: 140px; min-width: 140px; max-width: 140px; height: 52px; padding: 0; display: flex; align-items: center; justify-content: center; position: relative; transition: transform 0.3s ease, left 0.3s ease, box-shadow 0.3s ease; }
 
-        .question {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.65rem;
-            font-weight: 600;
-            color: #4a3040;
-            line-height: 1.6;
-            margin: 25px 0;
-        }
-
-        .question-heart {
-            display: inline-block;
-            color: #d64060;
-            animation: heartBeat 1.2s ease-in-out infinite;
-            margin-left: 5px;
-        }
-
-        @keyframes heartBeat {
-            0%, 100% { transform: scale(1); }
-            15% { transform: scale(1.25); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.2); }
-            60% { transform: scale(1); }
-        }
-
-        /* ===== PRZYCISKI ===== */
-        
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-            margin-top: 35px;
-            position: relative;
-            min-height: 60px;
-        }
-
-        .btn {
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            font-family: 'Quicksand', sans-serif;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            min-width: 140px;
-            text-align: center;
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #a24857 0%, #8b2942 50%, #6d1f35 100%);
-            color: #fff;
-            box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 150, 180, 0.3);
-        }
-
-        .btn-yes:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(139, 41, 66, 0.6), 0 8px 20px rgba(109, 31, 53, 0.5), 0 0 20px rgba(255, 100, 130, 0.3);
-        }
-
-        .btn-no {
-            background: linear-gradient(135deg, #5a4a50 0%, #4a3a42 50%, #3a2a32 100%);
-            color: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 200, 210, 0.2);
-            width: 140px; min-width: 140px; max-width: 140px; height: 52px;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            transition: transform 0.3s ease, left 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .sad-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            animation: sadIn 0.3s ease;
-        }
-
+        .sad-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); display: flex; justify-content: center; align-items: center; z-index: 9999; animation: sadIn 0.3s ease; }
         @keyframes sadIn { 0% { opacity: 0; } 100% { opacity: 1; } }
-
         .sad-emoji { font-size: 200px; animation: sadBounce 0.6s ease; }
+        @keyframes sadBounce { 0% { transform: scale(0) rotate(-20deg); } 50% { transform: scale(1.2) rotate(10deg); } 100% { transform: scale(1) rotate(0deg); } }
 
-        @keyframes sadBounce {
-            0% { transform: scale(0) rotate(-20deg); }
-            50% { transform: scale(1.2) rotate(10deg); }
-            100% { transform: scale(1) rotate(0deg); }
-        }
-
-        /* ===== EKRAN SUKCESU ===== */
-        
-        .success-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 500;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            animation: fadeIn 0.8s ease;
-        }
-
+        .success-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 500; display: flex; justify-content: center; align-items: center; animation: fadeIn 0.8s ease; }
         @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-        .success-bg-base, .success-bg-aurora, .success-bg-bokeh, .success-bg-particles, .success-bg-falling {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-        }
-
-        .success-bg-base {
-            background: 
-                radial-gradient(ellipse at 10% 20%, rgba(120, 50, 80, 0.4) 0%, transparent 50%),
-                radial-gradient(ellipse at 90% 80%, rgba(180, 80, 100, 0.3) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 50%, rgba(60, 20, 40, 0.2) 0%, transparent 70%),
-                linear-gradient(180deg, #1a0a10 0%, #2d1520 30%, #3d1f2d 60%, #2a1018 100%);
-            z-index: 1;
-        }
-
-        .success-bg-aurora {
-            opacity: 0.4;
-            background: linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%);
-            animation: auroraMove 15s ease-in-out infinite;
-            z-index: 2;
-        }
-
+        .success-bg-base, .success-bg-aurora, .success-bg-bokeh, .success-bg-particles, .success-bg-falling { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .success-bg-base { background: radial-gradient(ellipse at 10% 20%, rgba(120, 50, 80, 0.4) 0%, transparent 50%), radial-gradient(ellipse at 90% 80%, rgba(180, 80, 100, 0.3) 0%, transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(60, 20, 40, 0.2) 0%, transparent 70%), linear-gradient(180deg, #1a0a10 0%, #2d1520 30%, #3d1f2d 60%, #2a1018 100%); z-index: 1; }
+        .success-bg-aurora { opacity: 0.4; background: linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%); animation: auroraMove 15s ease-in-out infinite; z-index: 2; }
         .success-bg-bokeh { z-index: 3; }
         .success-bg-particles { z-index: 4; }
         .success-bg-falling { z-index: 5; pointer-events: none; }
 
-        .success-card {
-            text-align: center;
-            padding: 50px 60px;
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 252, 253, 0.98) 50%, rgba(255, 248, 250, 0.97) 100%);
-            border-radius: 24px;
-            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(100, 30, 50, 0.3), 0 0 0 1px rgba(255, 200, 210, 0.5);
-            z-index: 100;
-            animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-        }
+        .success-card { text-align: center; padding: 50px 60px; background: linear-gradient(145deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 252, 253, 0.98) 50%, rgba(255, 248, 250, 0.97) 100%); border-radius: 24px; box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(100, 30, 50, 0.3), 0 0 0 1px rgba(255, 200, 210, 0.5); z-index: 100; animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275); max-width: 500px; width: 90%; position: relative; }
+        .success-card::before { content: ''; position: absolute; top: 12px; left: 12px; right: 12px; bottom: 12px; border: 1.5px solid rgba(200, 120, 140, 0.25); border-radius: 16px; pointer-events: none; }
+        @keyframes cardPop { 0% { opacity: 0; transform: scale(0.8) translateY(30px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+        .success-card h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.3rem; font-weight: 700; color: #8b2942; margin-bottom: 10px; }
+        .success-card p { font-family: 'Quicksand', sans-serif; font-size: 1.2rem; color: #6a4a55; margin-bottom: 30px; }
+        .btn-magic { padding: 18px 45px; font-size: 1.15rem; font-weight: 700; font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #a24857 0%, #8b2942 50%, #6d1f35 100%); color: #fff; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2); border: 1px solid rgba(255, 150, 180, 0.3); transition: transform 0.3s, box-shadow 0.3s; animation: magicGlow 2s ease-in-out infinite; }
+        @keyframes magicGlow { 0%, 100% { box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4); } 50% { box-shadow: 0 12px 40px rgba(139, 41, 66, 0.7), 0 8px 25px rgba(109, 31, 53, 0.5), 0 0 30px rgba(255, 100, 130, 0.3); } }
+        .btn-magic:hover { transform: translateY(-3px) scale(1.05); }
 
-        .success-card::before {
-            content: '';
-            position: absolute;
-            top: 12px; left: 12px; right: 12px; bottom: 12px;
-            border: 1.5px solid rgba(200, 120, 140, 0.25);
-            border-radius: 16px;
-            pointer-events: none;
-        }
-
-        @keyframes cardPop {
-            0% { opacity: 0; transform: scale(0.8) translateY(30px); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .success-card h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.3rem;
-            font-weight: 700;
-            color: #8b2942;
-            margin-bottom: 10px;
-        }
-
-        .success-card p {
-            font-family: 'Quicksand', sans-serif;
-            font-size: 1.2rem;
-            color: #6a4a55;
-            margin-bottom: 30px;
-        }
-
-        /* PRZYCISK MAGIC - IDENTYCZNY JAK TAK */
-        .btn-magic {
-            padding: 18px 45px;
-            font-size: 1.15rem;
-            font-weight: 700;
-            font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #a24857 0%, #8b2942 50%, #6d1f35 100%);
-            color: #fff;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 150, 180, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
-            animation: magicGlow 2s ease-in-out infinite;
-        }
-
-        @keyframes magicGlow {
-            0%, 100% { box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4); }
-            50% { box-shadow: 0 12px 40px rgba(139, 41, 66, 0.7), 0 8px 25px rgba(109, 31, 53, 0.5), 0 0 30px rgba(255, 100, 130, 0.3); }
-        }
-
-        .btn-magic:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(139, 41, 66, 0.6), 0 8px 20px rgba(109, 31, 53, 0.5), 0 0 20px rgba(255, 100, 130, 0.3);
-        }
-
-        /* ===== ANIMACJA - CANVAS ===== */
+        .cinema-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 10000; background: #000; }
+        #cinemaCanvas { width: 100%; height: 100%; display: block; }
         
-        .cinema-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 10000;
-            background: #000;
-        }
+        .cinema-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 10; }
+        
+        .cinema-end { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 100; opacity: 0; transition: opacity 2s ease; }
+        .cinema-end h1 { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 600; color: white; letter-spacing: 4px; line-height: 1.6; text-shadow: 0 0 40px rgba(255, 255, 255, 0.5), 0 0 80px rgba(255, 100, 150, 0.3); }
+        .cinema-end .final-heart { font-size: 60px; margin-top: 30px; display: block; animation: finalBeat 1s ease-in-out infinite; }
+        @keyframes finalBeat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
 
-        #cinemaCanvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
+        .loading-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; z-index: 1000; }
+        .loading-screen h2 { color: white; font-family: 'Cormorant Garamond', serif; font-size: 2rem; margin-bottom: 20px; }
+        .loading-bar { width: 200px; height: 4px; background: rgba(255,255,255,0.2); border-radius: 2px; overflow: hidden; }
+        .loading-bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #ff69b4, #ff1493); transition: width 0.3s; }
 
-        .cinema-end {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 2s ease;
-        }
-
-        .cinema-end h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3rem;
-            font-weight: 600;
-            color: white;
-            letter-spacing: 4px;
-            line-height: 1.6;
-            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-        }
-
-        .cinema-end .final-heart {
-            font-size: 60px;
-            margin-top: 30px;
-            display: block;
-            animation: finalBeat 1s ease-in-out infinite;
-        }
-
-        @keyframes finalBeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        /* Responsywność */
         @media (max-width: 600px) {
             .container { padding: 40px 25px; margin: 15px; }
             .title h1 { font-size: 1.8rem; }
@@ -479,7 +170,6 @@
     </style>
 </head>
 <body>
-    <!-- TŁO -->
     <div class="bg-layer bg-base"></div>
     <div class="bg-layer bg-aurora"></div>
     <div class="bg-layer bg-bokeh" id="bokehLayer">
@@ -492,7 +182,6 @@
     <div class="bg-layer bg-falling" id="fallingLayer"></div>
     <div class="bg-layer bg-texture"></div>
 
-    <!-- KONTENER -->
     <div class="container" id="mainContainer">
         <span class="corner-decor tl">🌹</span>
         <span class="corner-decor tr">🌹</span>
@@ -517,8 +206,16 @@
         </div>
     </div>
 
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/EffectComposer.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/RenderPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/postprocessing/UnrealBloomPass.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/LuminosityHighPassShader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/shaders/CopyShader.js"></script>
+    
     <script>
-        // ===== TŁO =====
+        // ===== STRONA 1 - ZACHOWANA BEZ ZMIAN =====
         function createParticles() {
             const container = document.getElementById('particlesLayer');
             for (let i = 0; i < 80; i++) {
@@ -556,7 +253,6 @@
         }
         createFallingElements();
 
-        // ===== PRZYCISK NIE =====
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
         const mainContainer = document.getElementById('mainContainer');
@@ -566,12 +262,7 @@
         
         function getContainerBounds() {
             const rect = mainContainer.getBoundingClientRect();
-            return {
-                left: 20,
-                right: rect.width - noBtn.offsetWidth - 20,
-                top: 150,
-                bottom: rect.height - noBtn.offsetHeight - 20
-            };
+            return { left: 20, right: rect.width - noBtn.offsetWidth - 20, top: 150, bottom: rect.height - noBtn.offsetHeight - 20 };
         }
         
         function escapeInContainer() {
@@ -601,7 +292,6 @@
             setTimeout(() => overlay.remove(), 1800);
         });
 
-        // ===== PRZYCISK TAK =====
         yesBtn.addEventListener('click', showSuccessScreen);
         
         function showSuccessScreen() {
@@ -629,7 +319,6 @@
                 `;
                 document.body.appendChild(successScreen);
                 
-                // Bokeh
                 const bokehContainer = document.getElementById('successBokeh');
                 for (let i = 0; i < 4; i++) {
                     const circle = document.createElement('div');
@@ -637,7 +326,6 @@
                     bokehContainer.appendChild(circle);
                 }
                 
-                // Particles
                 const particlesContainer = document.getElementById('successParticles');
                 for (let i = 0; i < 60; i++) {
                     const p = document.createElement('div');
@@ -650,7 +338,6 @@
                     particlesContainer.appendChild(p);
                 }
                 
-                // Falling
                 const fallingContainer = document.getElementById('successFalling');
                 const items = ['💕', '🌸', '💗', '✨', '🌹', '💖', '❤️'];
                 
@@ -676,1056 +363,994 @@
             }, 500);
         }
 
-        // ===== PROFESJONALNA ANIMACJA CANVAS =====
+        // ===== PROFESJONALNA ANIMACJA 3D THREE.JS =====
         function startCinema() {
             document.getElementById('successScreen').remove();
             
             const cinema = document.createElement('div');
             cinema.className = 'cinema-container';
             cinema.innerHTML = `
-                <canvas id="cinemaCanvas"></canvas>
+                <div class="loading-screen" id="loadingScreen">
+                    <h2>✨ Przygotowuję magię... ✨</h2>
+                    <div class="loading-bar"><div class="loading-bar-fill" id="loadingFill"></div></div>
+                </div>
                 <div class="cinema-end" id="cinemaEnd">
                     <h1>DZIĘKUJĘ ZA KOLEJNY<br>WSPANIAŁY ROK</h1>
                     <span class="final-heart">💕</span>
                 </div>
             `;
             document.body.appendChild(cinema);
-            
-            const canvas = document.getElementById('cinemaCanvas');
-            const ctx = canvas.getContext('2d');
-            
-            // Retina support
-            const dpr = window.devicePixelRatio || 1;
-            canvas.width = window.innerWidth * dpr;
-            canvas.height = window.innerHeight * dpr;
-            ctx.scale(dpr, dpr);
-            
-            const W = window.innerWidth;
-            const H = window.innerHeight;
-            
-            // ===== ANIMATION STATE =====
-            let time = 0;
-            let cameraY = 0;
-            const SCENE_HEIGHT = H * 4;
-            
-            // Stars
-            const stars = [];
-            for (let i = 0; i < 300; i++) {
-                stars.push({
-                    x: Math.random() * W,
-                    y: Math.random() * H,
-                    r: Math.random() * 2 + 0.5,
-                    twinkle: Math.random() * Math.PI * 2
-                });
-            }
-            
-            // Clouds
-            const clouds = [];
-            for (let i = 0; i < 8; i++) {
-                clouds.push({
-                    x: Math.random() * W,
-                    y: H * 1.5 + Math.random() * H * 0.5,
-                    w: 100 + Math.random() * 150,
-                    h: 40 + Math.random() * 30,
-                    speed: 0.2 + Math.random() * 0.3
-                });
-            }
-            
-            // Trees
-            const trees = [
-                { x: W * 0.08, scale: 1 },
-                { x: W * 0.18, scale: 0.8 },
-                { x: W * 0.82, scale: 1.1 },
-                { x: W * 0.92, scale: 0.9 }
-            ];
-            
-            // Flowers
-            const flowers = [];
-            for (let i = 0; i < 30; i++) {
-                flowers.push({
-                    x: Math.random() * W,
-                    color: ['#ff69b4', '#ff6b6b', '#ffd54f', '#ba68c8', '#4fc3f7'][Math.floor(Math.random() * 5)],
-                    phase: Math.random() * Math.PI * 2,
-                    size: 8 + Math.random() * 6
-                });
-            }
-            
-            // Hearts particles
-            const hearts = [];
-            
-            // Characters state
-            const girl = {
-                x: W * 0.35,
-                y: -200,
-                targetY: H * 0.65,
-                rotation: 0,
-                armAngle: 0,
-                legAngle: 0,
-                visible: false,
-                dusting: false,
-                dustPhase: 0,
-                hit: false
-            };
-            
-            const boy = {
-                x: W * 1.2,
-                targetX: W * 0.65,
-                y: H * 0.65,
-                walkPhase: 0,
-                armAngle: 0,
-                legAngle: 0,
-                visible: false,
-                hit: false
-            };
-            
-            const cupid = {
-                x: W * 0.5,
-                y: -100,
-                targetY: H * 0.2,
-                wingPhase: 0,
-                visible: false,
-                shooting: false,
-                shotsFired: 0
-            };
-            
-            const arrows = [];
-            
-            let showHug = false;
-            let fadeAlpha = 0;
-            let showEnd = false;
-            
-            // ===== DRAWING FUNCTIONS =====
-            
-            function drawStar(x, y, r, alpha) {
-                ctx.beginPath();
-                ctx.arc(x, y, r, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-                ctx.fill();
-                
-                // Glow
-                const gradient = ctx.createRadialGradient(x, y, 0, x, y, r * 3);
-                gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.5})`);
-                gradient.addColorStop(1, 'transparent');
-                ctx.fillStyle = gradient;
-                ctx.beginPath();
-                ctx.arc(x, y, r * 3, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            
-            function drawMoon(x, y, r) {
-                // Main moon
-                const gradient = ctx.createRadialGradient(x - r * 0.3, y - r * 0.3, 0, x, y, r);
-                gradient.addColorStop(0, '#fffef0');
-                gradient.addColorStop(0.5, '#e8e4d4');
-                gradient.addColorStop(1, '#c0b8a0');
-                
-                ctx.beginPath();
-                ctx.arc(x, y, r, 0, Math.PI * 2);
-                ctx.fillStyle = gradient;
-                ctx.fill();
-                
-                // Craters
-                ctx.fillStyle = 'rgba(150, 140, 120, 0.3)';
-                ctx.beginPath();
-                ctx.arc(x + r * 0.2, y - r * 0.2, r * 0.15, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(x - r * 0.3, y + r * 0.3, r * 0.12, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.arc(x + r * 0.4, y + r * 0.2, r * 0.08, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Glow
-                const glowGradient = ctx.createRadialGradient(x, y, r, x, y, r * 2);
-                glowGradient.addColorStop(0, 'rgba(255, 255, 200, 0.3)');
-                glowGradient.addColorStop(1, 'transparent');
-                ctx.fillStyle = glowGradient;
-                ctx.beginPath();
-                ctx.arc(x, y, r * 2, 0, Math.PI * 2);
-                ctx.fill();
-            }
-            
-            function drawSun(x, y, r) {
-                // Rays
-                for (let i = 0; i < 12; i++) {
-                    const angle = (i / 12) * Math.PI * 2 + time * 0.001;
-                    const rayLength = r * 1.5 + Math.sin(time * 0.003 + i) * r * 0.3;
-                    ctx.beginPath();
-                    ctx.moveTo(x, y);
-                    ctx.lineTo(
-                        x + Math.cos(angle) * rayLength,
-                        y + Math.sin(angle) * rayLength
-                    );
-                    ctx.strokeStyle = 'rgba(255, 200, 50, 0.3)';
-                    ctx.lineWidth = r * 0.3;
-                    ctx.stroke();
+
+            // Loading simulation
+            let loadProgress = 0;
+            const loadingFill = document.getElementById('loadingFill');
+            const loadingInterval = setInterval(() => {
+                loadProgress += Math.random() * 15;
+                if (loadProgress >= 100) {
+                    loadProgress = 100;
+                    clearInterval(loadingInterval);
+                    setTimeout(() => {
+                        document.getElementById('loadingScreen').style.opacity = '0';
+                        setTimeout(() => {
+                            document.getElementById('loadingScreen').remove();
+                            initThreeJS(cinema);
+                        }, 500);
+                    }, 300);
                 }
+                loadingFill.style.width = loadProgress + '%';
+            }, 100);
+        }
+
+        function initThreeJS(container) {
+            // Scene setup
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 2000);
+            
+            const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.shadowMap.enabled = true;
+            renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+            renderer.toneMapping = THREE.ACESFilmicToneMapping;
+            renderer.toneMappingExposure = 1.2;
+            container.insertBefore(renderer.domElement, container.firstChild);
+
+            // Post-processing
+            const composer = new THREE.EffectComposer(renderer);
+            const renderPass = new THREE.RenderPass(scene, camera);
+            composer.addPass(renderPass);
+            
+            const bloomPass = new THREE.UnrealBloomPass(
+                new THREE.Vector2(window.innerWidth, window.innerHeight),
+                0.8, 0.4, 0.85
+            );
+            composer.addPass(bloomPass);
+
+            // ===== MATERIALS =====
+            const toonMaterial = (color) => new THREE.MeshToonMaterial({ color: color });
+            const glowMaterial = (color) => new THREE.MeshBasicMaterial({ color: color });
+
+            // ===== ENVIRONMENT =====
+            
+            // Skybox gradient
+            const skyGeo = new THREE.SphereGeometry(500, 32, 32);
+            const skyMat = new THREE.ShaderMaterial({
+                uniforms: {
+                    topColor: { value: new THREE.Color(0x000011) },
+                    bottomColor: { value: new THREE.Color(0x87CEEB) },
+                    offset: { value: 0 },
+                    exponent: { value: 0.6 }
+                },
+                vertexShader: `
+                    varying vec3 vWorldPosition;
+                    void main() {
+                        vec4 worldPosition = modelMatrix * vec4(position, 1.0);
+                        vWorldPosition = worldPosition.xyz;
+                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                    }
+                `,
+                fragmentShader: `
+                    uniform vec3 topColor;
+                    uniform vec3 bottomColor;
+                    uniform float offset;
+                    uniform float exponent;
+                    varying vec3 vWorldPosition;
+                    void main() {
+                        float h = normalize(vWorldPosition + offset).y;
+                        gl_FragColor = vec4(mix(bottomColor, topColor, max(pow(max(h, 0.0), exponent), 0.0)), 1.0);
+                    }
+                `,
+                side: THREE.BackSide
+            });
+            const sky = new THREE.Mesh(skyGeo, skyMat);
+            scene.add(sky);
+
+            // Stars
+            const starsGeometry = new THREE.BufferGeometry();
+            const starsCount = 3000;
+            const starsPositions = new Float32Array(starsCount * 3);
+            const starsSizes = new Float32Array(starsCount);
+            
+            for (let i = 0; i < starsCount; i++) {
+                const theta = Math.random() * Math.PI * 2;
+                const phi = Math.acos(2 * Math.random() - 1);
+                const r = 400 + Math.random() * 100;
                 
-                // Main sun
-                const gradient = ctx.createRadialGradient(x, y, 0, x, y, r);
-                gradient.addColorStop(0, '#fff9c4');
-                gradient.addColorStop(0.3, '#ffeb3b');
-                gradient.addColorStop(0.7, '#ff9800');
-                gradient.addColorStop(1, '#ff5722');
-                
-                ctx.beginPath();
-                ctx.arc(x, y, r, 0, Math.PI * 2);
-                ctx.fillStyle = gradient;
-                ctx.fill();
-                
-                // Glow
-                const glowGradient = ctx.createRadialGradient(x, y, r, x, y, r * 3);
-                glowGradient.addColorStop(0, 'rgba(255, 235, 59, 0.5)');
-                glowGradient.addColorStop(0.5, 'rgba(255, 152, 0, 0.2)');
-                glowGradient.addColorStop(1, 'transparent');
-                ctx.fillStyle = glowGradient;
-                ctx.beginPath();
-                ctx.arc(x, y, r * 3, 0, Math.PI * 2);
-                ctx.fill();
+                starsPositions[i * 3] = r * Math.sin(phi) * Math.cos(theta);
+                starsPositions[i * 3 + 1] = r * Math.cos(phi);
+                starsPositions[i * 3 + 2] = r * Math.sin(phi) * Math.sin(theta);
+                starsSizes[i] = Math.random() * 2 + 0.5;
             }
             
-            function drawCloud(x, y, w, h) {
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-                ctx.beginPath();
-                ctx.ellipse(x, y, w * 0.5, h * 0.5, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.ellipse(x - w * 0.3, y + h * 0.1, w * 0.35, h * 0.4, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.beginPath();
-                ctx.ellipse(x + w * 0.3, y + h * 0.1, w * 0.4, h * 0.45, 0, 0, Math.PI * 2);
-                ctx.fill();
-            }
+            starsGeometry.setAttribute('position', new THREE.BufferAttribute(starsPositions, 3));
+            starsGeometry.setAttribute('size', new THREE.BufferAttribute(starsSizes, 1));
             
-            function drawTree(x, baseY, scale) {
-                const trunkW = 20 * scale;
-                const trunkH = 80 * scale;
+            const starsMaterial = new THREE.PointsMaterial({
+                color: 0xffffff,
+                size: 2,
+                transparent: true,
+                opacity: 0.8,
+                sizeAttenuation: true
+            });
+            
+            const stars = new THREE.Points(starsGeometry, starsMaterial);
+            scene.add(stars);
+
+            // Moon
+            const moonGeo = new THREE.SphereGeometry(15, 32, 32);
+            const moonMat = new THREE.MeshStandardMaterial({
+                color: 0xffffee,
+                emissive: 0x444433,
+                roughness: 0.8
+            });
+            const moon = new THREE.Mesh(moonGeo, moonMat);
+            moon.position.set(100, 150, -200);
+            scene.add(moon);
+
+            // Moon glow
+            const moonGlowGeo = new THREE.SphereGeometry(20, 32, 32);
+            const moonGlowMat = new THREE.MeshBasicMaterial({
+                color: 0xffffdd,
+                transparent: true,
+                opacity: 0.3
+            });
+            const moonGlow = new THREE.Mesh(moonGlowGeo, moonGlowMat);
+            moonGlow.position.copy(moon.position);
+            scene.add(moonGlow);
+
+            // Sun
+            const sunGeo = new THREE.SphereGeometry(25, 32, 32);
+            const sunMat = new THREE.MeshBasicMaterial({ color: 0xffdd44 });
+            const sun = new THREE.Mesh(sunGeo, sunMat);
+            sun.position.set(150, 80, -100);
+            scene.add(sun);
+
+            // Sun glow
+            const sunGlowGeo = new THREE.SphereGeometry(35, 32, 32);
+            const sunGlowMat = new THREE.MeshBasicMaterial({
+                color: 0xffaa00,
+                transparent: true,
+                opacity: 0.4
+            });
+            const sunGlow = new THREE.Mesh(sunGlowGeo, sunGlowMat);
+            sunGlow.position.copy(sun.position);
+            scene.add(sunGlow);
+
+            // Ground
+            const groundGeo = new THREE.PlaneGeometry(500, 500, 50, 50);
+            
+            // Add some hills
+            const posAttr = groundGeo.getAttribute('position');
+            for (let i = 0; i < posAttr.count; i++) {
+                const x = posAttr.getX(i);
+                const y = posAttr.getY(i);
+                const z = Math.sin(x * 0.02) * 3 + Math.cos(y * 0.02) * 3 + Math.random() * 0.5;
+                posAttr.setZ(i, z);
+            }
+            groundGeo.computeVertexNormals();
+            
+            const groundMat = new THREE.MeshToonMaterial({ color: 0x4CAF50 });
+            const ground = new THREE.Mesh(groundGeo, groundMat);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.y = -20;
+            ground.receiveShadow = true;
+            scene.add(ground);
+
+            // Grass patches
+            for (let i = 0; i < 200; i++) {
+                const grassGeo = new THREE.ConeGeometry(0.2, 2, 4);
+                const grassMat = new THREE.MeshToonMaterial({ 
+                    color: new THREE.Color().setHSL(0.3, 0.7, 0.3 + Math.random() * 0.2) 
+                });
+                const grass = new THREE.Mesh(grassGeo, grassMat);
+                grass.position.set(
+                    (Math.random() - 0.5) * 150,
+                    -19,
+                    (Math.random() - 0.5) * 150
+                );
+                grass.rotation.x = (Math.random() - 0.5) * 0.3;
+                scene.add(grass);
+            }
+
+            // Trees function
+            function createTree(x, z, scale = 1) {
+                const tree = new THREE.Group();
                 
                 // Trunk
-                const trunkGrad = ctx.createLinearGradient(x - trunkW/2, 0, x + trunkW/2, 0);
-                trunkGrad.addColorStop(0, '#5d4037');
-                trunkGrad.addColorStop(0.5, '#8d6e63');
-                trunkGrad.addColorStop(1, '#5d4037');
+                const trunkGeo = new THREE.CylinderGeometry(0.8 * scale, 1.2 * scale, 8 * scale, 8);
+                const trunkMat = new THREE.MeshToonMaterial({ color: 0x8B4513 });
+                const trunk = new THREE.Mesh(trunkGeo, trunkMat);
+                trunk.position.y = 4 * scale;
+                trunk.castShadow = true;
+                tree.add(trunk);
                 
-                ctx.fillStyle = trunkGrad;
-                ctx.fillRect(x - trunkW/2, baseY - trunkH, trunkW, trunkH);
+                // Foliage layers
+                const colors = [0x228B22, 0x2E8B2E, 0x32CD32];
+                for (let i = 0; i < 3; i++) {
+                    const foliageGeo = new THREE.ConeGeometry(
+                        (6 - i * 1.5) * scale,
+                        (8 - i * 2) * scale,
+                        8
+                    );
+                    const foliageMat = new THREE.MeshToonMaterial({ color: colors[i] });
+                    const foliage = new THREE.Mesh(foliageGeo, foliageMat);
+                    foliage.position.y = (10 + i * 4) * scale;
+                    foliage.castShadow = true;
+                    tree.add(foliage);
+                }
                 
-                // Leaves layers
-                const leafColors = ['#388e3c', '#43a047', '#4caf50'];
-                const layers = [
-                    { y: baseY - trunkH - 20 * scale, r: 50 * scale },
-                    { y: baseY - trunkH - 55 * scale, r: 40 * scale },
-                    { y: baseY - trunkH - 85 * scale, r: 30 * scale }
+                tree.position.set(x, -20, z);
+                return tree;
+            }
+
+            // Add trees
+            const treePositions = [
+                [-60, -30, 1.2], [-40, -50, 0.8], [50, -40, 1], [70, -25, 0.9],
+                [-70, 20, 1.1], [80, 30, 0.7], [-50, 60, 0.85], [60, 50, 1.15]
+            ];
+            treePositions.forEach(([x, z, s]) => scene.add(createTree(x, z, s)));
+
+            // Flowers
+            function createFlower(x, z) {
+                const flower = new THREE.Group();
+                
+                const stemGeo = new THREE.CylinderGeometry(0.1, 0.1, 3, 8);
+                const stemMat = new THREE.MeshToonMaterial({ color: 0x228B22 });
+                const stem = new THREE.Mesh(stemGeo, stemMat);
+                stem.position.y = 1.5;
+                flower.add(stem);
+                
+                const colors = [0xff69b4, 0xff1493, 0xffb6c1, 0xff6b6b, 0xffd700];
+                const petalColor = colors[Math.floor(Math.random() * colors.length)];
+                
+                for (let i = 0; i < 6; i++) {
+                    const petalGeo = new THREE.SphereGeometry(0.5, 8, 8);
+                    petalGeo.scale(1, 0.3, 0.5);
+                    const petalMat = new THREE.MeshToonMaterial({ color: petalColor });
+                    const petal = new THREE.Mesh(petalGeo, petalMat);
+                    petal.position.y = 3;
+                    petal.position.x = Math.cos(i / 6 * Math.PI * 2) * 0.8;
+                    petal.position.z = Math.sin(i / 6 * Math.PI * 2) * 0.8;
+                    petal.rotation.z = Math.PI / 4;
+                    petal.rotation.y = i / 6 * Math.PI * 2;
+                    flower.add(petal);
+                }
+                
+                const centerGeo = new THREE.SphereGeometry(0.4, 16, 16);
+                const centerMat = new THREE.MeshToonMaterial({ color: 0xffff00 });
+                const center = new THREE.Mesh(centerGeo, centerMat);
+                center.position.y = 3;
+                flower.add(center);
+                
+                flower.position.set(x, -20, z);
+                flower.userData.phase = Math.random() * Math.PI * 2;
+                return flower;
+            }
+
+            const flowers = [];
+            for (let i = 0; i < 50; i++) {
+                const flower = createFlower(
+                    (Math.random() - 0.5) * 120,
+                    (Math.random() - 0.5) * 120
+                );
+                flowers.push(flower);
+                scene.add(flower);
+            }
+
+            // Clouds
+            function createCloud(x, y, z) {
+                const cloud = new THREE.Group();
+                const cloudMat = new THREE.MeshToonMaterial({ 
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.9
+                });
+                
+                const sizes = [
+                    [4, 3, 3], [3, 2.5, 2.5], [3.5, 2.8, 2.8],
+                    [2.5, 2, 2], [3, 2.2, 2.2]
+                ];
+                const positions = [
+                    [0, 0, 0], [-3, 0.5, 0], [3, 0.3, 0],
+                    [-1.5, 1, 1], [1.5, 0.8, -1]
                 ];
                 
-                layers.forEach((layer, i) => {
-                    const gradient = ctx.createRadialGradient(
-                        x - layer.r * 0.3, layer.y - layer.r * 0.3, 0,
-                        x, layer.y, layer.r
-                    );
-                    gradient.addColorStop(0, '#66bb6a');
-                    gradient.addColorStop(0.5, leafColors[i]);
-                    gradient.addColorStop(1, '#2e7d32');
-                    
-                    ctx.beginPath();
-                    ctx.arc(x, layer.y, layer.r, 0, Math.PI * 2);
-                    ctx.fillStyle = gradient;
-                    ctx.fill();
-                });
-            }
-            
-            function drawFlower(x, baseY, color, size, phase) {
-                const sway = Math.sin(time * 0.002 + phase) * 5;
-                
-                // Stem
-                ctx.strokeStyle = '#4caf50';
-                ctx.lineWidth = 3;
-                ctx.beginPath();
-                ctx.moveTo(x, baseY);
-                ctx.quadraticCurveTo(x + sway, baseY - size * 2, x + sway, baseY - size * 3);
-                ctx.stroke();
-                
-                // Petals
-                const petalCount = 6;
-                for (let i = 0; i < petalCount; i++) {
-                    const angle = (i / petalCount) * Math.PI * 2;
-                    ctx.beginPath();
-                    ctx.ellipse(
-                        x + sway + Math.cos(angle) * size * 0.5,
-                        baseY - size * 3 + Math.sin(angle) * size * 0.5,
-                        size * 0.4, size * 0.6,
-                        angle, 0, Math.PI * 2
-                    );
-                    ctx.fillStyle = color;
-                    ctx.fill();
+                for (let i = 0; i < 5; i++) {
+                    const geo = new THREE.SphereGeometry(...sizes[i], 16, 16);
+                    const part = new THREE.Mesh(geo, cloudMat);
+                    part.position.set(...positions[i]);
+                    cloud.add(part);
                 }
                 
-                // Center
-                ctx.beginPath();
-                ctx.arc(x + sway, baseY - size * 3, size * 0.3, 0, Math.PI * 2);
-                ctx.fillStyle = '#ffd54f';
-                ctx.fill();
+                cloud.position.set(x, y, z);
+                cloud.userData.speed = 0.02 + Math.random() * 0.03;
+                return cloud;
             }
+
+            const clouds = [];
+            for (let i = 0; i < 10; i++) {
+                const cloud = createCloud(
+                    (Math.random() - 0.5) * 300,
+                    40 + Math.random() * 60,
+                    -100 - Math.random() * 100
+                );
+                clouds.push(cloud);
+                scene.add(cloud);
+            }
+
+            // ===== CHARACTERS =====
             
-            function drawPerson(x, y, isGirl, state) {
-                ctx.save();
-                ctx.translate(x, y);
-                
-                if (state.rotation) {
-                    ctx.rotate(state.rotation);
-                }
-                
-                const scale = 1;
-                const headR = 25 * scale;
-                const bodyH = 50 * scale;
-                const bodyW = 35 * scale;
-                const legH = 45 * scale;
-                const armH = 40 * scale;
-                
-                // Shadow
-                ctx.beginPath();
-                ctx.ellipse(0, legH + 5, bodyW * 0.8, 8, 0, 0, Math.PI * 2);
-                ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
-                ctx.fill();
-                
-                // Legs
-                const legAngle = state.legAngle || 0;
-                ctx.save();
-                ctx.translate(-bodyW * 0.15, bodyH * 0.4);
-                ctx.rotate(Math.sin(legAngle) * 0.3);
-                ctx.fillStyle = isGirl ? '#5c6bc0' : '#37474f';
-                ctx.beginPath();
-                ctx.roundRect(-6, 0, 12, legH, 6);
-                ctx.fill();
-                // Shoe
-                ctx.fillStyle = isGirl ? '#e91e63' : '#212121';
-                ctx.beginPath();
-                ctx.ellipse(0, legH, 10, 6, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                
-                ctx.save();
-                ctx.translate(bodyW * 0.15, bodyH * 0.4);
-                ctx.rotate(-Math.sin(legAngle) * 0.3);
-                ctx.fillStyle = isGirl ? '#5c6bc0' : '#37474f';
-                ctx.beginPath();
-                ctx.roundRect(-6, 0, 12, legH, 6);
-                ctx.fill();
-                // Shoe
-                ctx.fillStyle = isGirl ? '#e91e63' : '#212121';
-                ctx.beginPath();
-                ctx.ellipse(0, legH, 10, 6, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
+            // Character creator function
+            function createCharacter(isGirl) {
+                const character = new THREE.Group();
                 
                 // Body
-                const bodyGrad = ctx.createLinearGradient(-bodyW/2, -bodyH/2, bodyW/2, bodyH/2);
-                if (isGirl) {
-                    bodyGrad.addColorStop(0, '#f48fb1');
-                    bodyGrad.addColorStop(1, '#ec407a');
-                } else {
-                    bodyGrad.addColorStop(0, '#64b5f6');
-                    bodyGrad.addColorStop(1, '#1e88e5');
-                }
-                
-                ctx.beginPath();
-                if (isGirl) {
-                    // Dress shape
-                    ctx.moveTo(-bodyW * 0.4, -bodyH * 0.5);
-                    ctx.quadraticCurveTo(-bodyW * 0.5, bodyH * 0.2, -bodyW * 0.6, bodyH * 0.5);
-                    ctx.lineTo(bodyW * 0.6, bodyH * 0.5);
-                    ctx.quadraticCurveTo(bodyW * 0.5, bodyH * 0.2, bodyW * 0.4, -bodyH * 0.5);
-                    ctx.closePath();
-                } else {
-                    ctx.roundRect(-bodyW/2, -bodyH/2, bodyW, bodyH, 10);
-                }
-                ctx.fillStyle = bodyGrad;
-                ctx.fill();
-                
-                // Arms
-                const armAngle = state.armAngle || 0;
-                const dustOffset = state.dusting ? Math.sin(state.dustPhase * 10) * 0.5 : 0;
-                
-                // Left arm
-                ctx.save();
-                ctx.translate(-bodyW * 0.5, -bodyH * 0.3);
-                ctx.rotate(-0.3 + Math.sin(armAngle) * 0.2 + dustOffset);
-                ctx.fillStyle = '#fdbf91';
-                ctx.beginPath();
-                ctx.roundRect(-5, 0, 10, armH, 5);
-                ctx.fill();
-                // Hand
-                ctx.beginPath();
-                ctx.arc(0, armH, 8, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                
-                // Right arm
-                ctx.save();
-                ctx.translate(bodyW * 0.5, -bodyH * 0.3);
-                ctx.rotate(0.3 - Math.sin(armAngle) * 0.2 - dustOffset);
-                ctx.fillStyle = '#fdbf91';
-                ctx.beginPath();
-                ctx.roundRect(-5, 0, 10, armH, 5);
-                ctx.fill();
-                // Hand
-                ctx.beginPath();
-                ctx.arc(0, armH, 8, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-                
-                // Neck
-                ctx.fillStyle = '#fdbf91';
-                ctx.beginPath();
-                ctx.roundRect(-8, -bodyH/2 - 10, 16, 15, 3);
-                ctx.fill();
+                const bodyGeo = new THREE.CapsuleGeometry(2, 4, 8, 16);
+                const bodyColor = isGirl ? 0xff69b4 : 0x4169e1;
+                const bodyMat = new THREE.MeshToonMaterial({ color: bodyColor });
+                const body = new THREE.Mesh(bodyGeo, bodyMat);
+                body.position.y = 5;
+                body.castShadow = true;
+                character.add(body);
                 
                 // Head
-                const headGrad = ctx.createRadialGradient(-headR * 0.3, -bodyH/2 - headR - headR * 0.3, 0, 0, -bodyH/2 - headR, headR);
-                headGrad.addColorStop(0, '#ffecd2');
-                headGrad.addColorStop(1, '#e8a676');
-                
-                ctx.beginPath();
-                ctx.arc(0, -bodyH/2 - headR, headR, 0, Math.PI * 2);
-                ctx.fillStyle = headGrad;
-                ctx.fill();
+                const headGeo = new THREE.SphereGeometry(2.2, 32, 32);
+                const headMat = new THREE.MeshToonMaterial({ color: 0xfdbf91 });
+                const head = new THREE.Mesh(headGeo, headMat);
+                head.position.y = 10;
+                head.castShadow = true;
+                character.add(head);
                 
                 // Hair
                 if (isGirl) {
                     // Long black hair
-                    ctx.fillStyle = '#1a1a1a';
-                    ctx.beginPath();
-                    ctx.arc(0, -bodyH/2 - headR - 5, headR + 8, Math.PI, 0, true);
-                    ctx.fill();
+                    const hairGeo = new THREE.SphereGeometry(2.5, 32, 32);
+                    hairGeo.scale(1, 1.3, 1);
+                    const hairMat = new THREE.MeshToonMaterial({ color: 0x1a1a1a });
+                    const hair = new THREE.Mesh(hairGeo, hairMat);
+                    hair.position.y = 10.5;
+                    character.add(hair);
                     
-                    // Side hair
-                    ctx.beginPath();
-                    ctx.ellipse(-headR - 5, -bodyH/2 - headR + 10, 12, 50, -0.2, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.ellipse(headR + 5, -bodyH/2 - headR + 10, 12, 50, 0.2, 0, Math.PI * 2);
-                    ctx.fill();
-                    
-                    // Bangs
-                    ctx.beginPath();
-                    ctx.arc(0, -bodyH/2 - headR - 5, headR + 3, Math.PI * 1.2, Math.PI * 1.8);
-                    ctx.fill();
+                    // Hair sides
+                    for (let side of [-1, 1]) {
+                        const sideHairGeo = new THREE.CapsuleGeometry(0.8, 6, 8, 16);
+                        const sideHair = new THREE.Mesh(sideHairGeo, hairMat);
+                        sideHair.position.set(side * 2, 7, 0);
+                        sideHair.rotation.z = side * 0.2;
+                        character.add(sideHair);
+                    }
                 } else {
                     // Short dark blonde hair
-                    const hairGrad = ctx.createLinearGradient(0, -bodyH/2 - headR * 2, 0, -bodyH/2 - headR);
-                    hairGrad.addColorStop(0, '#a08060');
-                    hairGrad.addColorStop(1, '#8b7355');
-                    
-                    ctx.fillStyle = hairGrad;
-                    ctx.beginPath();
-                    ctx.arc(0, -bodyH/2 - headR - 3, headR + 5, Math.PI, 0, true);
-                    ctx.fill();
+                    const hairGeo = new THREE.SphereGeometry(2.4, 32, 32);
+                    hairGeo.scale(1, 0.8, 1);
+                    const hairMat = new THREE.MeshToonMaterial({ color: 0x8b7355 });
+                    const hair = new THREE.Mesh(hairGeo, hairMat);
+                    hair.position.y = 11;
+                    character.add(hair);
                 }
-                
-                // Face
-                const faceY = -bodyH/2 - headR;
                 
                 // Eyes
-                ctx.fillStyle = '#3e2723';
-                ctx.beginPath();
-                ctx.ellipse(-8, faceY - 3, 4, 5, 0, 0, Math.PI * 2);
-                ctx.ellipse(8, faceY - 3, 4, 5, 0, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Eye shine
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.arc(-6, faceY - 5, 2, 0, Math.PI * 2);
-                ctx.arc(10, faceY - 5, 2, 0, Math.PI * 2);
-                ctx.fill();
+                for (let side of [-0.8, 0.8]) {
+                    const eyeWhiteGeo = new THREE.SphereGeometry(0.4, 16, 16);
+                    const eyeWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+                    const eyeWhite = new THREE.Mesh(eyeWhiteGeo, eyeWhiteMat);
+                    eyeWhite.position.set(side, 10, 2);
+                    character.add(eyeWhite);
+                    
+                    const pupilGeo = new THREE.SphereGeometry(0.2, 16, 16);
+                    const pupilMat = new THREE.MeshBasicMaterial({ color: 0x3e2723 });
+                    const pupil = new THREE.Mesh(pupilGeo, pupilMat);
+                    pupil.position.set(side, 10, 2.3);
+                    character.add(pupil);
+                }
                 
                 // Blush
-                if (isGirl || state.hit) {
-                    ctx.fillStyle = 'rgba(255, 138, 128, 0.4)';
-                    ctx.beginPath();
-                    ctx.ellipse(-15, faceY + 5, 8, 4, 0, 0, Math.PI * 2);
-                    ctx.ellipse(15, faceY + 5, 8, 4, 0, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-                
-                // Mouth
-                ctx.fillStyle = '#e57373';
-                ctx.beginPath();
-                ctx.arc(0, faceY + 12, 5, 0, Math.PI);
-                ctx.fill();
-                
-                // Eyelashes for girl
                 if (isGirl) {
-                    ctx.strokeStyle = '#1a1a1a';
-                    ctx.lineWidth = 2;
-                    ctx.beginPath();
-                    ctx.moveTo(-12, faceY - 8);
-                    ctx.lineTo(-14, faceY - 12);
-                    ctx.moveTo(-8, faceY - 9);
-                    ctx.lineTo(-8, faceY - 13);
-                    ctx.moveTo(-4, faceY - 8);
-                    ctx.lineTo(-2, faceY - 12);
-                    ctx.moveTo(4, faceY - 8);
-                    ctx.lineTo(2, faceY - 12);
-                    ctx.moveTo(8, faceY - 9);
-                    ctx.lineTo(8, faceY - 13);
-                    ctx.moveTo(12, faceY - 8);
-                    ctx.lineTo(14, faceY - 12);
-                    ctx.stroke();
+                    for (let side of [-1.5, 1.5]) {
+                        const blushGeo = new THREE.CircleGeometry(0.4, 16);
+                        const blushMat = new THREE.MeshBasicMaterial({ 
+                            color: 0xff8a80,
+                            transparent: true,
+                            opacity: 0.5
+                        });
+                        const blush = new THREE.Mesh(blushGeo, blushMat);
+                        blush.position.set(side, 9.3, 2);
+                        blush.rotation.y = side > 0 ? -0.3 : 0.3;
+                        character.add(blush);
+                    }
                 }
                 
-                // Hit heart
-                if (state.hit) {
-                    ctx.font = '30px Arial';
-                    ctx.fillText('💘', -15, bodyH * 0.7);
+                // Mouth (smile)
+                const smileGeo = new THREE.TorusGeometry(0.4, 0.1, 8, 16, Math.PI);
+                const smileMat = new THREE.MeshBasicMaterial({ color: 0xe57373 });
+                const smile = new THREE.Mesh(smileGeo, smileMat);
+                smile.position.set(0, 8.8, 2);
+                smile.rotation.x = Math.PI;
+                character.add(smile);
+                
+                // Arms
+                character.userData.arms = [];
+                for (let side of [-1, 1]) {
+                    const armGroup = new THREE.Group();
+                    
+                    const armGeo = new THREE.CapsuleGeometry(0.5, 3, 8, 16);
+                    const armMat = new THREE.MeshToonMaterial({ color: 0xfdbf91 });
+                    const arm = new THREE.Mesh(armGeo, armMat);
+                    arm.position.y = -1.5;
+                    armGroup.add(arm);
+                    
+                    // Hand
+                    const handGeo = new THREE.SphereGeometry(0.6, 16, 16);
+                    const hand = new THREE.Mesh(handGeo, armMat);
+                    hand.position.y = -3.5;
+                    armGroup.add(hand);
+                    
+                    armGroup.position.set(side * 2.5, 7, 0);
+                    character.add(armGroup);
+                    character.userData.arms.push(armGroup);
                 }
                 
-                ctx.restore();
+                // Legs
+                character.userData.legs = [];
+                for (let side of [-1, 1]) {
+                    const legGroup = new THREE.Group();
+                    
+                    const legGeo = new THREE.CapsuleGeometry(0.7, 4, 8, 16);
+                    const legMat = new THREE.MeshToonMaterial({ color: 0x3f51b5 });
+                    const leg = new THREE.Mesh(legGeo, legMat);
+                    leg.position.y = -2;
+                    legGroup.add(leg);
+                    
+                    // Shoe
+                    const shoeGeo = new THREE.BoxGeometry(1.2, 0.8, 2);
+                    const shoeMat = new THREE.MeshToonMaterial({ color: isGirl ? 0xe91e63 : 0x212121 });
+                    const shoe = new THREE.Mesh(shoeGeo, shoeMat);
+                    shoe.position.set(0, -4.5, 0.3);
+                    legGroup.add(shoe);
+                    
+                    legGroup.position.set(side * 1, 2, 0);
+                    character.add(legGroup);
+                    character.userData.legs.push(legGroup);
+                }
+                
+                return character;
             }
-            
-            function drawCupid(x, y, state) {
-                ctx.save();
-                ctx.translate(x, y);
+
+            // Create characters
+            const girl = createCharacter(true);
+            girl.position.set(-15, 100, 0);
+            girl.visible = false;
+            scene.add(girl);
+
+            const boy = createCharacter(false);
+            boy.position.set(60, -20, 0);
+            boy.visible = false;
+            scene.add(boy);
+
+            // Cupid
+            function createCupid() {
+                const cupid = new THREE.Group();
                 
-                const scale = 0.8;
-                const headR = 22 * scale;
-                const bodyH = 30 * scale;
-                
-                // Wings
-                const wingPhase = state.wingPhase;
-                const wingAngle = Math.sin(wingPhase) * 0.3;
-                
-                // Left wing
-                ctx.save();
-                ctx.translate(-25 * scale, 10);
-                ctx.rotate(-0.5 + wingAngle);
-                const wingGrad = ctx.createLinearGradient(0, 0, -50, -30);
-                wingGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
-                wingGrad.addColorStop(1, 'rgba(255, 220, 230, 0.7)');
-                ctx.fillStyle = wingGrad;
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.quadraticCurveTo(-60 * scale, -40 * scale, -40 * scale, 20 * scale);
-                ctx.quadraticCurveTo(-20 * scale, 40 * scale, 0, 20 * scale);
-                ctx.closePath();
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 200, 220, 0.5)';
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                ctx.restore();
-                
-                // Right wing
-                ctx.save();
-                ctx.translate(25 * scale, 10);
-                ctx.rotate(0.5 - wingAngle);
-                ctx.fillStyle = wingGrad;
-                ctx.beginPath();
-                ctx.moveTo(0, 0);
-                ctx.quadraticCurveTo(60 * scale, -40 * scale, 40 * scale, 20 * scale);
-                ctx.quadraticCurveTo(20 * scale, 40 * scale, 0, 20 * scale);
-                ctx.closePath();
-                ctx.fill();
-                ctx.strokeStyle = 'rgba(255, 200, 220, 0.5)';
-                ctx.stroke();
-                ctx.restore();
-                
-                // Body (white cloth)
-                ctx.fillStyle = '#fff';
-                ctx.beginPath();
-                ctx.ellipse(0, bodyH * 0.3, 18 * scale, bodyH * 0.7, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.fillStyle = 'rgba(255, 220, 230, 0.5)';
-                ctx.fill();
+                // Body (cherub style)
+                const bodyGeo = new THREE.SphereGeometry(2, 32, 32);
+                bodyGeo.scale(1, 1.2, 0.8);
+                const bodyMat = new THREE.MeshToonMaterial({ color: 0xffecd2 });
+                const body = new THREE.Mesh(bodyGeo, bodyMat);
+                body.position.y = 0;
+                cupid.add(body);
                 
                 // Head
-                const headGrad = ctx.createRadialGradient(-5, -bodyH * 0.5 - headR * 0.3, 0, 0, -bodyH * 0.5, headR);
-                headGrad.addColorStop(0, '#ffecd2');
-                headGrad.addColorStop(1, '#fcb69f');
-                ctx.beginPath();
-                ctx.arc(0, -bodyH * 0.5, headR, 0, Math.PI * 2);
-                ctx.fillStyle = headGrad;
-                ctx.fill();
+                const headGeo = new THREE.SphereGeometry(1.8, 32, 32);
+                const head = new THREE.Mesh(headGeo, bodyMat);
+                head.position.y = 3;
+                cupid.add(head);
                 
                 // Golden curly hair
-                ctx.fillStyle = '#ffd54f';
-                for (let i = 0; i < 8; i++) {
-                    const angle = (i / 8) * Math.PI + Math.PI;
-                    const cx = Math.cos(angle) * (headR + 5);
-                    const cy = -bodyH * 0.5 + Math.sin(angle) * (headR + 5) - 5;
-                    ctx.beginPath();
-                    ctx.arc(cx, cy, 8 * scale, 0, Math.PI * 2);
-                    ctx.fill();
+                const hairMat = new THREE.MeshToonMaterial({ color: 0xffd700 });
+                for (let i = 0; i < 10; i++) {
+                    const curlGeo = new THREE.SphereGeometry(0.5, 16, 16);
+                    const curl = new THREE.Mesh(curlGeo, hairMat);
+                    const angle = (i / 10) * Math.PI * 2;
+                    curl.position.set(
+                        Math.cos(angle) * 1.5,
+                        3.5 + Math.sin(angle * 3) * 0.3,
+                        Math.sin(angle) * 1.5
+                    );
+                    cupid.add(curl);
                 }
                 
-                // Face
-                ctx.fillStyle = '#3e2723';
-                ctx.beginPath();
-                ctx.arc(-6, -bodyH * 0.5 - 2, 3, 0, Math.PI * 2);
-                ctx.arc(6, -bodyH * 0.5 - 2, 3, 0, Math.PI * 2);
-                ctx.fill();
+                // Eyes
+                for (let side of [-0.5, 0.5]) {
+                    const eyeGeo = new THREE.SphereGeometry(0.25, 16, 16);
+                    const eyeMat = new THREE.MeshBasicMaterial({ color: 0x4a90d9 });
+                    const eye = new THREE.Mesh(eyeGeo, eyeMat);
+                    eye.position.set(side, 3.2, 1.5);
+                    cupid.add(eye);
+                }
                 
-                ctx.fillStyle = '#e57373';
-                ctx.beginPath();
-                ctx.arc(0, -bodyH * 0.5 + 8, 4, 0, Math.PI);
-                ctx.fill();
+                // Cute smile
+                const smileGeo = new THREE.TorusGeometry(0.3, 0.08, 8, 16, Math.PI);
+                const smileMat = new THREE.MeshBasicMaterial({ color: 0xff9999 });
+                const smile = new THREE.Mesh(smileGeo, smileMat);
+                smile.position.set(0, 2.5, 1.5);
+                smile.rotation.x = Math.PI;
+                cupid.add(smile);
                 
-                // Bow and arrow
-                ctx.save();
-                ctx.translate(-35 * scale, 5);
-                ctx.rotate(-0.5);
+                // Wings
+                cupid.userData.wings = [];
+                const wingMat = new THREE.MeshToonMaterial({ 
+                    color: 0xffffff,
+                    transparent: true,
+                    opacity: 0.9,
+                    side: THREE.DoubleSide
+                });
+                
+                for (let side of [-1, 1]) {
+                    const wingShape = new THREE.Shape();
+                    wingShape.moveTo(0, 0);
+                    wingShape.bezierCurveTo(side * 2, 2, side * 4, 3, side * 5, 0);
+                    wingShape.bezierCurveTo(side * 4, -1, side * 2, -1, 0, 0);
+                    
+                    const wingGeo = new THREE.ShapeGeometry(wingShape);
+                    const wing = new THREE.Mesh(wingGeo, wingMat);
+                    wing.position.set(side * 1.5, 1, -1);
+                    wing.rotation.y = side * 0.3;
+                    cupid.add(wing);
+                    cupid.userData.wings.push(wing);
+                }
                 
                 // Bow
-                ctx.strokeStyle = '#8b4513';
-                ctx.lineWidth = 5;
-                ctx.beginPath();
-                ctx.arc(0, 0, 30 * scale, -Math.PI * 0.4, Math.PI * 0.4);
-                ctx.stroke();
+                const bow = new THREE.Group();
+                const bowCurveGeo = new THREE.TorusGeometry(2, 0.15, 8, 32, Math.PI);
+                const bowMat = new THREE.MeshToonMaterial({ color: 0xdaa520 });
+                const bowCurve = new THREE.Mesh(bowCurveGeo, bowMat);
+                bowCurve.rotation.z = Math.PI / 2;
+                bow.add(bowCurve);
                 
-                // String
-                ctx.strokeStyle = '#ddd';
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(
-                    Math.cos(-Math.PI * 0.4) * 30 * scale,
-                    Math.sin(-Math.PI * 0.4) * 30 * scale
-                );
-                ctx.lineTo(
-                    Math.cos(Math.PI * 0.4) * 30 * scale,
-                    Math.sin(Math.PI * 0.4) * 30 * scale
-                );
-                ctx.stroke();
+                // Bowstring
+                const stringGeo = new THREE.CylinderGeometry(0.02, 0.02, 4, 8);
+                const stringMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
+                const string = new THREE.Mesh(stringGeo, stringMat);
+                string.position.x = 2;
+                bow.add(string);
                 
-                ctx.restore();
+                bow.position.set(-3, 0, 0);
+                bow.rotation.z = -0.3;
+                cupid.add(bow);
                 
-                ctx.restore();
+                return cupid;
+            }
+
+            const cupid = createCupid();
+            cupid.position.set(0, 100, 30);
+            cupid.visible = false;
+            scene.add(cupid);
+
+            // Hearts particle system
+            const heartsGeometry = new THREE.BufferGeometry();
+            const heartsCount = 100;
+            const heartsPositions = new Float32Array(heartsCount * 3);
+            const heartsSizes = new Float32Array(heartsCount);
+            const heartsAlphas = new Float32Array(heartsCount);
+            
+            for (let i = 0; i < heartsCount; i++) {
+                heartsPositions[i * 3] = 0;
+                heartsPositions[i * 3 + 1] = -1000;
+                heartsPositions[i * 3 + 2] = 0;
+                heartsSizes[i] = 0;
+                heartsAlphas[i] = 0;
             }
             
-            function drawArrow(arrow) {
-                ctx.save();
-                ctx.translate(arrow.x, arrow.y);
-                ctx.rotate(arrow.angle);
+            heartsGeometry.setAttribute('position', new THREE.BufferAttribute(heartsPositions, 3));
+            
+            // Heart shape for particles
+            const heartShape = new THREE.Shape();
+            heartShape.moveTo(0, 0);
+            heartShape.bezierCurveTo(0, -0.5, -1, -1, -1, 0);
+            heartShape.bezierCurveTo(-1, 1, 0, 1.5, 0, 2);
+            heartShape.bezierCurveTo(0, 1.5, 1, 1, 1, 0);
+            heartShape.bezierCurveTo(1, -1, 0, -0.5, 0, 0);
+            
+            const heartGeo = new THREE.ShapeGeometry(heartShape);
+            const heartMat = new THREE.MeshBasicMaterial({ 
+                color: 0xff69b4,
+                transparent: true,
+                opacity: 0.8,
+                side: THREE.DoubleSide
+            });
+            
+            const floatingHearts = [];
+
+            // Arrow
+            function createArrow() {
+                const arrow = new THREE.Group();
                 
-                // Shaft
-                ctx.fillStyle = '#8b4513';
-                ctx.beginPath();
-                ctx.roundRect(-30, -2, 60, 4, 2);
-                ctx.fill();
+                const shaftGeo = new THREE.CylinderGeometry(0.1, 0.1, 5, 8);
+                const shaftMat = new THREE.MeshToonMaterial({ color: 0x8b4513 });
+                const shaft = new THREE.Mesh(shaftGeo, shaftMat);
+                shaft.rotation.z = Math.PI / 2;
+                arrow.add(shaft);
                 
-                // Heart head
-                ctx.fillStyle = '#ff69b4';
-                ctx.beginPath();
-                ctx.moveTo(30, 0);
-                ctx.bezierCurveTo(30, -8, 40, -12, 45, -6);
-                ctx.bezierCurveTo(50, 0, 45, 8, 30, 15);
-                ctx.bezierCurveTo(15, 8, 10, 0, 15, -6);
-                ctx.bezierCurveTo(20, -12, 30, -8, 30, 0);
-                ctx.fill();
+                // Heart tip
+                const tipShape = new THREE.Shape();
+                tipShape.moveTo(0, 0);
+                tipShape.bezierCurveTo(0.3, 0.3, 0.5, 0, 0.5, -0.3);
+                tipShape.bezierCurveTo(0.5, -0.5, 0, -0.8, 0, -1);
+                tipShape.bezierCurveTo(0, -0.8, -0.5, -0.5, -0.5, -0.3);
+                tipShape.bezierCurveTo(-0.5, 0, -0.3, 0.3, 0, 0);
+                
+                const tipGeo = new THREE.ExtrudeGeometry(tipShape, { depth: 0.3, bevelEnabled: false });
+                const tipMat = new THREE.MeshToonMaterial({ color: 0xff1493 });
+                const tip = new THREE.Mesh(tipGeo, tipMat);
+                tip.rotation.x = -Math.PI / 2;
+                tip.rotation.z = Math.PI;
+                tip.position.x = 3;
+                tip.scale.set(1.5, 1.5, 1.5);
+                arrow.add(tip);
                 
                 // Feathers
-                ctx.fillStyle = '#ff1493';
-                ctx.beginPath();
-                ctx.moveTo(-30, 0);
-                ctx.lineTo(-45, -10);
-                ctx.lineTo(-35, 0);
-                ctx.lineTo(-45, 10);
-                ctx.closePath();
-                ctx.fill();
-                
-                ctx.restore();
-            }
-            
-            function drawHeart(x, y, size, alpha) {
-                ctx.save();
-                ctx.translate(x, y);
-                ctx.scale(size, size);
-                ctx.globalAlpha = alpha;
-                
-                ctx.fillStyle = '#ff69b4';
-                ctx.beginPath();
-                ctx.moveTo(0, 5);
-                ctx.bezierCurveTo(-15, -10, -25, 5, 0, 20);
-                ctx.bezierCurveTo(25, 5, 15, -10, 0, 5);
-                ctx.fill();
-                
-                // Shine
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
-                ctx.beginPath();
-                ctx.arc(-5, 0, 3, 0, Math.PI * 2);
-                ctx.fill();
-                
-                ctx.restore();
-            }
-            
-            function drawHugCouple(x, y) {
-                ctx.save();
-                ctx.translate(x, y);
-                
-                // Combined silhouette hugging
-                const headR = 25;
-                
-                // Girl's hair behind
-                ctx.fillStyle = '#1a1a1a';
-                ctx.beginPath();
-                ctx.ellipse(-20, -60, 35, 45, -0.2, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Bodies together
-                const bodyGrad = ctx.createLinearGradient(-40, 0, 40, 0);
-                bodyGrad.addColorStop(0, '#f48fb1');
-                bodyGrad.addColorStop(0.5, '#ba68c8');
-                bodyGrad.addColorStop(1, '#64b5f6');
-                
-                ctx.fillStyle = bodyGrad;
-                ctx.beginPath();
-                ctx.ellipse(0, 20, 45, 55, 0, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Heads
-                ctx.fillStyle = '#fdbf91';
-                ctx.beginPath();
-                ctx.arc(-15, -55, headR, 0, Math.PI * 2);
-                ctx.arc(15, -55, headR, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Girl's hair front
-                ctx.fillStyle = '#1a1a1a';
-                ctx.beginPath();
-                ctx.arc(-15, -60, headR + 5, Math.PI, 0, true);
-                ctx.fill();
-                
-                // Boy's hair
-                ctx.fillStyle = '#8b7355';
-                ctx.beginPath();
-                ctx.arc(15, -60, headR + 3, Math.PI, 0, true);
-                ctx.fill();
-                
-                // Arms hugging
-                ctx.fillStyle = '#fdbf91';
-                ctx.beginPath();
-                ctx.ellipse(-35, 10, 10, 30, -0.3, 0, Math.PI * 2);
-                ctx.ellipse(35, 10, 10, 30, 0.3, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Hearts around
-                const heartTime = time * 0.003;
-                for (let i = 0; i < 5; i++) {
-                    const angle = heartTime + (i / 5) * Math.PI * 2;
-                    const radius = 80 + Math.sin(time * 0.005 + i) * 10;
-                    const hx = Math.cos(angle) * radius;
-                    const hy = Math.sin(angle) * radius - 20;
-                    drawHeart(hx, hy, 0.5 + Math.sin(time * 0.01 + i) * 0.2, 0.7);
+                const featherMat = new THREE.MeshToonMaterial({ color: 0xff69b4 });
+                for (let i = 0; i < 3; i++) {
+                    const featherGeo = new THREE.ConeGeometry(0.3, 1.5, 4);
+                    const feather = new THREE.Mesh(featherGeo, featherMat);
+                    feather.position.x = -2.5;
+                    feather.position.y = Math.sin(i / 3 * Math.PI * 2) * 0.5;
+                    feather.position.z = Math.cos(i / 3 * Math.PI * 2) * 0.5;
+                    feather.rotation.z = Math.PI / 2;
+                    arrow.add(feather);
                 }
                 
-                ctx.restore();
+                return arrow;
+            }
+
+            const arrows = [];
+
+            // Hug couple
+            const hugCouple = new THREE.Group();
+            hugCouple.visible = false;
+            
+            // Combined body
+            const hugBodyGeo = new THREE.CapsuleGeometry(4, 5, 16, 32);
+            const hugBodyMat = new THREE.MeshToonMaterial({ color: 0xdda0dd });
+            const hugBody = new THREE.Mesh(hugBodyGeo, hugBodyMat);
+            hugBody.position.y = 4;
+            hugCouple.add(hugBody);
+            
+            // Two heads close together
+            const hugGirlHead = new THREE.SphereGeometry(2, 32, 32);
+            const hugGirlHeadMesh = new THREE.Mesh(hugGirlHead, new THREE.MeshToonMaterial({ color: 0xfdbf91 }));
+            hugGirlHeadMesh.position.set(-1.5, 10, 0);
+            hugCouple.add(hugGirlHeadMesh);
+            
+            const hugBoyHead = new THREE.SphereGeometry(2, 32, 32);
+            const hugBoyHeadMesh = new THREE.Mesh(hugBoyHead, new THREE.MeshToonMaterial({ color: 0xfdbf91 }));
+            hugBoyHeadMesh.position.set(1.5, 10, 0);
+            hugCouple.add(hugBoyHeadMesh);
+            
+            // Hair
+            const hugGirlHair = new THREE.Mesh(
+                new THREE.SphereGeometry(2.3, 32, 32),
+                new THREE.MeshToonMaterial({ color: 0x1a1a1a })
+            );
+            hugGirlHair.position.set(-1.5, 10.5, -0.5);
+            hugGirlHair.scale.set(1, 1.3, 1);
+            hugCouple.add(hugGirlHair);
+            
+            const hugBoyHair = new THREE.Mesh(
+                new THREE.SphereGeometry(2.2, 32, 32),
+                new THREE.MeshToonMaterial({ color: 0x8b7355 })
+            );
+            hugBoyHair.position.set(1.5, 11, -0.3);
+            hugBoyHair.scale.set(1, 0.7, 1);
+            hugCouple.add(hugBoyHair);
+            
+            // Arms around each other
+            for (let side of [-1, 1]) {
+                const armGeo = new THREE.CapsuleGeometry(0.6, 4, 8, 16);
+                const armMat = new THREE.MeshToonMaterial({ color: 0xfdbf91 });
+                const arm = new THREE.Mesh(armGeo, armMat);
+                arm.position.set(side * 4, 6, side * 1);
+                arm.rotation.z = side * 0.8;
+                hugCouple.add(arm);
             }
             
-            // ===== MAIN ANIMATION LOOP =====
+            hugCouple.position.set(0, -20, 0);
+            scene.add(hugCouple);
+
+            // Lighting
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+            scene.add(ambientLight);
+            
+            const sunLight = new THREE.DirectionalLight(0xffffff, 1);
+            sunLight.position.set(50, 100, 50);
+            sunLight.castShadow = true;
+            sunLight.shadow.mapSize.width = 2048;
+            sunLight.shadow.mapSize.height = 2048;
+            sunLight.shadow.camera.near = 0.5;
+            sunLight.shadow.camera.far = 500;
+            sunLight.shadow.camera.left = -100;
+            sunLight.shadow.camera.right = 100;
+            sunLight.shadow.camera.top = 100;
+            sunLight.shadow.camera.bottom = -100;
+            scene.add(sunLight);
+            
+            const moonLight = new THREE.PointLight(0xaaaaff, 0.5, 300);
+            moonLight.position.copy(moon.position);
+            scene.add(moonLight);
+
+            // Camera animation path
+            camera.position.set(0, 200, 50);
+            camera.lookAt(0, 0, 0);
+
+            // Animation state
+            let time = 0;
+            let phase = 'space'; // space, descend, ground, characters
+            let girlFalling = false;
+            let girlLanded = false;
+            let boyWalking = false;
+            let boyArrived = false;
+            let cupidVisible = false;
+            let arrowsShot = 0;
+            let showingHug = false;
+            let fadingOut = false;
+            let fadeAlpha = 0;
+
+            // Animation loop
             function animate() {
-                time++;
-                ctx.clearRect(0, 0, W, H);
+                requestAnimationFrame(animate);
+                time += 0.016;
                 
-                // Camera movement
-                const cameraProgress = Math.min(1, time / 600);
-                cameraY = easeInOutCubic(cameraProgress) * (SCENE_HEIGHT - H);
+                // Sky color transition
+                const skyProgress = Math.min(1, Math.max(0, (time - 2) / 6));
+                skyMat.uniforms.topColor.value.lerpColors(
+                    new THREE.Color(0x000011),
+                    new THREE.Color(0x1e90ff),
+                    skyProgress
+                );
+                skyMat.uniforms.bottomColor.value.lerpColors(
+                    new THREE.Color(0x000033),
+                    new THREE.Color(0x87CEEB),
+                    skyProgress
+                );
                 
-                // ===== DRAW SCENE =====
-                
-                // Space background (0 - H)
-                if (cameraY < H) {
-                    const spaceAlpha = 1 - Math.max(0, (cameraY - H * 0.5) / (H * 0.5));
-                    ctx.globalAlpha = spaceAlpha;
+                // Camera animation
+                if (time < 8) {
+                    // Descending from space
+                    camera.position.y = 200 - time * 25;
+                    camera.position.z = 50 + time * 5;
+                    camera.lookAt(0, camera.position.y - 50, 0);
                     
-                    // Deep space gradient
-                    const spaceGrad = ctx.createLinearGradient(0, -cameraY, 0, H - cameraY);
-                    spaceGrad.addColorStop(0, '#000000');
-                    spaceGrad.addColorStop(0.3, '#0a0015');
-                    spaceGrad.addColorStop(0.6, '#150025');
-                    spaceGrad.addColorStop(1, '#1a0030');
-                    ctx.fillStyle = spaceGrad;
-                    ctx.fillRect(0, 0, W, H);
+                    // Stars fade
+                    starsMaterial.opacity = Math.max(0, 1 - time / 4);
                     
-                    // Stars
-                    stars.forEach(star => {
-                        const sy = star.y - cameraY * 0.3;
-                        if (sy > -10 && sy < H + 10) {
-                            const twinkle = 0.5 + Math.sin(time * 0.05 + star.twinkle) * 0.5;
-                            drawStar(star.x, sy, star.r, twinkle * spaceAlpha);
+                    // Moon and sun visibility
+                    moon.visible = time < 4;
+                    moonGlow.visible = time < 4;
+                    sun.visible = time > 3;
+                    sunGlow.visible = time > 3;
+                } else if (time < 12) {
+                    // Landing on ground
+                    const t = (time - 8) / 4;
+                    camera.position.y = Math.max(10, 20 - t * 10);
+                    camera.position.z = 90 - t * 40;
+                    camera.lookAt(0, 0, 0);
+                } else {
+                    // Ground level
+                    camera.position.set(0, 15, 50);
+                    camera.lookAt(0, 0, 0);
+                    
+                    // Character animations
+                    if (time > 13 && !girlFalling) {
+                        girlFalling = true;
+                        girl.visible = true;
+                    }
+                    
+                    if (girlFalling && !girlLanded) {
+                        girl.position.y += (-20 - girl.position.y) * 0.05;
+                        girl.rotation.z = Math.sin(time * 5) * 0.3;
+                        
+                        // Arm flailing
+                        girl.userData.arms.forEach((arm, i) => {
+                            arm.rotation.z = Math.sin(time * 8 + i * Math.PI) * 0.8;
+                        });
+                        
+                        if (girl.position.y < -18) {
+                            girlLanded = true;
+                            girl.rotation.z = 0;
                         }
-                    });
+                    }
                     
-                    // Moon
-                    drawMoon(W * 0.7, H * 0.15 - cameraY * 0.2, 50);
+                    if (girlLanded && time > 16 && time < 18) {
+                        // Dusting off animation
+                        girl.userData.arms.forEach((arm, i) => {
+                            arm.rotation.z = Math.sin(time * 10 + i * Math.PI) * 0.5;
+                            arm.rotation.x = Math.sin(time * 10) * 0.3;
+                        });
+                    }
                     
-                    ctx.globalAlpha = 1;
-                }
-                
-                // Atmosphere (H - 2H)
-                if (cameraY > H * 0.5 && cameraY < H * 2.5) {
-                    const atmoY = H - (cameraY - H);
+                    if (time > 18 && !boyWalking) {
+                        boyWalking = true;
+                        boy.visible = true;
+                    }
                     
-                    const atmoGrad = ctx.createLinearGradient(0, atmoY, 0, atmoY + H);
-                    atmoGrad.addColorStop(0, '#1a0030');
-                    atmoGrad.addColorStop(0.2, '#4a2c6a');
-                    atmoGrad.addColorStop(0.4, '#8660a0');
-                    atmoGrad.addColorStop(0.6, '#ff9a9e');
-                    atmoGrad.addColorStop(0.8, '#fecfef');
-                    atmoGrad.addColorStop(1, '#87CEEB');
-                    
-                    ctx.fillStyle = atmoGrad;
-                    ctx.fillRect(0, Math.max(0, atmoY), W, H);
-                    
-                    // Clouds
-                    clouds.forEach(cloud => {
-                        const cy = cloud.y - cameraY;
-                        if (cy > -100 && cy < H + 100) {
-                            cloud.x += cloud.speed;
-                            if (cloud.x > W + 100) cloud.x = -100;
-                            drawCloud(cloud.x, cy, cloud.w, cloud.h);
+                    if (boyWalking && !boyArrived) {
+                        boy.position.x += (15 - boy.position.x) * 0.03;
+                        
+                        // Walking animation
+                        boy.userData.legs.forEach((leg, i) => {
+                            leg.rotation.x = Math.sin(time * 8 + i * Math.PI) * 0.5;
+                        });
+                        boy.userData.arms.forEach((arm, i) => {
+                            arm.rotation.x = Math.sin(time * 8 + i * Math.PI + Math.PI / 2) * 0.3;
+                        });
+                        
+                        if (boy.position.x < 16) {
+                            boyArrived = true;
                         }
-                    });
-                }
-                
-                // Sky (2H - 3H)
-                if (cameraY > H * 1.5) {
-                    const skyY = H * 2 - cameraY;
-                    
-                    const skyGrad = ctx.createLinearGradient(0, skyY, 0, skyY + H);
-                    skyGrad.addColorStop(0, '#87CEEB');
-                    skyGrad.addColorStop(0.5, '#b0e0f0');
-                    skyGrad.addColorStop(1, '#c8ebf5');
-                    
-                    ctx.fillStyle = skyGrad;
-                    ctx.fillRect(0, Math.max(0, skyY), W, Math.min(H, H - skyY));
-                    
-                    // Sun
-                    if (skyY < H) {
-                        drawSun(W * 0.8, skyY + H * 0.2, 60);
-                    }
-                }
-                
-                // Ground (3H - 4H)
-                if (cameraY > H * 2) {
-                    const groundY = H * 3 - cameraY;
-                    
-                    // Sky above ground
-                    if (groundY > 0) {
-                        ctx.fillStyle = '#c8ebf5';
-                        ctx.fillRect(0, 0, W, groundY);
-                        drawSun(W * 0.8, groundY * 0.3, 60);
                     }
                     
-                    // Grass
-                    const grassGrad = ctx.createLinearGradient(0, groundY, 0, H);
-                    grassGrad.addColorStop(0, '#90c695');
-                    grassGrad.addColorStop(0.2, '#68b36b');
-                    grassGrad.addColorStop(0.5, '#4caf50');
-                    grassGrad.addColorStop(1, '#2e7d32');
+                    if (boyArrived && time > 21 && !cupidVisible) {
+                        cupidVisible = true;
+                        cupid.visible = true;
+                    }
                     
-                    ctx.fillStyle = grassGrad;
-                    ctx.fillRect(0, Math.max(0, groundY), W, H - Math.max(0, groundY));
-                    
-                    // Trees
-                    if (groundY < H) {
-                        trees.forEach(tree => {
-                            drawTree(tree.x, groundY + 20, tree.scale);
+                    if (cupidVisible) {
+                        cupid.position.y += (30 - cupid.position.y) * 0.05;
+                        
+                        // Wing flapping
+                        cupid.userData.wings.forEach((wing, i) => {
+                            wing.rotation.y = (i === 0 ? -1 : 1) * (0.3 + Math.sin(time * 10) * 0.2);
                         });
+                        
+                        // Shoot arrows
+                        if (time > 23 && arrowsShot === 0) {
+                            const arrow1 = createArrow();
+                            arrow1.position.copy(cupid.position);
+                            arrow1.userData.target = girl.position.clone();
+                            arrow1.userData.progress = 0;
+                            arrows.push(arrow1);
+                            scene.add(arrow1);
+                            arrowsShot = 1;
+                        }
+                        
+                        if (time > 24 && arrowsShot === 1) {
+                            const arrow2 = createArrow();
+                            arrow2.position.copy(cupid.position);
+                            arrow2.userData.target = boy.position.clone();
+                            arrow2.userData.progress = 0;
+                            arrows.push(arrow2);
+                            scene.add(arrow2);
+                            arrowsShot = 2;
+                        }
                     }
                     
-                    // Flowers
-                    if (groundY < H) {
-                        flowers.forEach(flower => {
-                            drawFlower(flower.x, groundY + 15, flower.color, flower.size, flower.phase);
-                        });
-                    }
-                }
-                
-                // ===== CHARACTER ANIMATIONS =====
-                
-                const groundLevel = H * 0.75;
-                
-                // Timeline
-                if (time > 700 && !girl.visible) {
-                    girl.visible = true;
-                    girl.y = -200;
-                }
-                
-                if (girl.visible && girl.y < girl.targetY) {
-                    girl.y += (girl.targetY - girl.y) * 0.03;
-                    girl.rotation = Math.sin(time * 0.1) * 0.3;
-                    girl.legAngle = time * 0.2;
-                }
-                
-                if (girl.y >= girl.targetY - 10 && !girl.dusting && time > 850) {
-                    girl.rotation = 0;
-                    girl.dusting = true;
-                }
-                
-                if (girl.dusting && time < 1000) {
-                    girl.dustPhase += 0.1;
-                    girl.armAngle = girl.dustPhase;
-                }
-                
-                if (time > 950 && !boy.visible) {
-                    boy.visible = true;
-                }
-                
-                if (boy.visible && boy.x > boy.targetX) {
-                    boy.x -= 2;
-                    boy.walkPhase += 0.15;
-                    boy.legAngle = boy.walkPhase;
-                    boy.armAngle = boy.walkPhase;
-                }
-                
-                if (time > 1100 && !cupid.visible) {
-                    cupid.visible = true;
-                }
-                
-                if (cupid.visible) {
-                    cupid.wingPhase += 0.2;
-                    if (cupid.y < cupid.targetY) {
-                        cupid.y += (cupid.targetY - cupid.y) * 0.05;
-                    }
-                    
-                    // Shoot arrows
-                    if (time > 1250 && cupid.shotsFired === 0) {
-                        arrows.push({
-                            x: cupid.x,
-                            y: cupid.y + 30,
-                            targetX: girl.x,
-                            targetY: girl.targetY + 30,
-                            angle: Math.PI * 0.6,
-                            progress: 0
-                        });
-                        cupid.shotsFired = 1;
-                    }
-                    
-                    if (time > 1300 && cupid.shotsFired === 1) {
-                        arrows.push({
-                            x: cupid.x,
-                            y: cupid.y + 30,
-                            targetX: boy.targetX,
-                            targetY: boy.y + 30,
-                            angle: Math.PI * 0.4,
-                            progress: 0
-                        });
-                        cupid.shotsFired = 2;
-                    }
-                }
-                
-                // Update arrows
-                arrows.forEach(arrow => {
-                    if (arrow.progress < 1) {
-                        arrow.progress += 0.03;
-                        arrow.x = lerp(cupid.x, arrow.targetX, easeOutQuad(arrow.progress));
-                        arrow.y = lerp(cupid.y + 30, arrow.targetY, easeOutQuad(arrow.progress));
-                        arrow.angle = Math.atan2(arrow.targetY - cupid.y - 30, arrow.targetX - cupid.x);
-                    }
-                });
-                
-                // Hit detection
-                if (arrows.length > 0 && arrows[0].progress >= 1 && !girl.hit) {
-                    girl.hit = true;
-                }
-                if (arrows.length > 1 && arrows[1].progress >= 1 && !boy.hit) {
-                    boy.hit = true;
-                }
-                
-                // Hearts
-                if (girl.hit && boy.hit && time % 10 === 0) {
-                    hearts.push({
-                        x: W * 0.35 + (Math.random() - 0.5) * 200,
-                        y: groundLevel,
-                        vy: -2 - Math.random() * 2,
-                        size: 0.3 + Math.random() * 0.4,
-                        alpha: 1
-                    });
-                }
-                
-                hearts.forEach(heart => {
-                    heart.y += heart.vy;
-                    heart.alpha -= 0.01;
-                });
-                
-                // Show hug
-                if (time > 1550 && !showHug) {
-                    showHug = true;
-                }
-                
-                // Fade out
-                if (time > 1750) {
-                    fadeAlpha = Math.min(1, fadeAlpha + 0.01);
-                }
-                
-                // Show end text
-                if (time > 1900 && !showEnd) {
-                    showEnd = true;
-                    document.getElementById('cinemaEnd').style.opacity = '1';
-                }
-                
-                // ===== DRAW CHARACTERS =====
-                
-                if (cameraY > H * 2.5) {
-                    // Draw characters when on ground
-                    if (girl.visible && !showHug) {
-                        drawPerson(girl.x, girl.y, true, girl);
-                    }
-                    
-                    if (boy.visible && !showHug) {
-                        drawPerson(boy.x, boy.y, false, boy);
-                    }
-                    
-                    if (cupid.visible && !showHug) {
-                        drawCupid(cupid.x, cupid.y, cupid);
-                    }
-                    
-                    // Arrows
+                    // Arrow animation
                     arrows.forEach(arrow => {
-                        if (arrow.progress < 1) {
-                            drawArrow(arrow);
+                        if (arrow.userData.progress < 1) {
+                            arrow.userData.progress += 0.03;
+                            const p = arrow.userData.progress;
+                            
+                            arrow.position.lerpVectors(
+                                cupid.position,
+                                arrow.userData.target.clone().add(new THREE.Vector3(0, 5, 0)),
+                                p
+                            );
+                            
+                            // Arc
+                            arrow.position.y += Math.sin(p * Math.PI) * 10;
+                            
+                            // Rotation
+                            const dir = arrow.userData.target.clone().sub(cupid.position).normalize();
+                            arrow.lookAt(arrow.userData.target);
+                            arrow.rotation.z = Math.PI / 2;
                         }
                     });
                     
-                    // Hearts
-                    hearts.forEach(heart => {
-                        if (heart.alpha > 0) {
-                            drawHeart(heart.x, heart.y, heart.size, heart.alpha);
+                    // Hearts floating up
+                    if (arrowsShot === 2 && time > 26) {
+                        if (Math.random() < 0.1) {
+                            const heart = new THREE.Mesh(heartGeo.clone(), heartMat.clone());
+                            heart.position.set(
+                                (Math.random() - 0.5) * 40,
+                                -15,
+                                (Math.random() - 0.5) * 20
+                            );
+                            heart.userData.speed = 0.2 + Math.random() * 0.3;
+                            heart.userData.rotSpeed = (Math.random() - 0.5) * 0.1;
+                            heart.scale.setScalar(0.5 + Math.random() * 0.5);
+                            floatingHearts.push(heart);
+                            scene.add(heart);
+                        }
+                    }
+                    
+                    floatingHearts.forEach((heart, i) => {
+                        heart.position.y += heart.userData.speed;
+                        heart.rotation.z += heart.userData.rotSpeed;
+                        heart.rotation.y = Math.sin(time * 2 + i) * 0.3;
+                        
+                        if (heart.position.y > 50) {
+                            scene.remove(heart);
+                            floatingHearts.splice(i, 1);
                         }
                     });
                     
-                    // Hug
-                    if (showHug) {
-                        drawHugCouple(W * 0.5, groundLevel - 30);
+                    // Transition to hug
+                    if (time > 29 && !showingHug) {
+                        showingHug = true;
+                        girl.visible = false;
+                        boy.visible = false;
+                        cupid.visible = false;
+                        arrows.forEach(a => scene.remove(a));
+                        hugCouple.visible = true;
+                    }
+                    
+                    // Hug animation
+                    if (showingHug) {
+                        hugCouple.rotation.y = Math.sin(time * 0.5) * 0.1;
+                        hugCouple.position.y = -20 + Math.sin(time * 2) * 0.5;
+                    }
+                    
+                    // Fade out
+                    if (time > 34 && !fadingOut) {
+                        fadingOut = true;
+                    }
+                    
+                    if (fadingOut) {
+                        fadeAlpha = Math.min(1, fadeAlpha + 0.01);
+                        renderer.domElement.style.opacity = 1 - fadeAlpha;
+                        
+                        if (fadeAlpha >= 1) {
+                            document.getElementById('cinemaEnd').style.opacity = '1';
+                        }
                     }
                 }
                 
-                // Fade overlay
-                if (fadeAlpha > 0) {
-                    ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;
-                    ctx.fillRect(0, 0, W, H);
-                }
+                // Animate clouds
+                clouds.forEach(cloud => {
+                    cloud.position.x += cloud.userData.speed;
+                    if (cloud.position.x > 200) cloud.position.x = -200;
+                });
                 
-                // Continue animation
-                if (!showEnd || fadeAlpha < 1) {
-                    requestAnimationFrame(animate);
-                }
+                // Animate flowers
+                flowers.forEach(flower => {
+                    flower.rotation.z = Math.sin(time * 2 + flower.userData.phase) * 0.1;
+                });
+                
+                // Rotate stars slowly
+                stars.rotation.y += 0.0001;
+                
+                composer.render();
             }
             
-            // Easing functions
-            function easeInOutCubic(t) {
-                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-            }
-            
-            function easeOutQuad(t) {
-                return 1 - (1 - t) * (1 - t);
-            }
-            
-            function lerp(a, b, t) {
-                return a + (b - a) * t;
-            }
-            
-            // Start animation
             animate();
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                composer.setSize(window.innerWidth, window.innerHeight);
+            });
         }
     </script>
 </body>
