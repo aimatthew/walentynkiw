@@ -22,7 +22,7 @@
             position: relative;
         }
 
-        /* ===== PROFESJONALNE TŁO Z WIELOMA WARSTWAMI ===== */
+        /* ===== TŁO ===== */
         
         .bg-layer {
             position: fixed;
@@ -45,25 +45,16 @@
         .bg-aurora {
             z-index: 2;
             opacity: 0.4;
-            background: 
-                linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%);
+            background: linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%);
             animation: auroraMove 15s ease-in-out infinite;
         }
 
         @keyframes auroraMove {
-            0%, 100% { 
-                transform: translateX(-30%) rotate(-5deg) scale(1.5);
-                opacity: 0.3;
-            }
-            50% { 
-                transform: translateX(30%) rotate(5deg) scale(1.5);
-                opacity: 0.5;
-            }
+            0%, 100% { transform: translateX(-30%) rotate(-5deg) scale(1.5); opacity: 0.3; }
+            50% { transform: translateX(30%) rotate(5deg) scale(1.5); opacity: 0.5; }
         }
 
-        .bg-bokeh {
-            z-index: 3;
-        }
+        .bg-bokeh { z-index: 3; }
 
         .bokeh-circle {
             position: absolute;
@@ -72,30 +63,10 @@
             animation: bokehFloat 20s infinite ease-in-out;
         }
 
-        .bokeh-circle:nth-child(1) {
-            width: 300px; height: 300px;
-            background: rgba(255, 100, 130, 0.15);
-            top: 10%; left: 5%;
-            animation-delay: 0s;
-        }
-        .bokeh-circle:nth-child(2) {
-            width: 250px; height: 250px;
-            background: rgba(255, 150, 180, 0.12);
-            top: 60%; right: 10%;
-            animation-delay: -5s;
-        }
-        .bokeh-circle:nth-child(3) {
-            width: 200px; height: 200px;
-            background: rgba(255, 80, 120, 0.1);
-            bottom: 20%; left: 20%;
-            animation-delay: -10s;
-        }
-        .bokeh-circle:nth-child(4) {
-            width: 350px; height: 350px;
-            background: rgba(255, 120, 160, 0.08);
-            top: 30%; right: 25%;
-            animation-delay: -15s;
-        }
+        .bokeh-circle:nth-child(1) { width: 300px; height: 300px; background: rgba(255, 100, 130, 0.15); top: 10%; left: 5%; }
+        .bokeh-circle:nth-child(2) { width: 250px; height: 250px; background: rgba(255, 150, 180, 0.12); top: 60%; right: 10%; animation-delay: -5s; }
+        .bokeh-circle:nth-child(3) { width: 200px; height: 200px; background: rgba(255, 80, 120, 0.1); bottom: 20%; left: 20%; animation-delay: -10s; }
+        .bokeh-circle:nth-child(4) { width: 350px; height: 350px; background: rgba(255, 120, 160, 0.08); top: 30%; right: 25%; animation-delay: -15s; }
 
         @keyframes bokehFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
@@ -104,9 +75,7 @@
             75% { transform: translate(40px, 20px) scale(1.05); }
         }
 
-        .bg-particles {
-            z-index: 4;
-        }
+        .bg-particles { z-index: 4; }
 
         .particle {
             position: absolute;
@@ -120,10 +89,7 @@
             50% { opacity: 0.8; transform: scale(1.5); }
         }
 
-        .bg-falling {
-            z-index: 5;
-            pointer-events: none;
-        }
+        .bg-falling { z-index: 5; pointer-events: none; }
 
         .falling-item {
             position: absolute;
@@ -134,43 +100,28 @@
         }
 
         @keyframes gentleFall {
-            0% { 
-                transform: translateY(0) rotate(0deg) translateX(0);
-                opacity: 0;
-            }
+            0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0; }
             5% { opacity: 0.6; }
             95% { opacity: 0.6; }
-            100% { 
-                transform: translateY(110vh) rotate(360deg) translateX(30px);
-                opacity: 0;
-            }
+            100% { transform: translateY(110vh) rotate(360deg) translateX(30px); opacity: 0; }
         }
 
         .bg-texture {
             z-index: 6;
             opacity: 0.03;
-            background-image: 
-                radial-gradient(circle at 1px 1px, white 1px, transparent 1px);
+            background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 1px);
             background-size: 50px 50px;
         }
 
-        /* ===== GŁÓWNY KONTENER ===== */
+        /* ===== KONTENER ===== */
         
         .container {
             text-align: center;
             z-index: 100;
             padding: 55px 65px;
-            background: linear-gradient(145deg, 
-                rgba(255, 255, 255, 0.97) 0%, 
-                rgba(255, 252, 253, 0.98) 50%,
-                rgba(255, 248, 250, 0.97) 100%);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 252, 253, 0.98) 50%, rgba(255, 248, 250, 0.97) 100%);
             border-radius: 24px;
-            box-shadow: 
-                0 50px 100px rgba(0, 0, 0, 0.4),
-                0 20px 60px rgba(100, 30, 50, 0.3),
-                0 0 0 1px rgba(255, 200, 210, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 1),
-                inset 0 -1px 0 rgba(200, 150, 160, 0.1);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(100, 30, 50, 0.3), 0 0 0 1px rgba(255, 200, 210, 0.5), inset 0 1px 0 rgba(255, 255, 255, 1), inset 0 -1px 0 rgba(200, 150, 160, 0.1);
             position: relative;
             max-width: 560px;
             width: 90%;
@@ -200,10 +151,7 @@
             content: '';
             position: absolute;
             top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(135deg, 
-                rgba(255, 180, 200, 0.4), 
-                rgba(255, 150, 180, 0.2),
-                rgba(255, 200, 220, 0.3));
+            background: linear-gradient(135deg, rgba(255, 180, 200, 0.4), rgba(255, 150, 180, 0.2), rgba(255, 200, 220, 0.3));
             border-radius: 26px;
             z-index: -1;
             filter: blur(20px);
@@ -223,7 +171,7 @@
             animation: cornerPulse 3s ease-in-out infinite;
         }
 
-        .corner-decor.tl { top: -16px; left: -16px; animation-delay: 0s; }
+        .corner-decor.tl { top: -16px; left: -16px; }
         .corner-decor.tr { top: -16px; right: -16px; animation-delay: 0.75s; }
         .corner-decor.bl { bottom: -16px; left: -16px; animation-delay: 1.5s; }
         .corner-decor.br { bottom: -16px; right: -16px; animation-delay: 2.25s; }
@@ -233,9 +181,7 @@
             50% { transform: scale(1.15) rotate(5deg); }
         }
 
-        .title {
-            margin-bottom: 8px;
-        }
+        .title { margin-bottom: 8px; }
 
         .title h1 {
             font-family: 'Cormorant Garamond', serif;
@@ -246,11 +192,7 @@
             margin-bottom: 6px;
         }
 
-        .title-hearts {
-            color: #d64060;
-            font-size: 1.4rem;
-            letter-spacing: 8px;
-        }
+        .title-hearts { color: #d64060; font-size: 1.4rem; letter-spacing: 8px; }
 
         .subtitle {
             font-size: 0.75rem;
@@ -292,7 +234,7 @@
             60% { transform: scale(1); }
         }
 
-        /* ===== PRZYCISKI - DOPASOWANE DO TŁA ===== */
+        /* ===== PRZYCISKI ===== */
         
         .buttons-container {
             display: flex;
@@ -321,36 +263,21 @@
         .btn-yes {
             background: linear-gradient(135deg, #a24857 0%, #8b2942 50%, #6d1f35 100%);
             color: #fff;
-            box-shadow: 
-                0 8px 30px rgba(139, 41, 66, 0.5),
-                0 4px 15px rgba(109, 31, 53, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
             border: 1px solid rgba(255, 150, 180, 0.3);
         }
 
         .btn-yes:hover {
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 
-                0 15px 40px rgba(139, 41, 66, 0.6),
-                0 8px 20px rgba(109, 31, 53, 0.5),
-                0 0 20px rgba(255, 100, 130, 0.3);
-        }
-
-        .btn-yes:active {
-            transform: translateY(-1px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(139, 41, 66, 0.6), 0 8px 20px rgba(109, 31, 53, 0.5), 0 0 20px rgba(255, 100, 130, 0.3);
         }
 
         .btn-no {
             background: linear-gradient(135deg, #5a4a50 0%, #4a3a42 50%, #3a2a32 100%);
             color: rgba(255, 255, 255, 0.9);
-            box-shadow: 
-                0 6px 20px rgba(0, 0, 0, 0.3),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 200, 210, 0.2);
-            width: 140px;
-            min-width: 140px;
-            max-width: 140px;
-            height: 52px;
+            width: 140px; min-width: 140px; max-width: 140px; height: 52px;
             padding: 0;
             display: flex;
             align-items: center;
@@ -359,17 +286,9 @@
             transition: transform 0.3s ease, left 0.3s ease, box-shadow 0.3s ease;
         }
 
-        .btn-no:hover {
-            background: linear-gradient(135deg, #4a3a42 0%, #3a2a32 50%, #2a1a22 100%);
-        }
-
-        /* Emoji płaczu */
         .sad-overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0, 0, 0, 0.5);
             display: flex;
             justify-content: center;
@@ -378,15 +297,9 @@
             animation: sadIn 0.3s ease;
         }
 
-        @keyframes sadIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+        @keyframes sadIn { 0% { opacity: 0; } 100% { opacity: 1; } }
 
-        .sad-emoji {
-            font-size: 200px;
-            animation: sadBounce 0.6s ease;
-        }
+        .sad-emoji { font-size: 200px; animation: sadBounce 0.6s ease; }
 
         @keyframes sadBounce {
             0% { transform: scale(0) rotate(-20deg); }
@@ -394,14 +307,11 @@
             100% { transform: scale(1) rotate(0deg); }
         }
 
-        /* ===== EKRAN SUKCESU - TAKIE SAMO TŁO ===== */
+        /* ===== EKRAN SUKCESU ===== */
         
         .success-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 500;
             display: flex;
             justify-content: center;
@@ -409,14 +319,14 @@
             animation: fadeIn 0.8s ease;
         }
 
-        @keyframes fadeIn {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; } }
+
+        .success-bg-base, .success-bg-aurora, .success-bg-bokeh, .success-bg-particles, .success-bg-falling {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
         }
 
         .success-bg-base {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
             background: 
                 radial-gradient(ellipse at 10% 20%, rgba(120, 50, 80, 0.4) 0%, transparent 50%),
                 radial-gradient(ellipse at 90% 80%, rgba(180, 80, 100, 0.3) 0%, transparent 50%),
@@ -426,45 +336,22 @@
         }
 
         .success-bg-aurora {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
             opacity: 0.4;
             background: linear-gradient(135deg, transparent 0%, rgba(255, 100, 150, 0.1) 50%, transparent 100%);
             animation: auroraMove 15s ease-in-out infinite;
             z-index: 2;
         }
 
-        .success-bg-bokeh {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 3;
-        }
-
-        .success-bg-particles {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 4;
-        }
-
-        .success-bg-falling {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 5;
-            pointer-events: none;
-        }
+        .success-bg-bokeh { z-index: 3; }
+        .success-bg-particles { z-index: 4; }
+        .success-bg-falling { z-index: 5; pointer-events: none; }
 
         .success-card {
             text-align: center;
             padding: 50px 60px;
-            background: linear-gradient(145deg, 
-                rgba(255, 255, 255, 0.97) 0%, 
-                rgba(255, 252, 253, 0.98) 50%,
-                rgba(255, 248, 250, 0.97) 100%);
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 252, 253, 0.98) 50%, rgba(255, 248, 250, 0.97) 100%);
             border-radius: 24px;
-            box-shadow: 
-                0 50px 100px rgba(0, 0, 0, 0.4),
-                0 20px 60px rgba(100, 30, 50, 0.3),
-                0 0 0 1px rgba(255, 200, 210, 0.5);
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.4), 0 20px 60px rgba(100, 30, 50, 0.3), 0 0 0 1px rgba(255, 200, 210, 0.5);
             z-index: 100;
             animation: cardPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             max-width: 500px;
@@ -501,810 +388,56 @@
             margin-bottom: 30px;
         }
 
+        /* PRZYCISK MAGIC - IDENTYCZNY JAK TAK */
         .btn-magic {
             padding: 18px 45px;
             font-size: 1.15rem;
             font-weight: 700;
             font-family: 'Quicksand', sans-serif;
-            background: linear-gradient(135deg, #7c3aed 0%, #6d28d9 50%, #5b21b6 100%);
-            color: white;
+            background: linear-gradient(135deg, #a24857 0%, #8b2942 50%, #6d1f35 100%);
+            color: #fff;
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            box-shadow: 
-                0 10px 35px rgba(124, 58, 237, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(200, 150, 255, 0.3);
+            box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 150, 180, 0.3);
             transition: transform 0.3s, box-shadow 0.3s;
             animation: magicGlow 2s ease-in-out infinite;
         }
 
         @keyframes magicGlow {
-            0%, 100% { 
-                box-shadow: 0 10px 35px rgba(124, 58, 237, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2); 
-            }
-            50% { 
-                box-shadow: 0 15px 50px rgba(124, 58, 237, 0.7), 0 0 40px rgba(124, 58, 237, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.2); 
-            }
+            0%, 100% { box-shadow: 0 8px 30px rgba(139, 41, 66, 0.5), 0 4px 15px rgba(109, 31, 53, 0.4); }
+            50% { box-shadow: 0 12px 40px rgba(139, 41, 66, 0.7), 0 8px 25px rgba(109, 31, 53, 0.5), 0 0 30px rgba(255, 100, 130, 0.3); }
         }
 
         .btn-magic:hover {
             transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(139, 41, 66, 0.6), 0 8px 20px rgba(109, 31, 53, 0.5), 0 0 20px rgba(255, 100, 130, 0.3);
         }
 
-        /* ===== ANIMACJA FILMOWA ===== */
+        /* ===== ANIMACJA - CANVAS ===== */
         
         .cinema-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             z-index: 10000;
-            overflow: hidden;
             background: #000;
         }
 
-        .scene-wrapper {
-            position: absolute;
+        #cinemaCanvas {
             width: 100%;
             height: 100%;
-            overflow: hidden;
-        }
-
-        .scene-scroll {
-            position: absolute;
-            width: 100%;
-            height: 400%;
-            top: 0;
-            left: 0;
-        }
-
-        /* Kosmos */
-        .layer-space {
-            position: absolute;
-            width: 100%;
-            height: 25%;
-            top: 0;
-            background: linear-gradient(180deg, #000000 0%, #0a0015 40%, #150025 70%, #1a0030 100%);
-        }
-
-        .star-field {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-        }
-
-        .cinema-star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 0 6px 2px rgba(255, 255, 255, 0.6);
-        }
-
-        .shooting-star {
-            position: absolute;
-            width: 100px;
-            height: 2px;
-            background: linear-gradient(90deg, white, transparent);
-            animation: shoot 4s linear infinite;
-        }
-
-        @keyframes shoot {
-            0% { transform: translateX(-100px) translateY(0); opacity: 0; }
-            10% { opacity: 1; }
-            100% { transform: translateX(400px) translateY(200px); opacity: 0; }
-        }
-
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-        }
-
-        .planet-1 {
-            width: 60px; height: 60px;
-            background: radial-gradient(circle at 30% 30%, #ffd89b, #ff6b6b);
-            top: 10%; right: 15%;
-            box-shadow: 0 0 30px rgba(255, 150, 100, 0.4);
-        }
-
-        .planet-2 {
-            width: 40px; height: 40px;
-            background: radial-gradient(circle at 30% 30%, #a8edea, #7ec8e3);
-            top: 20%; left: 20%;
-            box-shadow: 0 0 20px rgba(120, 200, 230, 0.4);
-        }
-
-        .moon {
-            position: absolute;
-            width: 80px; height: 80px;
-            background: radial-gradient(circle at 35% 35%, #ffffff, #c0c0c0, #888888);
-            border-radius: 50%;
-            top: 8%; left: 60%;
-            box-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
-        }
-
-        .moon-crater {
-            position: absolute;
-            background: rgba(100, 100, 100, 0.3);
-            border-radius: 50%;
-        }
-
-        /* Atmosfera */
-        .layer-atmosphere {
-            position: absolute;
-            width: 100%;
-            height: 25%;
-            top: 25%;
-            background: linear-gradient(180deg, 
-                #1a0030 0%, 
-                #2d1b4e 15%,
-                #4a2c6a 30%,
-                #6b4380 45%,
-                #8660a0 55%,
-                #ff9a9e 70%,
-                #fecfef 85%,
-                #87CEEB 100%);
-        }
-
-        .cloud-atmo {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 100px;
-            filter: blur(5px);
-        }
-
-        /* Niebo */
-        .layer-sky {
-            position: absolute;
-            width: 100%;
-            height: 25%;
-            top: 50%;
-            background: linear-gradient(180deg, 
-                #87CEEB 0%, 
-                #98d4ee 30%,
-                #b0e0f0 60%,
-                #c8ebf5 100%);
-        }
-
-        .sun {
-            position: absolute;
-            width: 100px; height: 100px;
-            background: radial-gradient(circle, #fff9c4 0%, #ffeb3b 30%, #ff9800 70%, #ff5722 100%);
-            border-radius: 50%;
-            top: 15%; right: 15%;
-            box-shadow: 
-                0 0 80px 30px rgba(255, 235, 59, 0.5),
-                0 0 150px 60px rgba(255, 152, 0, 0.3);
-            animation: sunGlow 4s ease-in-out infinite;
-        }
-
-        @keyframes sunGlow {
-            0%, 100% { box-shadow: 0 0 80px 30px rgba(255, 235, 59, 0.5), 0 0 150px 60px rgba(255, 152, 0, 0.3); }
-            50% { box-shadow: 0 0 100px 40px rgba(255, 235, 59, 0.7), 0 0 180px 80px rgba(255, 152, 0, 0.4); }
-        }
-
-        .cloud-sky {
-            position: absolute;
-            font-size: 70px;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.1));
-            animation: cloudDrift 30s linear infinite;
-        }
-
-        @keyframes cloudDrift {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(50px); }
-        }
-
-        /* Ziemia / Polana */
-        .layer-ground {
-            position: absolute;
-            width: 100%;
-            height: 25%;
-            top: 75%;
-            overflow: hidden;
-        }
-
-        .grass-bg {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, 
-                #a8e6a3 0%,
-                #7bc96f 10%,
-                #5cb85c 30%,
-                #4a9f4d 50%,
-                #3d8b40 70%,
-                #2d7530 100%);
-        }
-
-        .grass-detail {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            height: 40px;
-            background: repeating-linear-gradient(
-                90deg,
-                transparent,
-                transparent 2px,
-                rgba(45, 117, 48, 0.4) 2px,
-                rgba(45, 117, 48, 0.4) 4px
-            );
-        }
-
-        /* Drzewa CSS */
-        .tree {
-            position: absolute;
-            bottom: 20px;
-        }
-
-        .tree-trunk {
-            width: 25px;
-            height: 80px;
-            background: linear-gradient(90deg, #5d4037, #8d6e63, #5d4037);
-            margin: 0 auto;
-            border-radius: 5px 5px 10px 10px;
-            box-shadow: inset -5px 0 10px rgba(0,0,0,0.2);
-        }
-
-        .tree-crown {
-            position: relative;
-            bottom: 20px;
-        }
-
-        .tree-crown-layer {
-            position: absolute;
-            background: radial-gradient(ellipse, #4caf50, #388e3c);
-            border-radius: 50%;
-            box-shadow: 
-                inset 5px 5px 20px rgba(255,255,255,0.2),
-                inset -5px -5px 20px rgba(0,0,0,0.2);
-        }
-
-        .tree-crown-layer:nth-child(1) {
-            width: 90px; height: 70px;
-            left: -32px; bottom: 0;
-        }
-        .tree-crown-layer:nth-child(2) {
-            width: 75px; height: 60px;
-            left: -25px; bottom: 40px;
-        }
-        .tree-crown-layer:nth-child(3) {
-            width: 55px; height: 50px;
-            left: -15px; bottom: 75px;
-        }
-
-        /* Krzewy */
-        .bush {
-            position: absolute;
-            bottom: 10px;
-        }
-
-        .bush-body {
-            width: 100px;
-            height: 60px;
-            background: radial-gradient(ellipse at 50% 70%, #66bb6a, #43a047);
-            border-radius: 50px 50px 30px 30px;
-            box-shadow: 
-                inset 5px 5px 15px rgba(255,255,255,0.15),
-                inset -5px -5px 15px rgba(0,0,0,0.2),
-                0 5px 15px rgba(0,0,0,0.2);
-            position: relative;
-        }
-
-        .bush-body::before {
-            content: '';
-            position: absolute;
-            width: 50px; height: 40px;
-            background: radial-gradient(ellipse, #81c784, #4caf50);
-            border-radius: 50%;
-            left: -20px; top: 10px;
-        }
-
-        .bush-body::after {
-            content: '';
-            position: absolute;
-            width: 55px; height: 45px;
-            background: radial-gradient(ellipse, #81c784, #4caf50);
-            border-radius: 50%;
-            right: -25px; top: 5px;
-        }
-
-        /* Kwiaty */
-        .flower {
-            position: absolute;
-            bottom: 5px;
-        }
-
-        .flower-stem {
-            width: 4px;
-            height: 35px;
-            background: linear-gradient(180deg, #66bb6a, #43a047);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-
-        .flower-head {
-            width: 25px;
-            height: 25px;
-            position: relative;
-            margin: 0 auto;
-            bottom: 5px;
-            animation: flowerSway 3s ease-in-out infinite;
-        }
-
-        .flower-petal {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            border-radius: 50% 50% 50% 0;
-            transform-origin: bottom right;
-        }
-
-        .flower-petal:nth-child(1) { transform: rotate(0deg) translateY(-8px); }
-        .flower-petal:nth-child(2) { transform: rotate(60deg) translateY(-8px); }
-        .flower-petal:nth-child(3) { transform: rotate(120deg) translateY(-8px); }
-        .flower-petal:nth-child(4) { transform: rotate(180deg) translateY(-8px); }
-        .flower-petal:nth-child(5) { transform: rotate(240deg) translateY(-8px); }
-        .flower-petal:nth-child(6) { transform: rotate(300deg) translateY(-8px); }
-
-        .flower-center {
-            position: absolute;
-            width: 10px; height: 10px;
-            background: #ffd54f;
-            border-radius: 50%;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: inset 1px 1px 3px rgba(255,255,255,0.5);
-        }
-
-        @keyframes flowerSway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
-        }
-
-        /* ===== POSTACI - SZCZEGÓŁOWE CSS ===== */
-        
-        .character {
-            position: absolute;
-            z-index: 100;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        /* Dziewczyna */
-        .girl {
-            bottom: 12%;
-            left: 30%;
-        }
-
-        .person {
-            position: relative;
-            width: 70px;
-        }
-
-        .head {
-            width: 50px;
-            height: 55px;
-            background: linear-gradient(180deg, #fdbf91, #e8a676);
-            border-radius: 50% 50% 45% 45%;
-            margin: 0 auto;
-            position: relative;
-            box-shadow: inset 3px 3px 10px rgba(255,255,255,0.3), inset -3px -3px 10px rgba(0,0,0,0.1);
-        }
-
-        .hair-girl {
-            position: absolute;
-            top: -10px;
-            left: -12px;
-            width: 74px;
-            height: 50px;
-            background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
-            border-radius: 50% 50% 0 0;
-            z-index: -1;
-        }
-
-        .hair-girl::before {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 70px;
-            background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
-            top: 30px;
-            left: -5px;
-            border-radius: 0 0 30px 30px;
-        }
-
-        .hair-girl::after {
-            content: '';
-            position: absolute;
-            width: 20px;
-            height: 70px;
-            background: linear-gradient(180deg, #1a1a1a, #2d2d2d);
-            top: 30px;
-            right: -5px;
-            border-radius: 0 0 30px 30px;
-        }
-
-        .eyes {
-            position: absolute;
-            top: 22px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 12px;
-        }
-
-        .eye {
-            width: 8px;
-            height: 10px;
-            background: #3e2723;
-            border-radius: 50%;
-            position: relative;
-        }
-
-        .eye::before {
-            content: '';
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            background: white;
-            border-radius: 50%;
-            top: 2px;
-            left: 2px;
-        }
-
-        .eyelash {
-            position: absolute;
-            top: -3px;
-            width: 100%;
-        }
-
-        .eyelash::before,
-        .eyelash::after {
-            content: '';
-            position: absolute;
-            width: 2px;
-            height: 4px;
-            background: #1a1a1a;
-            border-radius: 2px;
-        }
-
-        .eyelash::before { left: 0; transform: rotate(-20deg); }
-        .eyelash::after { right: 0; transform: rotate(20deg); }
-
-        .mouth {
-            position: absolute;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 12px;
-            height: 6px;
-            background: #e57373;
-            border-radius: 0 0 12px 12px;
-        }
-
-        .blush {
-            position: absolute;
-            width: 10px;
-            height: 6px;
-            background: rgba(255, 138, 128, 0.5);
-            border-radius: 50%;
-            top: 30px;
-        }
-
-        .blush-left { left: 5px; }
-        .blush-right { right: 5px; }
-
-        .body-girl {
-            width: 45px;
-            height: 60px;
-            background: linear-gradient(180deg, #f48fb1, #ec407a);
-            margin: 0 auto;
-            margin-top: -8px;
-            border-radius: 20px 20px 8px 8px;
-            position: relative;
-            box-shadow: inset 3px 0 10px rgba(255,255,255,0.2), inset -3px 0 10px rgba(0,0,0,0.1);
-        }
-
-        .arm {
-            position: absolute;
-            width: 12px;
-            height: 45px;
-            background: linear-gradient(180deg, #fdbf91, #e8a676);
-            border-radius: 6px;
-            top: 5px;
-        }
-
-        .arm-left { left: -10px; transform: rotate(10deg); }
-        .arm-right { right: -10px; transform: rotate(-10deg); }
-
-        .legs {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            margin-top: -5px;
-        }
-
-        .leg {
-            width: 14px;
-            height: 50px;
-            background: linear-gradient(180deg, #5c6bc0, #3949ab);
-            border-radius: 6px;
-        }
-
-        /* Chłopak */
-        .boy {
-            bottom: 12%;
-            right: 30%;
-        }
-
-        .hair-boy {
-            position: absolute;
-            top: -8px;
-            left: -6px;
-            width: 62px;
-            height: 35px;
-            background: linear-gradient(180deg, #a08060, #8b7355);
-            border-radius: 50% 50% 0 0;
-            z-index: -1;
-        }
-
-        .body-boy {
-            width: 50px;
-            height: 65px;
-            background: linear-gradient(180deg, #64b5f6, #2196f3);
-            margin: 0 auto;
-            margin-top: -8px;
-            border-radius: 20px 20px 8px 8px;
-            position: relative;
-            box-shadow: inset 3px 0 10px rgba(255,255,255,0.2), inset -3px 0 10px rgba(0,0,0,0.1);
-        }
-
-        /* Amor */
-        .cupid {
-            top: 18%;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .cupid-body {
-            position: relative;
-            width: 70px;
-        }
-
-        .cupid-head {
-            width: 45px;
-            height: 50px;
-            background: linear-gradient(180deg, #ffecd2, #fcb69f);
-            border-radius: 50%;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .cupid-hair {
-            position: absolute;
-            top: -8px;
-            left: -5px;
-            width: 55px;
-            height: 30px;
-            background: linear-gradient(180deg, #ffd54f, #ffb300);
-            border-radius: 50% 50% 0 0;
-            z-index: -1;
-        }
-
-        .cupid-hair::after {
-            content: '';
-            position: absolute;
-            width: 10px;
-            height: 20px;
-            background: #ffd54f;
-            border-radius: 50%;
-            top: 15px;
-            left: -3px;
-            transform: rotate(-30deg);
-        }
-
-        .cupid-wings {
-            position: absolute;
-            top: 45px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .wing {
-            position: absolute;
-            width: 50px;
-            height: 70px;
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,220,230,0.8));
-            border-radius: 100% 0 100% 0;
-            box-shadow: 
-                inset 2px 2px 10px rgba(255,255,255,0.8),
-                0 5px 20px rgba(255, 182, 193, 0.4);
-            animation: wingFlap 0.4s ease-in-out infinite alternate;
-        }
-
-        .wing-left {
-            left: -60px;
-            transform: rotate(-30deg);
-        }
-
-        .wing-right {
-            right: -60px;
-            transform: rotate(30deg) scaleX(-1);
-        }
-
-        @keyframes wingFlap {
-            0% { transform: rotate(-30deg); }
-            100% { transform: rotate(-45deg); }
-        }
-
-        .wing-right {
-            animation-name: wingFlapRight;
-        }
-
-        @keyframes wingFlapRight {
-            0% { transform: rotate(30deg) scaleX(-1); }
-            100% { transform: rotate(45deg) scaleX(-1); }
-        }
-
-        .cupid-torso {
-            width: 35px;
-            height: 30px;
-            background: linear-gradient(180deg, #ffffff, #ffe0e0);
-            margin: 0 auto;
-            margin-top: -5px;
-            border-radius: 15px;
-            position: relative;
-        }
-
-        .bow {
-            position: absolute;
-            top: 30px;
-            left: -40px;
-            transform: rotate(-30deg);
-        }
-
-        .bow-wood {
-            width: 12px;
-            height: 70px;
-            background: linear-gradient(90deg, #8b4513, #a0522d, #8b4513);
-            border-radius: 50px 0 0 50px;
-            position: relative;
-        }
-
-        .bow-string {
-            position: absolute;
-            width: 2px;
-            height: 70px;
-            background: linear-gradient(180deg, #ddd, #fff, #ddd);
-            right: 0;
-            top: 0;
-        }
-
-        /* Strzała */
-        .arrow {
-            position: absolute;
-            z-index: 150;
-            opacity: 0;
-        }
-
-        .arrow-shaft {
-            width: 70px;
-            height: 5px;
-            background: linear-gradient(90deg, #8b4513, #a0522d);
-            border-radius: 3px;
-            position: relative;
-        }
-
-        .arrow-head {
-            position: absolute;
-            right: -15px;
-            top: -5px;
-            width: 0;
-            height: 0;
-            border-left: 20px solid #ff69b4;
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            filter: drop-shadow(0 0 5px rgba(255, 105, 180, 0.5));
-        }
-
-        .arrow-feather {
-            position: absolute;
-            left: -10px;
-            top: -6px;
-        }
-
-        .arrow-feather::before,
-        .arrow-feather::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 0;
-            border-right: 15px solid #ff1493;
-            border-top: 5px solid transparent;
-            border-bottom: 5px solid transparent;
-        }
-
-        .arrow-feather::before {
-            top: 0;
-            transform: rotate(-15deg);
-        }
-
-        .arrow-feather::after {
-            top: 8px;
-            transform: rotate(15deg);
-        }
-
-        /* Serduszko trafienie */
-        .hit-heart {
-            position: absolute;
-            font-size: 40px;
-            z-index: 200;
-            opacity: 0;
-            filter: drop-shadow(0 0 10px rgba(255, 100, 150, 0.8));
-        }
-
-        /* Para przytulona */
-        .couple-hug {
-            position: absolute;
-            bottom: 12%;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 120;
-            opacity: 0;
-        }
-
-        .hug-scene {
-            position: relative;
-            width: 100px;
-            text-align: center;
-        }
-
-        .hug-emoji {
-            font-size: 120px;
-            animation: hugPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes hugPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Serduszka unoszące */
-        .floating-heart {
-            position: absolute;
-            z-index: 130;
-            opacity: 0;
-            animation: floatHeart 4s ease-out forwards;
-        }
-
-        @keyframes floatHeart {
-            0% { opacity: 0; transform: translateY(0) scale(0.5); }
-            20% { opacity: 1; transform: translateY(-20px) scale(1); }
-            100% { opacity: 0; transform: translateY(-150px) scale(0.3); }
-        }
-
-        /* Fade i końcowy tekst */
-        .cinema-fade {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: #000;
-            opacity: 0;
-            z-index: 500;
-            transition: opacity 2.5s ease;
+            display: block;
         }
 
         .cinema-end {
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
-            z-index: 600;
+            z-index: 100;
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 2s ease;
         }
 
         .cinema-end h1 {
@@ -1331,26 +464,17 @@
 
         /* Responsywność */
         @media (max-width: 600px) {
-            .container {
-                padding: 40px 25px;
-                margin: 15px;
-            }
-            
+            .container { padding: 40px 25px; margin: 15px; }
             .title h1 { font-size: 1.8rem; }
             .question { font-size: 1.3rem; }
             .btn { min-width: 110px; padding: 12px 25px; font-size: 1rem; }
             .btn-no { width: 110px; min-width: 110px; max-width: 110px; height: 46px; }
             .buttons-container { gap: 15px; }
             .corner-decor { font-size: 24px; }
-            
             .success-card { padding: 35px 25px; }
             .success-card h2 { font-size: 1.7rem; }
-            
             .cinema-end h1 { font-size: 1.5rem; letter-spacing: 2px; }
             .cinema-end .final-heart { font-size: 40px; }
-            
-            .person { transform: scale(0.7); }
-            .cupid-body { transform: scale(0.6); }
         }
     </style>
 </head>
@@ -1395,7 +519,6 @@
 
     <script>
         // ===== TŁO =====
-        
         function createParticles() {
             const container = document.getElementById('particlesLayer');
             for (let i = 0; i < 80; i++) {
@@ -1428,18 +551,14 @@
                 setTimeout(() => el.remove(), 18000);
             }
             
-            for (let i = 0; i < 12; i++) {
-                setTimeout(addFalling, i * 300);
-            }
+            for (let i = 0; i < 12; i++) setTimeout(addFalling, i * 300);
             setInterval(addFalling, 1500);
         }
         createFallingElements();
 
-        // ===== PRZYCISK NIE - UCIEKA TYLKO W KONTENERZE =====
-        
+        // ===== PRZYCISK NIE =====
         const noBtn = document.getElementById('noBtn');
         const yesBtn = document.getElementById('yesBtn');
-        const btnContainer = document.getElementById('btnContainer');
         const mainContainer = document.getElementById('mainContainer');
         
         let isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -1447,48 +566,32 @@
         
         function getContainerBounds() {
             const rect = mainContainer.getBoundingClientRect();
-            const padding = 20;
             return {
-                left: padding,
-                right: rect.width - noBtn.offsetWidth - padding,
-                top: 150, // pod tytułem
-                bottom: rect.height - noBtn.offsetHeight - padding
+                left: 20,
+                right: rect.width - noBtn.offsetWidth - 20,
+                top: 150,
+                bottom: rect.height - noBtn.offsetHeight - 20
             };
         }
         
         function escapeInContainer() {
             escapeCount++;
             const bounds = getContainerBounds();
-            
-            // Losowa pozycja w kontenerze
             const newX = bounds.left + Math.random() * (bounds.right - bounds.left);
             const newY = bounds.top + Math.random() * (bounds.bottom - bounds.top);
             
-            // Ustaw pozycję względem kontenera
             noBtn.style.position = 'absolute';
             noBtn.style.left = newX + 'px';
             noBtn.style.top = newY + 'px';
             noBtn.style.transition = 'left 0.35s ease-out, top 0.35s ease-out';
             
-            // Zmiana tekstu
             const texts = ['NIE 💔', 'Nie! 🙈', 'Haha! 😜', 'Złap mnie! 🏃', 'Niemożliwe! ✨', 'Wybierz TAK! 💕'];
             noBtn.textContent = texts[Math.min(escapeCount - 1, texts.length - 1)];
         }
         
-        // DESKTOP
-        if (!isMobile) {
-            noBtn.addEventListener('mouseenter', escapeInContainer);
-        }
+        if (!isMobile) noBtn.addEventListener('mouseenter', escapeInContainer);
+        if (isMobile) noBtn.addEventListener('touchstart', (e) => { e.preventDefault(); escapeInContainer(); });
         
-        // MOBILE
-        if (isMobile) {
-            noBtn.addEventListener('touchstart', (e) => {
-                e.preventDefault();
-                escapeInContainer();
-            });
-        }
-        
-        // Kliknięcie NIE
         noBtn.addEventListener('click', (e) => {
             if (isMobile) return;
             const overlay = document.createElement('div');
@@ -1499,7 +602,6 @@
         });
 
         // ===== PRZYCISK TAK =====
-        
         yesBtn.addEventListener('click', showSuccessScreen);
         
         function showSuccessScreen() {
@@ -1532,7 +634,6 @@
                 for (let i = 0; i < 4; i++) {
                     const circle = document.createElement('div');
                     circle.className = 'bokeh-circle';
-                    circle.style.cssText = document.querySelectorAll('.bokeh-circle')[i].style.cssText;
                     bokehContainer.appendChild(circle);
                 }
                 
@@ -1575,475 +676,1056 @@
             }, 500);
         }
 
-        // ===== ANIMACJA FILMOWA =====
-        
+        // ===== PROFESJONALNA ANIMACJA CANVAS =====
         function startCinema() {
             document.getElementById('successScreen').remove();
             
             const cinema = document.createElement('div');
             cinema.className = 'cinema-container';
-            cinema.id = 'cinema';
-            
             cinema.innerHTML = `
-                <div class="scene-wrapper">
-                    <div class="scene-scroll" id="sceneScroll">
-                        <!-- KOSMOS -->
-                        <div class="layer-space">
-                            <div class="star-field" id="starField"></div>
-                            <div class="moon">
-                                <div class="moon-crater" style="width:15px;height:15px;top:15px;left:20px;"></div>
-                                <div class="moon-crater" style="width:10px;height:10px;top:35px;left:45px;"></div>
-                                <div class="moon-crater" style="width:8px;height:8px;top:50px;left:25px;"></div>
-                            </div>
-                            <div class="planet planet-1"></div>
-                            <div class="planet planet-2"></div>
-                            <div class="shooting-star" style="top:15%;left:10%;"></div>
-                            <div class="shooting-star" style="top:25%;left:60%;animation-delay:2s;"></div>
-                            <div class="shooting-star" style="top:35%;left:30%;animation-delay:4s;"></div>
-                        </div>
-                        
-                        <!-- ATMOSFERA -->
-                        <div class="layer-atmosphere" id="atmosphere"></div>
-                        
-                        <!-- NIEBO -->
-                        <div class="layer-sky">
-                            <div class="sun"></div>
-                            <div class="cloud-sky" style="top:20%;left:5%;">☁️</div>
-                            <div class="cloud-sky" style="top:40%;left:65%;font-size:90px;animation-delay:-10s;">☁️</div>
-                            <div class="cloud-sky" style="top:60%;left:30%;font-size:50px;animation-delay:-20s;">☁️</div>
-                        </div>
-                        
-                        <!-- ZIEMIA -->
-                        <div class="layer-ground" id="groundLayer">
-                            <div class="grass-bg"></div>
-                            <div class="grass-detail"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- POSTACI -->
-                <div class="character girl" id="girlChar">
-                    <div class="person">
-                        <div class="head">
-                            <div class="hair-girl"></div>
-                            <div class="eyes">
-                                <div class="eye"><div class="eyelash"></div></div>
-                                <div class="eye"><div class="eyelash"></div></div>
-                            </div>
-                            <div class="mouth"></div>
-                            <div class="blush blush-left"></div>
-                            <div class="blush blush-right"></div>
-                        </div>
-                        <div class="body-girl">
-                            <div class="arm arm-left"></div>
-                            <div class="arm arm-right"></div>
-                        </div>
-                        <div class="legs">
-                            <div class="leg"></div>
-                            <div class="leg"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="character boy" id="boyChar">
-                    <div class="person">
-                        <div class="head">
-                            <div class="hair-boy"></div>
-                            <div class="eyes">
-                                <div class="eye"></div>
-                                <div class="eye"></div>
-                            </div>
-                            <div class="mouth"></div>
-                        </div>
-                        <div class="body-boy">
-                            <div class="arm arm-left"></div>
-                            <div class="arm arm-right"></div>
-                        </div>
-                        <div class="legs">
-                            <div class="leg"></div>
-                            <div class="leg"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="character cupid" id="cupidChar">
-                    <div class="cupid-body">
-                        <div class="cupid-wings">
-                            <div class="wing wing-left"></div>
-                            <div class="wing wing-right"></div>
-                        </div>
-                        <div class="cupid-head">
-                            <div class="cupid-hair"></div>
-                            <div class="eyes" style="top:18px;gap:10px;">
-                                <div class="eye" style="width:5px;height:6px;"></div>
-                                <div class="eye" style="width:5px;height:6px;"></div>
-                            </div>
-                            <div class="mouth" style="width:8px;height:4px;bottom:10px;"></div>
-                        </div>
-                        <div class="cupid-torso"></div>
-                        <div class="bow">
-                            <div class="bow-wood"></div>
-                            <div class="bow-string"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="couple-hug" id="coupleHug">
-                    <div class="hug-scene">
-                        <span class="hug-emoji">👩‍❤️‍👨</span>
-                    </div>
-                </div>
-                
-                <div class="cinema-fade" id="cinemaFade"></div>
+                <canvas id="cinemaCanvas"></canvas>
                 <div class="cinema-end" id="cinemaEnd">
                     <h1>DZIĘKUJĘ ZA KOLEJNY<br>WSPANIAŁY ROK</h1>
                     <span class="final-heart">💕</span>
                 </div>
             `;
-            
             document.body.appendChild(cinema);
             
-            // Gwiazdy
-            const starField = document.getElementById('starField');
-            for (let i = 0; i < 200; i++) {
-                const star = document.createElement('div');
-                star.className = 'cinema-star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                const size = 1 + Math.random() * 2;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.opacity = 0.5 + Math.random() * 0.5;
-                starField.appendChild(star);
+            const canvas = document.getElementById('cinemaCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Retina support
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.scale(dpr, dpr);
+            
+            const W = window.innerWidth;
+            const H = window.innerHeight;
+            
+            // ===== ANIMATION STATE =====
+            let time = 0;
+            let cameraY = 0;
+            const SCENE_HEIGHT = H * 4;
+            
+            // Stars
+            const stars = [];
+            for (let i = 0; i < 300; i++) {
+                stars.push({
+                    x: Math.random() * W,
+                    y: Math.random() * H,
+                    r: Math.random() * 2 + 0.5,
+                    twinkle: Math.random() * Math.PI * 2
+                });
             }
             
-            // Chmury w atmosferze
-            const atmosphere = document.getElementById('atmosphere');
-            for (let i = 0; i < 12; i++) {
-                const cloud = document.createElement('div');
-                cloud.className = 'cloud-atmo';
-                cloud.style.left = Math.random() * 100 + '%';
-                cloud.style.top = (50 + Math.random() * 40) + '%';
-                cloud.style.width = (100 + Math.random() * 200) + 'px';
-                cloud.style.height = (40 + Math.random() * 60) + 'px';
-                atmosphere.appendChild(cloud);
+            // Clouds
+            const clouds = [];
+            for (let i = 0; i < 8; i++) {
+                clouds.push({
+                    x: Math.random() * W,
+                    y: H * 1.5 + Math.random() * H * 0.5,
+                    w: 100 + Math.random() * 150,
+                    h: 40 + Math.random() * 30,
+                    speed: 0.2 + Math.random() * 0.3
+                });
             }
             
-            // Drzewa, krzewy, kwiaty
-            const ground = document.getElementById('groundLayer');
+            // Trees
+            const trees = [
+                { x: W * 0.08, scale: 1 },
+                { x: W * 0.18, scale: 0.8 },
+                { x: W * 0.82, scale: 1.1 },
+                { x: W * 0.92, scale: 0.9 }
+            ];
             
-            // Drzewa
-            [8, 18, 78, 90].forEach(pos => {
-                const tree = document.createElement('div');
-                tree.className = 'tree';
-                tree.style.left = pos + '%';
-                tree.innerHTML = `
-                    <div class="tree-crown">
-                        <div class="tree-crown-layer"></div>
-                        <div class="tree-crown-layer"></div>
-                        <div class="tree-crown-layer"></div>
-                    </div>
-                    <div class="tree-trunk"></div>
-                `;
-                ground.appendChild(tree);
-            });
-            
-            // Krzewy
-            [30, 55, 70].forEach(pos => {
-                const bush = document.createElement('div');
-                bush.className = 'bush';
-                bush.style.left = pos + '%';
-                bush.innerHTML = '<div class="bush-body"></div>';
-                ground.appendChild(bush);
-            });
-            
-            // Kwiaty
-            const flowerColors = ['#ff69b4', '#ff6b6b', '#ba68c8', '#4fc3f7', '#ffb74d'];
-            for (let i = 0; i < 25; i++) {
-                const flower = document.createElement('div');
-                flower.className = 'flower';
-                flower.style.left = (5 + Math.random() * 90) + '%';
-                const color = flowerColors[Math.floor(Math.random() * flowerColors.length)];
-                flower.innerHTML = `
-                    <div class="flower-head">
-                        <div class="flower-petal" style="background:${color};"></div>
-                        <div class="flower-petal" style="background:${color};"></div>
-                        <div class="flower-petal" style="background:${color};"></div>
-                        <div class="flower-petal" style="background:${color};"></div>
-                        <div class="flower-petal" style="background:${color};"></div>
-                        <div class="flower-petal" style="background:${color};"></div>
-                        <div class="flower-center"></div>
-                    </div>
-                    <div class="flower-stem"></div>
-                `;
-                flower.style.animationDelay = Math.random() * 2 + 's';
-                ground.appendChild(flower);
+            // Flowers
+            const flowers = [];
+            for (let i = 0; i < 30; i++) {
+                flowers.push({
+                    x: Math.random() * W,
+                    color: ['#ff69b4', '#ff6b6b', '#ffd54f', '#ba68c8', '#4fc3f7'][Math.floor(Math.random() * 5)],
+                    phase: Math.random() * Math.PI * 2,
+                    size: 8 + Math.random() * 6
+                });
             }
             
-            // ===== TIMELINE ANIMACJI =====
+            // Hearts particles
+            const hearts = [];
             
-            const sceneScroll = document.getElementById('sceneScroll');
-            const girlChar = document.getElementById('girlChar');
-            const boyChar = document.getElementById('boyChar');
-            const cupidChar = document.getElementById('cupidChar');
-            const coupleHug = document.getElementById('coupleHug');
-            const cinemaFade = document.getElementById('cinemaFade');
-            const cinemaEnd = document.getElementById('cinemaEnd');
+            // Characters state
+            const girl = {
+                x: W * 0.35,
+                y: -200,
+                targetY: H * 0.65,
+                rotation: 0,
+                armAngle: 0,
+                legAngle: 0,
+                visible: false,
+                dusting: false,
+                dustPhase: 0,
+                hit: false
+            };
             
-            // 0-6s: Kosmos
-            setTimeout(() => {
-                sceneScroll.style.transition = 'transform 6s ease-in-out';
-                sceneScroll.style.transform = 'translateY(-25%)';
-            }, 100);
+            const boy = {
+                x: W * 1.2,
+                targetX: W * 0.65,
+                y: H * 0.65,
+                walkPhase: 0,
+                armAngle: 0,
+                legAngle: 0,
+                visible: false,
+                hit: false
+            };
             
-            // 6-10s: Atmosfera
-            setTimeout(() => {
-                sceneScroll.style.transition = 'transform 4s ease-in-out';
-                sceneScroll.style.transform = 'translateY(-50%)';
-            }, 6000);
+            const cupid = {
+                x: W * 0.5,
+                y: -100,
+                targetY: H * 0.2,
+                wingPhase: 0,
+                visible: false,
+                shooting: false,
+                shotsFired: 0
+            };
             
-            // 10-13s: Niebo -> Ziemia
-            setTimeout(() => {
-                sceneScroll.style.transition = 'transform 3s ease-out';
-                sceneScroll.style.transform = 'translateY(-75%)';
-            }, 10000);
+            const arrows = [];
             
-            // 14s: Dziewczyna spada
-            setTimeout(() => {
-                girlChar.style.opacity = '1';
-                girlChar.style.animation = 'girlFall 2s ease-out forwards';
-            }, 14000);
+            let showHug = false;
+            let fadeAlpha = 0;
+            let showEnd = false;
             
-            // Dodaj keyframes
-            const style = document.createElement('style');
-            style.textContent = `
-                @keyframes girlFall {
-                    0% { transform: translateY(-500px) rotate(25deg); }
-                    60% { transform: translateY(30px) rotate(-15deg); }
-                    80% { transform: translateY(-15px) rotate(8deg); }
-                    100% { transform: translateY(0) rotate(0deg); }
-                }
-                @keyframes dustOff {
-                    0%,100% { transform: rotate(0deg); }
-                    20% { transform: rotate(-12deg) translateY(-8px); }
-                    40% { transform: rotate(12deg) translateY(-8px); }
-                    60% { transform: rotate(-8deg) translateY(-4px); }
-                    80% { transform: rotate(8deg); }
-                }
-                @keyframes boyWalkIn {
-                    0% { transform: translateX(150px); opacity: 0; }
-                    100% { transform: translateX(0); opacity: 1; }
-                }
-                @keyframes cupidFloat {
-                    0% { transform: translateX(-50%) translateY(-100px) scale(0); opacity: 0; }
-                    60% { transform: translateX(-50%) translateY(10px) scale(1.1); opacity: 1; }
-                    100% { transform: translateX(-50%) translateY(0) scale(1); opacity: 1; }
-                }
-                @keyframes arrowToGirl {
-                    0% { transform: translate(0,0) rotate(30deg); opacity: 1; }
-                    100% { transform: translate(-250px, 350px) rotate(30deg); opacity: 1; }
-                }
-                @keyframes arrowToBoy {
-                    0% { transform: translate(0,0) rotate(-30deg); opacity: 1; }
-                    100% { transform: translate(250px, 350px) rotate(-30deg); opacity: 1; }
-                }
-                @keyframes heartPop {
-                    0% { transform: scale(0); opacity: 0; }
-                    50% { transform: scale(1.4); opacity: 1; }
-                    100% { transform: scale(1); opacity: 1; }
-                }
-                @keyframes hugReveal {
-                    0% { transform: translateX(-50%) scale(0); opacity: 0; }
-                    60% { transform: translateX(-50%) scale(1.1); opacity: 1; }
-                    100% { transform: translateX(-50%) scale(1); opacity: 1; }
-                }
-            `;
-            document.head.appendChild(style);
+            // ===== DRAWING FUNCTIONS =====
             
-            // 16s: Otrzepywanie
-            setTimeout(() => {
-                girlChar.style.animation = 'dustOff 1.5s ease';
-            }, 16000);
-            
-            // 18s: Chłopak wychodzi
-            setTimeout(() => {
-                boyChar.style.opacity = '1';
-                boyChar.style.animation = 'boyWalkIn 2s ease forwards';
-            }, 18000);
-            
-            // 21s: Amor z bańką
-            setTimeout(() => {
-                // Bańka
-                const bubble = document.createElement('div');
-                bubble.style.cssText = `
-                    position: absolute;
-                    top: 15%;
-                    left: 50%;
-                    width: 130px;
-                    height: 130px;
-                    border-radius: 50%;
-                    background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,200,220,0.5), transparent);
-                    border: 2px solid rgba(255,255,255,0.6);
-                    animation: bubbleBurst 1.5s ease forwards;
-                    z-index: 80;
-                `;
-                cinema.appendChild(bubble);
+            function drawStar(x, y, r, alpha) {
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
+                ctx.fill();
                 
-                const bubbleStyle = document.createElement('style');
-                bubbleStyle.textContent = `
-                    @keyframes bubbleBurst {
-                        0% { transform: translateX(-50%) scale(0); opacity: 0; }
-                        40% { transform: translateX(-50%) scale(1.2); opacity: 1; }
-                        70% { transform: translateX(-50%) scale(1); opacity: 1; }
-                        100% { transform: translateX(-50%) scale(2); opacity: 0; }
+                // Glow
+                const gradient = ctx.createRadialGradient(x, y, 0, x, y, r * 3);
+                gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.5})`);
+                gradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = gradient;
+                ctx.beginPath();
+                ctx.arc(x, y, r * 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            function drawMoon(x, y, r) {
+                // Main moon
+                const gradient = ctx.createRadialGradient(x - r * 0.3, y - r * 0.3, 0, x, y, r);
+                gradient.addColorStop(0, '#fffef0');
+                gradient.addColorStop(0.5, '#e8e4d4');
+                gradient.addColorStop(1, '#c0b8a0');
+                
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Craters
+                ctx.fillStyle = 'rgba(150, 140, 120, 0.3)';
+                ctx.beginPath();
+                ctx.arc(x + r * 0.2, y - r * 0.2, r * 0.15, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(x - r * 0.3, y + r * 0.3, r * 0.12, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(x + r * 0.4, y + r * 0.2, r * 0.08, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Glow
+                const glowGradient = ctx.createRadialGradient(x, y, r, x, y, r * 2);
+                glowGradient.addColorStop(0, 'rgba(255, 255, 200, 0.3)');
+                glowGradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = glowGradient;
+                ctx.beginPath();
+                ctx.arc(x, y, r * 2, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            function drawSun(x, y, r) {
+                // Rays
+                for (let i = 0; i < 12; i++) {
+                    const angle = (i / 12) * Math.PI * 2 + time * 0.001;
+                    const rayLength = r * 1.5 + Math.sin(time * 0.003 + i) * r * 0.3;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+                    ctx.lineTo(
+                        x + Math.cos(angle) * rayLength,
+                        y + Math.sin(angle) * rayLength
+                    );
+                    ctx.strokeStyle = 'rgba(255, 200, 50, 0.3)';
+                    ctx.lineWidth = r * 0.3;
+                    ctx.stroke();
+                }
+                
+                // Main sun
+                const gradient = ctx.createRadialGradient(x, y, 0, x, y, r);
+                gradient.addColorStop(0, '#fff9c4');
+                gradient.addColorStop(0.3, '#ffeb3b');
+                gradient.addColorStop(0.7, '#ff9800');
+                gradient.addColorStop(1, '#ff5722');
+                
+                ctx.beginPath();
+                ctx.arc(x, y, r, 0, Math.PI * 2);
+                ctx.fillStyle = gradient;
+                ctx.fill();
+                
+                // Glow
+                const glowGradient = ctx.createRadialGradient(x, y, r, x, y, r * 3);
+                glowGradient.addColorStop(0, 'rgba(255, 235, 59, 0.5)');
+                glowGradient.addColorStop(0.5, 'rgba(255, 152, 0, 0.2)');
+                glowGradient.addColorStop(1, 'transparent');
+                ctx.fillStyle = glowGradient;
+                ctx.beginPath();
+                ctx.arc(x, y, r * 3, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            function drawCloud(x, y, w, h) {
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+                ctx.beginPath();
+                ctx.ellipse(x, y, w * 0.5, h * 0.5, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.ellipse(x - w * 0.3, y + h * 0.1, w * 0.35, h * 0.4, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.ellipse(x + w * 0.3, y + h * 0.1, w * 0.4, h * 0.45, 0, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            
+            function drawTree(x, baseY, scale) {
+                const trunkW = 20 * scale;
+                const trunkH = 80 * scale;
+                
+                // Trunk
+                const trunkGrad = ctx.createLinearGradient(x - trunkW/2, 0, x + trunkW/2, 0);
+                trunkGrad.addColorStop(0, '#5d4037');
+                trunkGrad.addColorStop(0.5, '#8d6e63');
+                trunkGrad.addColorStop(1, '#5d4037');
+                
+                ctx.fillStyle = trunkGrad;
+                ctx.fillRect(x - trunkW/2, baseY - trunkH, trunkW, trunkH);
+                
+                // Leaves layers
+                const leafColors = ['#388e3c', '#43a047', '#4caf50'];
+                const layers = [
+                    { y: baseY - trunkH - 20 * scale, r: 50 * scale },
+                    { y: baseY - trunkH - 55 * scale, r: 40 * scale },
+                    { y: baseY - trunkH - 85 * scale, r: 30 * scale }
+                ];
+                
+                layers.forEach((layer, i) => {
+                    const gradient = ctx.createRadialGradient(
+                        x - layer.r * 0.3, layer.y - layer.r * 0.3, 0,
+                        x, layer.y, layer.r
+                    );
+                    gradient.addColorStop(0, '#66bb6a');
+                    gradient.addColorStop(0.5, leafColors[i]);
+                    gradient.addColorStop(1, '#2e7d32');
+                    
+                    ctx.beginPath();
+                    ctx.arc(x, layer.y, layer.r, 0, Math.PI * 2);
+                    ctx.fillStyle = gradient;
+                    ctx.fill();
+                });
+            }
+            
+            function drawFlower(x, baseY, color, size, phase) {
+                const sway = Math.sin(time * 0.002 + phase) * 5;
+                
+                // Stem
+                ctx.strokeStyle = '#4caf50';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(x, baseY);
+                ctx.quadraticCurveTo(x + sway, baseY - size * 2, x + sway, baseY - size * 3);
+                ctx.stroke();
+                
+                // Petals
+                const petalCount = 6;
+                for (let i = 0; i < petalCount; i++) {
+                    const angle = (i / petalCount) * Math.PI * 2;
+                    ctx.beginPath();
+                    ctx.ellipse(
+                        x + sway + Math.cos(angle) * size * 0.5,
+                        baseY - size * 3 + Math.sin(angle) * size * 0.5,
+                        size * 0.4, size * 0.6,
+                        angle, 0, Math.PI * 2
+                    );
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                }
+                
+                // Center
+                ctx.beginPath();
+                ctx.arc(x + sway, baseY - size * 3, size * 0.3, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffd54f';
+                ctx.fill();
+            }
+            
+            function drawPerson(x, y, isGirl, state) {
+                ctx.save();
+                ctx.translate(x, y);
+                
+                if (state.rotation) {
+                    ctx.rotate(state.rotation);
+                }
+                
+                const scale = 1;
+                const headR = 25 * scale;
+                const bodyH = 50 * scale;
+                const bodyW = 35 * scale;
+                const legH = 45 * scale;
+                const armH = 40 * scale;
+                
+                // Shadow
+                ctx.beginPath();
+                ctx.ellipse(0, legH + 5, bodyW * 0.8, 8, 0, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+                ctx.fill();
+                
+                // Legs
+                const legAngle = state.legAngle || 0;
+                ctx.save();
+                ctx.translate(-bodyW * 0.15, bodyH * 0.4);
+                ctx.rotate(Math.sin(legAngle) * 0.3);
+                ctx.fillStyle = isGirl ? '#5c6bc0' : '#37474f';
+                ctx.beginPath();
+                ctx.roundRect(-6, 0, 12, legH, 6);
+                ctx.fill();
+                // Shoe
+                ctx.fillStyle = isGirl ? '#e91e63' : '#212121';
+                ctx.beginPath();
+                ctx.ellipse(0, legH, 10, 6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+                
+                ctx.save();
+                ctx.translate(bodyW * 0.15, bodyH * 0.4);
+                ctx.rotate(-Math.sin(legAngle) * 0.3);
+                ctx.fillStyle = isGirl ? '#5c6bc0' : '#37474f';
+                ctx.beginPath();
+                ctx.roundRect(-6, 0, 12, legH, 6);
+                ctx.fill();
+                // Shoe
+                ctx.fillStyle = isGirl ? '#e91e63' : '#212121';
+                ctx.beginPath();
+                ctx.ellipse(0, legH, 10, 6, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+                
+                // Body
+                const bodyGrad = ctx.createLinearGradient(-bodyW/2, -bodyH/2, bodyW/2, bodyH/2);
+                if (isGirl) {
+                    bodyGrad.addColorStop(0, '#f48fb1');
+                    bodyGrad.addColorStop(1, '#ec407a');
+                } else {
+                    bodyGrad.addColorStop(0, '#64b5f6');
+                    bodyGrad.addColorStop(1, '#1e88e5');
+                }
+                
+                ctx.beginPath();
+                if (isGirl) {
+                    // Dress shape
+                    ctx.moveTo(-bodyW * 0.4, -bodyH * 0.5);
+                    ctx.quadraticCurveTo(-bodyW * 0.5, bodyH * 0.2, -bodyW * 0.6, bodyH * 0.5);
+                    ctx.lineTo(bodyW * 0.6, bodyH * 0.5);
+                    ctx.quadraticCurveTo(bodyW * 0.5, bodyH * 0.2, bodyW * 0.4, -bodyH * 0.5);
+                    ctx.closePath();
+                } else {
+                    ctx.roundRect(-bodyW/2, -bodyH/2, bodyW, bodyH, 10);
+                }
+                ctx.fillStyle = bodyGrad;
+                ctx.fill();
+                
+                // Arms
+                const armAngle = state.armAngle || 0;
+                const dustOffset = state.dusting ? Math.sin(state.dustPhase * 10) * 0.5 : 0;
+                
+                // Left arm
+                ctx.save();
+                ctx.translate(-bodyW * 0.5, -bodyH * 0.3);
+                ctx.rotate(-0.3 + Math.sin(armAngle) * 0.2 + dustOffset);
+                ctx.fillStyle = '#fdbf91';
+                ctx.beginPath();
+                ctx.roundRect(-5, 0, 10, armH, 5);
+                ctx.fill();
+                // Hand
+                ctx.beginPath();
+                ctx.arc(0, armH, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+                
+                // Right arm
+                ctx.save();
+                ctx.translate(bodyW * 0.5, -bodyH * 0.3);
+                ctx.rotate(0.3 - Math.sin(armAngle) * 0.2 - dustOffset);
+                ctx.fillStyle = '#fdbf91';
+                ctx.beginPath();
+                ctx.roundRect(-5, 0, 10, armH, 5);
+                ctx.fill();
+                // Hand
+                ctx.beginPath();
+                ctx.arc(0, armH, 8, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+                
+                // Neck
+                ctx.fillStyle = '#fdbf91';
+                ctx.beginPath();
+                ctx.roundRect(-8, -bodyH/2 - 10, 16, 15, 3);
+                ctx.fill();
+                
+                // Head
+                const headGrad = ctx.createRadialGradient(-headR * 0.3, -bodyH/2 - headR - headR * 0.3, 0, 0, -bodyH/2 - headR, headR);
+                headGrad.addColorStop(0, '#ffecd2');
+                headGrad.addColorStop(1, '#e8a676');
+                
+                ctx.beginPath();
+                ctx.arc(0, -bodyH/2 - headR, headR, 0, Math.PI * 2);
+                ctx.fillStyle = headGrad;
+                ctx.fill();
+                
+                // Hair
+                if (isGirl) {
+                    // Long black hair
+                    ctx.fillStyle = '#1a1a1a';
+                    ctx.beginPath();
+                    ctx.arc(0, -bodyH/2 - headR - 5, headR + 8, Math.PI, 0, true);
+                    ctx.fill();
+                    
+                    // Side hair
+                    ctx.beginPath();
+                    ctx.ellipse(-headR - 5, -bodyH/2 - headR + 10, 12, 50, -0.2, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.ellipse(headR + 5, -bodyH/2 - headR + 10, 12, 50, 0.2, 0, Math.PI * 2);
+                    ctx.fill();
+                    
+                    // Bangs
+                    ctx.beginPath();
+                    ctx.arc(0, -bodyH/2 - headR - 5, headR + 3, Math.PI * 1.2, Math.PI * 1.8);
+                    ctx.fill();
+                } else {
+                    // Short dark blonde hair
+                    const hairGrad = ctx.createLinearGradient(0, -bodyH/2 - headR * 2, 0, -bodyH/2 - headR);
+                    hairGrad.addColorStop(0, '#a08060');
+                    hairGrad.addColorStop(1, '#8b7355');
+                    
+                    ctx.fillStyle = hairGrad;
+                    ctx.beginPath();
+                    ctx.arc(0, -bodyH/2 - headR - 3, headR + 5, Math.PI, 0, true);
+                    ctx.fill();
+                }
+                
+                // Face
+                const faceY = -bodyH/2 - headR;
+                
+                // Eyes
+                ctx.fillStyle = '#3e2723';
+                ctx.beginPath();
+                ctx.ellipse(-8, faceY - 3, 4, 5, 0, 0, Math.PI * 2);
+                ctx.ellipse(8, faceY - 3, 4, 5, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Eye shine
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(-6, faceY - 5, 2, 0, Math.PI * 2);
+                ctx.arc(10, faceY - 5, 2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Blush
+                if (isGirl || state.hit) {
+                    ctx.fillStyle = 'rgba(255, 138, 128, 0.4)';
+                    ctx.beginPath();
+                    ctx.ellipse(-15, faceY + 5, 8, 4, 0, 0, Math.PI * 2);
+                    ctx.ellipse(15, faceY + 5, 8, 4, 0, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // Mouth
+                ctx.fillStyle = '#e57373';
+                ctx.beginPath();
+                ctx.arc(0, faceY + 12, 5, 0, Math.PI);
+                ctx.fill();
+                
+                // Eyelashes for girl
+                if (isGirl) {
+                    ctx.strokeStyle = '#1a1a1a';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(-12, faceY - 8);
+                    ctx.lineTo(-14, faceY - 12);
+                    ctx.moveTo(-8, faceY - 9);
+                    ctx.lineTo(-8, faceY - 13);
+                    ctx.moveTo(-4, faceY - 8);
+                    ctx.lineTo(-2, faceY - 12);
+                    ctx.moveTo(4, faceY - 8);
+                    ctx.lineTo(2, faceY - 12);
+                    ctx.moveTo(8, faceY - 9);
+                    ctx.lineTo(8, faceY - 13);
+                    ctx.moveTo(12, faceY - 8);
+                    ctx.lineTo(14, faceY - 12);
+                    ctx.stroke();
+                }
+                
+                // Hit heart
+                if (state.hit) {
+                    ctx.font = '30px Arial';
+                    ctx.fillText('💘', -15, bodyH * 0.7);
+                }
+                
+                ctx.restore();
+            }
+            
+            function drawCupid(x, y, state) {
+                ctx.save();
+                ctx.translate(x, y);
+                
+                const scale = 0.8;
+                const headR = 22 * scale;
+                const bodyH = 30 * scale;
+                
+                // Wings
+                const wingPhase = state.wingPhase;
+                const wingAngle = Math.sin(wingPhase) * 0.3;
+                
+                // Left wing
+                ctx.save();
+                ctx.translate(-25 * scale, 10);
+                ctx.rotate(-0.5 + wingAngle);
+                const wingGrad = ctx.createLinearGradient(0, 0, -50, -30);
+                wingGrad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
+                wingGrad.addColorStop(1, 'rgba(255, 220, 230, 0.7)');
+                ctx.fillStyle = wingGrad;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(-60 * scale, -40 * scale, -40 * scale, 20 * scale);
+                ctx.quadraticCurveTo(-20 * scale, 40 * scale, 0, 20 * scale);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255, 200, 220, 0.5)';
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.restore();
+                
+                // Right wing
+                ctx.save();
+                ctx.translate(25 * scale, 10);
+                ctx.rotate(0.5 - wingAngle);
+                ctx.fillStyle = wingGrad;
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.quadraticCurveTo(60 * scale, -40 * scale, 40 * scale, 20 * scale);
+                ctx.quadraticCurveTo(20 * scale, 40 * scale, 0, 20 * scale);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = 'rgba(255, 200, 220, 0.5)';
+                ctx.stroke();
+                ctx.restore();
+                
+                // Body (white cloth)
+                ctx.fillStyle = '#fff';
+                ctx.beginPath();
+                ctx.ellipse(0, bodyH * 0.3, 18 * scale, bodyH * 0.7, 0, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = 'rgba(255, 220, 230, 0.5)';
+                ctx.fill();
+                
+                // Head
+                const headGrad = ctx.createRadialGradient(-5, -bodyH * 0.5 - headR * 0.3, 0, 0, -bodyH * 0.5, headR);
+                headGrad.addColorStop(0, '#ffecd2');
+                headGrad.addColorStop(1, '#fcb69f');
+                ctx.beginPath();
+                ctx.arc(0, -bodyH * 0.5, headR, 0, Math.PI * 2);
+                ctx.fillStyle = headGrad;
+                ctx.fill();
+                
+                // Golden curly hair
+                ctx.fillStyle = '#ffd54f';
+                for (let i = 0; i < 8; i++) {
+                    const angle = (i / 8) * Math.PI + Math.PI;
+                    const cx = Math.cos(angle) * (headR + 5);
+                    const cy = -bodyH * 0.5 + Math.sin(angle) * (headR + 5) - 5;
+                    ctx.beginPath();
+                    ctx.arc(cx, cy, 8 * scale, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+                
+                // Face
+                ctx.fillStyle = '#3e2723';
+                ctx.beginPath();
+                ctx.arc(-6, -bodyH * 0.5 - 2, 3, 0, Math.PI * 2);
+                ctx.arc(6, -bodyH * 0.5 - 2, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.fillStyle = '#e57373';
+                ctx.beginPath();
+                ctx.arc(0, -bodyH * 0.5 + 8, 4, 0, Math.PI);
+                ctx.fill();
+                
+                // Bow and arrow
+                ctx.save();
+                ctx.translate(-35 * scale, 5);
+                ctx.rotate(-0.5);
+                
+                // Bow
+                ctx.strokeStyle = '#8b4513';
+                ctx.lineWidth = 5;
+                ctx.beginPath();
+                ctx.arc(0, 0, 30 * scale, -Math.PI * 0.4, Math.PI * 0.4);
+                ctx.stroke();
+                
+                // String
+                ctx.strokeStyle = '#ddd';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(
+                    Math.cos(-Math.PI * 0.4) * 30 * scale,
+                    Math.sin(-Math.PI * 0.4) * 30 * scale
+                );
+                ctx.lineTo(
+                    Math.cos(Math.PI * 0.4) * 30 * scale,
+                    Math.sin(Math.PI * 0.4) * 30 * scale
+                );
+                ctx.stroke();
+                
+                ctx.restore();
+                
+                ctx.restore();
+            }
+            
+            function drawArrow(arrow) {
+                ctx.save();
+                ctx.translate(arrow.x, arrow.y);
+                ctx.rotate(arrow.angle);
+                
+                // Shaft
+                ctx.fillStyle = '#8b4513';
+                ctx.beginPath();
+                ctx.roundRect(-30, -2, 60, 4, 2);
+                ctx.fill();
+                
+                // Heart head
+                ctx.fillStyle = '#ff69b4';
+                ctx.beginPath();
+                ctx.moveTo(30, 0);
+                ctx.bezierCurveTo(30, -8, 40, -12, 45, -6);
+                ctx.bezierCurveTo(50, 0, 45, 8, 30, 15);
+                ctx.bezierCurveTo(15, 8, 10, 0, 15, -6);
+                ctx.bezierCurveTo(20, -12, 30, -8, 30, 0);
+                ctx.fill();
+                
+                // Feathers
+                ctx.fillStyle = '#ff1493';
+                ctx.beginPath();
+                ctx.moveTo(-30, 0);
+                ctx.lineTo(-45, -10);
+                ctx.lineTo(-35, 0);
+                ctx.lineTo(-45, 10);
+                ctx.closePath();
+                ctx.fill();
+                
+                ctx.restore();
+            }
+            
+            function drawHeart(x, y, size, alpha) {
+                ctx.save();
+                ctx.translate(x, y);
+                ctx.scale(size, size);
+                ctx.globalAlpha = alpha;
+                
+                ctx.fillStyle = '#ff69b4';
+                ctx.beginPath();
+                ctx.moveTo(0, 5);
+                ctx.bezierCurveTo(-15, -10, -25, 5, 0, 20);
+                ctx.bezierCurveTo(25, 5, 15, -10, 0, 5);
+                ctx.fill();
+                
+                // Shine
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(-5, 0, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.restore();
+            }
+            
+            function drawHugCouple(x, y) {
+                ctx.save();
+                ctx.translate(x, y);
+                
+                // Combined silhouette hugging
+                const headR = 25;
+                
+                // Girl's hair behind
+                ctx.fillStyle = '#1a1a1a';
+                ctx.beginPath();
+                ctx.ellipse(-20, -60, 35, 45, -0.2, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Bodies together
+                const bodyGrad = ctx.createLinearGradient(-40, 0, 40, 0);
+                bodyGrad.addColorStop(0, '#f48fb1');
+                bodyGrad.addColorStop(0.5, '#ba68c8');
+                bodyGrad.addColorStop(1, '#64b5f6');
+                
+                ctx.fillStyle = bodyGrad;
+                ctx.beginPath();
+                ctx.ellipse(0, 20, 45, 55, 0, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Heads
+                ctx.fillStyle = '#fdbf91';
+                ctx.beginPath();
+                ctx.arc(-15, -55, headR, 0, Math.PI * 2);
+                ctx.arc(15, -55, headR, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Girl's hair front
+                ctx.fillStyle = '#1a1a1a';
+                ctx.beginPath();
+                ctx.arc(-15, -60, headR + 5, Math.PI, 0, true);
+                ctx.fill();
+                
+                // Boy's hair
+                ctx.fillStyle = '#8b7355';
+                ctx.beginPath();
+                ctx.arc(15, -60, headR + 3, Math.PI, 0, true);
+                ctx.fill();
+                
+                // Arms hugging
+                ctx.fillStyle = '#fdbf91';
+                ctx.beginPath();
+                ctx.ellipse(-35, 10, 10, 30, -0.3, 0, Math.PI * 2);
+                ctx.ellipse(35, 10, 10, 30, 0.3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Hearts around
+                const heartTime = time * 0.003;
+                for (let i = 0; i < 5; i++) {
+                    const angle = heartTime + (i / 5) * Math.PI * 2;
+                    const radius = 80 + Math.sin(time * 0.005 + i) * 10;
+                    const hx = Math.cos(angle) * radius;
+                    const hy = Math.sin(angle) * radius - 20;
+                    drawHeart(hx, hy, 0.5 + Math.sin(time * 0.01 + i) * 0.2, 0.7);
+                }
+                
+                ctx.restore();
+            }
+            
+            // ===== MAIN ANIMATION LOOP =====
+            function animate() {
+                time++;
+                ctx.clearRect(0, 0, W, H);
+                
+                // Camera movement
+                const cameraProgress = Math.min(1, time / 600);
+                cameraY = easeInOutCubic(cameraProgress) * (SCENE_HEIGHT - H);
+                
+                // ===== DRAW SCENE =====
+                
+                // Space background (0 - H)
+                if (cameraY < H) {
+                    const spaceAlpha = 1 - Math.max(0, (cameraY - H * 0.5) / (H * 0.5));
+                    ctx.globalAlpha = spaceAlpha;
+                    
+                    // Deep space gradient
+                    const spaceGrad = ctx.createLinearGradient(0, -cameraY, 0, H - cameraY);
+                    spaceGrad.addColorStop(0, '#000000');
+                    spaceGrad.addColorStop(0.3, '#0a0015');
+                    spaceGrad.addColorStop(0.6, '#150025');
+                    spaceGrad.addColorStop(1, '#1a0030');
+                    ctx.fillStyle = spaceGrad;
+                    ctx.fillRect(0, 0, W, H);
+                    
+                    // Stars
+                    stars.forEach(star => {
+                        const sy = star.y - cameraY * 0.3;
+                        if (sy > -10 && sy < H + 10) {
+                            const twinkle = 0.5 + Math.sin(time * 0.05 + star.twinkle) * 0.5;
+                            drawStar(star.x, sy, star.r, twinkle * spaceAlpha);
+                        }
+                    });
+                    
+                    // Moon
+                    drawMoon(W * 0.7, H * 0.15 - cameraY * 0.2, 50);
+                    
+                    ctx.globalAlpha = 1;
+                }
+                
+                // Atmosphere (H - 2H)
+                if (cameraY > H * 0.5 && cameraY < H * 2.5) {
+                    const atmoY = H - (cameraY - H);
+                    
+                    const atmoGrad = ctx.createLinearGradient(0, atmoY, 0, atmoY + H);
+                    atmoGrad.addColorStop(0, '#1a0030');
+                    atmoGrad.addColorStop(0.2, '#4a2c6a');
+                    atmoGrad.addColorStop(0.4, '#8660a0');
+                    atmoGrad.addColorStop(0.6, '#ff9a9e');
+                    atmoGrad.addColorStop(0.8, '#fecfef');
+                    atmoGrad.addColorStop(1, '#87CEEB');
+                    
+                    ctx.fillStyle = atmoGrad;
+                    ctx.fillRect(0, Math.max(0, atmoY), W, H);
+                    
+                    // Clouds
+                    clouds.forEach(cloud => {
+                        const cy = cloud.y - cameraY;
+                        if (cy > -100 && cy < H + 100) {
+                            cloud.x += cloud.speed;
+                            if (cloud.x > W + 100) cloud.x = -100;
+                            drawCloud(cloud.x, cy, cloud.w, cloud.h);
+                        }
+                    });
+                }
+                
+                // Sky (2H - 3H)
+                if (cameraY > H * 1.5) {
+                    const skyY = H * 2 - cameraY;
+                    
+                    const skyGrad = ctx.createLinearGradient(0, skyY, 0, skyY + H);
+                    skyGrad.addColorStop(0, '#87CEEB');
+                    skyGrad.addColorStop(0.5, '#b0e0f0');
+                    skyGrad.addColorStop(1, '#c8ebf5');
+                    
+                    ctx.fillStyle = skyGrad;
+                    ctx.fillRect(0, Math.max(0, skyY), W, Math.min(H, H - skyY));
+                    
+                    // Sun
+                    if (skyY < H) {
+                        drawSun(W * 0.8, skyY + H * 0.2, 60);
                     }
-                `;
-                document.head.appendChild(bubbleStyle);
-                
-                setTimeout(() => bubble.remove(), 1500);
-            }, 21000);
-            
-            // 22s: Amor pojawia się
-            setTimeout(() => {
-                cupidChar.style.opacity = '1';
-                cupidChar.style.animation = 'cupidFloat 1.5s ease forwards';
-            }, 22000);
-            
-            // 24s: Strzały
-            setTimeout(() => {
-                // Strzała 1
-                const arrow1 = document.createElement('div');
-                arrow1.className = 'arrow';
-                arrow1.innerHTML = `
-                    <div class="arrow-shaft">
-                        <div class="arrow-head"></div>
-                        <div class="arrow-feather"></div>
-                    </div>
-                `;
-                arrow1.style.cssText = `
-                    position: absolute;
-                    top: 22%;
-                    left: 48%;
-                    opacity: 1;
-                    animation: arrowToGirl 1s ease-in forwards;
-                    z-index: 150;
-                `;
-                cinema.appendChild(arrow1);
-                
-                // Strzała 2
-                setTimeout(() => {
-                    const arrow2 = document.createElement('div');
-                    arrow2.className = 'arrow';
-                    arrow2.innerHTML = `
-                        <div class="arrow-shaft">
-                            <div class="arrow-head"></div>
-                            <div class="arrow-feather"></div>
-                        </div>
-                    `;
-                    arrow2.style.cssText = `
-                        position: absolute;
-                        top: 22%;
-                        left: 52%;
-                        opacity: 1;
-                        animation: arrowToBoy 1s ease-in forwards;
-                        z-index: 150;
-                    `;
-                    cinema.appendChild(arrow2);
-                }, 500);
-            }, 24000);
-            
-            // 25.5s: Trafienie - serduszka przy pupach
-            setTimeout(() => {
-                const hitGirl = document.createElement('div');
-                hitGirl.className = 'hit-heart';
-                hitGirl.textContent = '💘';
-                hitGirl.style.cssText = `
-                    position: absolute;
-                    bottom: 15%;
-                    left: 32%;
-                    opacity: 1;
-                    animation: heartPop 0.6s ease forwards;
-                `;
-                cinema.appendChild(hitGirl);
-                
-                const hitBoy = document.createElement('div');
-                hitBoy.className = 'hit-heart';
-                hitBoy.textContent = '💘';
-                hitBoy.style.cssText = `
-                    position: absolute;
-                    bottom: 15%;
-                    right: 32%;
-                    opacity: 1;
-                    animation: heartPop 0.6s ease forwards;
-                    animation-delay: 0.3s;
-                `;
-                cinema.appendChild(hitBoy);
-            }, 25500);
-            
-            // 26s: Serduszka lecą w tle
-            setTimeout(() => {
-                function createFloatingHeart() {
-                    const heart = document.createElement('div');
-                    heart.className = 'floating-heart';
-                    heart.textContent = ['💕', '💖', '❤️', '💗'][Math.floor(Math.random() * 4)];
-                    heart.style.left = (25 + Math.random() * 50) + '%';
-                    heart.style.bottom = '20%';
-                    heart.style.fontSize = (25 + Math.random() * 20) + 'px';
-                    heart.style.animationDelay = Math.random() * 0.5 + 's';
-                    heart.style.opacity = '1';
-                    cinema.appendChild(heart);
-                    setTimeout(() => heart.remove(), 4000);
                 }
                 
-                for (let i = 0; i < 25; i++) {
-                    setTimeout(createFloatingHeart, i * 150);
+                // Ground (3H - 4H)
+                if (cameraY > H * 2) {
+                    const groundY = H * 3 - cameraY;
+                    
+                    // Sky above ground
+                    if (groundY > 0) {
+                        ctx.fillStyle = '#c8ebf5';
+                        ctx.fillRect(0, 0, W, groundY);
+                        drawSun(W * 0.8, groundY * 0.3, 60);
+                    }
+                    
+                    // Grass
+                    const grassGrad = ctx.createLinearGradient(0, groundY, 0, H);
+                    grassGrad.addColorStop(0, '#90c695');
+                    grassGrad.addColorStop(0.2, '#68b36b');
+                    grassGrad.addColorStop(0.5, '#4caf50');
+                    grassGrad.addColorStop(1, '#2e7d32');
+                    
+                    ctx.fillStyle = grassGrad;
+                    ctx.fillRect(0, Math.max(0, groundY), W, H - Math.max(0, groundY));
+                    
+                    // Trees
+                    if (groundY < H) {
+                        trees.forEach(tree => {
+                            drawTree(tree.x, groundY + 20, tree.scale);
+                        });
+                    }
+                    
+                    // Flowers
+                    if (groundY < H) {
+                        flowers.forEach(flower => {
+                            drawFlower(flower.x, groundY + 15, flower.color, flower.size, flower.phase);
+                        });
+                    }
                 }
-            }, 26000);
-            
-            // 29s: Postacie znikają, para się przytula
-            setTimeout(() => {
-                girlChar.style.transition = 'opacity 0.8s';
-                boyChar.style.transition = 'opacity 0.8s';
-                cupidChar.style.transition = 'opacity 1s';
                 
-                girlChar.style.opacity = '0';
-                boyChar.style.opacity = '0';
-                cupidChar.style.opacity = '0';
+                // ===== CHARACTER ANIMATIONS =====
                 
-                setTimeout(() => {
-                    coupleHug.style.opacity = '1';
-                    coupleHug.style.animation = 'hugReveal 1.2s ease forwards';
-                }, 800);
-            }, 29000);
-            
-            // 31s: Więcej serduszek
-            setTimeout(() => {
-                function createFinalHeart() {
-                    const heart = document.createElement('div');
-                    heart.className = 'floating-heart';
-                    heart.textContent = ['💕', '💖', '❤️', '💗', '💘'][Math.floor(Math.random() * 5)];
-                    heart.style.left = (15 + Math.random() * 70) + '%';
-                    heart.style.bottom = '15%';
-                    heart.style.fontSize = (30 + Math.random() * 25) + 'px';
-                    heart.style.opacity = '1';
-                    cinema.appendChild(heart);
-                    setTimeout(() => heart.remove(), 4000);
+                const groundLevel = H * 0.75;
+                
+                // Timeline
+                if (time > 700 && !girl.visible) {
+                    girl.visible = true;
+                    girl.y = -200;
                 }
                 
-                for (let i = 0; i < 35; i++) {
-                    setTimeout(createFinalHeart, i * 100);
+                if (girl.visible && girl.y < girl.targetY) {
+                    girl.y += (girl.targetY - girl.y) * 0.03;
+                    girl.rotation = Math.sin(time * 0.1) * 0.3;
+                    girl.legAngle = time * 0.2;
                 }
-            }, 31000);
+                
+                if (girl.y >= girl.targetY - 10 && !girl.dusting && time > 850) {
+                    girl.rotation = 0;
+                    girl.dusting = true;
+                }
+                
+                if (girl.dusting && time < 1000) {
+                    girl.dustPhase += 0.1;
+                    girl.armAngle = girl.dustPhase;
+                }
+                
+                if (time > 950 && !boy.visible) {
+                    boy.visible = true;
+                }
+                
+                if (boy.visible && boy.x > boy.targetX) {
+                    boy.x -= 2;
+                    boy.walkPhase += 0.15;
+                    boy.legAngle = boy.walkPhase;
+                    boy.armAngle = boy.walkPhase;
+                }
+                
+                if (time > 1100 && !cupid.visible) {
+                    cupid.visible = true;
+                }
+                
+                if (cupid.visible) {
+                    cupid.wingPhase += 0.2;
+                    if (cupid.y < cupid.targetY) {
+                        cupid.y += (cupid.targetY - cupid.y) * 0.05;
+                    }
+                    
+                    // Shoot arrows
+                    if (time > 1250 && cupid.shotsFired === 0) {
+                        arrows.push({
+                            x: cupid.x,
+                            y: cupid.y + 30,
+                            targetX: girl.x,
+                            targetY: girl.targetY + 30,
+                            angle: Math.PI * 0.6,
+                            progress: 0
+                        });
+                        cupid.shotsFired = 1;
+                    }
+                    
+                    if (time > 1300 && cupid.shotsFired === 1) {
+                        arrows.push({
+                            x: cupid.x,
+                            y: cupid.y + 30,
+                            targetX: boy.targetX,
+                            targetY: boy.y + 30,
+                            angle: Math.PI * 0.4,
+                            progress: 0
+                        });
+                        cupid.shotsFired = 2;
+                    }
+                }
+                
+                // Update arrows
+                arrows.forEach(arrow => {
+                    if (arrow.progress < 1) {
+                        arrow.progress += 0.03;
+                        arrow.x = lerp(cupid.x, arrow.targetX, easeOutQuad(arrow.progress));
+                        arrow.y = lerp(cupid.y + 30, arrow.targetY, easeOutQuad(arrow.progress));
+                        arrow.angle = Math.atan2(arrow.targetY - cupid.y - 30, arrow.targetX - cupid.x);
+                    }
+                });
+                
+                // Hit detection
+                if (arrows.length > 0 && arrows[0].progress >= 1 && !girl.hit) {
+                    girl.hit = true;
+                }
+                if (arrows.length > 1 && arrows[1].progress >= 1 && !boy.hit) {
+                    boy.hit = true;
+                }
+                
+                // Hearts
+                if (girl.hit && boy.hit && time % 10 === 0) {
+                    hearts.push({
+                        x: W * 0.35 + (Math.random() - 0.5) * 200,
+                        y: groundLevel,
+                        vy: -2 - Math.random() * 2,
+                        size: 0.3 + Math.random() * 0.4,
+                        alpha: 1
+                    });
+                }
+                
+                hearts.forEach(heart => {
+                    heart.y += heart.vy;
+                    heart.alpha -= 0.01;
+                });
+                
+                // Show hug
+                if (time > 1550 && !showHug) {
+                    showHug = true;
+                }
+                
+                // Fade out
+                if (time > 1750) {
+                    fadeAlpha = Math.min(1, fadeAlpha + 0.01);
+                }
+                
+                // Show end text
+                if (time > 1900 && !showEnd) {
+                    showEnd = true;
+                    document.getElementById('cinemaEnd').style.opacity = '1';
+                }
+                
+                // ===== DRAW CHARACTERS =====
+                
+                if (cameraY > H * 2.5) {
+                    // Draw characters when on ground
+                    if (girl.visible && !showHug) {
+                        drawPerson(girl.x, girl.y, true, girl);
+                    }
+                    
+                    if (boy.visible && !showHug) {
+                        drawPerson(boy.x, boy.y, false, boy);
+                    }
+                    
+                    if (cupid.visible && !showHug) {
+                        drawCupid(cupid.x, cupid.y, cupid);
+                    }
+                    
+                    // Arrows
+                    arrows.forEach(arrow => {
+                        if (arrow.progress < 1) {
+                            drawArrow(arrow);
+                        }
+                    });
+                    
+                    // Hearts
+                    hearts.forEach(heart => {
+                        if (heart.alpha > 0) {
+                            drawHeart(heart.x, heart.y, heart.size, heart.alpha);
+                        }
+                    });
+                    
+                    // Hug
+                    if (showHug) {
+                        drawHugCouple(W * 0.5, groundLevel - 30);
+                    }
+                }
+                
+                // Fade overlay
+                if (fadeAlpha > 0) {
+                    ctx.fillStyle = `rgba(0, 0, 0, ${fadeAlpha})`;
+                    ctx.fillRect(0, 0, W, H);
+                }
+                
+                // Continue animation
+                if (!showEnd || fadeAlpha < 1) {
+                    requestAnimationFrame(animate);
+                }
+            }
             
-            // 35s: Fade to black
-            setTimeout(() => {
-                cinemaFade.style.opacity = '1';
-            }, 35000);
+            // Easing functions
+            function easeInOutCubic(t) {
+                return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            }
             
-            // 38s: Napis końcowy
-            setTimeout(() => {
-                cinemaEnd.style.opacity = '1';
-            }, 38000);
+            function easeOutQuad(t) {
+                return 1 - (1 - t) * (1 - t);
+            }
+            
+            function lerp(a, b, t) {
+                return a + (b - a) * t;
+            }
+            
+            // Start animation
+            animate();
         }
     </script>
 </body>
