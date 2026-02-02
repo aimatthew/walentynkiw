@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💕 Dla Mojej Jedynej Wikusi 💕</title>
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <title>💕 Dla Wikusi 💕</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -17,27 +17,14 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #ffd1ff, #ff9a9e, #fecfef);
-            background-size: 400% 400%;
-            animation: gradientFlow 15s ease infinite;
-            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Nunito', sans-serif;
             overflow: hidden;
             position: relative;
         }
 
-        @keyframes gradientFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        body.romantic-bg {
-            background: linear-gradient(-45deg, #ff6b6b, #ee5a5a, #ff8e8e, #c41e3a, #ff6b6b);
-            background-size: 400% 400%;
-        }
-
-        /* Świecące cząsteczki w tle */
-        .particles {
+        /* Gwiazdy w tle */
+        .stars {
             position: fixed;
             top: 0;
             left: 0;
@@ -45,926 +32,1076 @@
             height: 100%;
             pointer-events: none;
             z-index: 1;
-            overflow: hidden;
         }
 
-        .particle {
+        .star {
             position: absolute;
-            width: 6px;
-            height: 6px;
-            background: radial-gradient(circle, rgba(255,255,255,1) 0%, rgba(255,200,200,0) 70%);
+            background: white;
             border-radius: 50%;
-            animation: particleFloat 20s infinite linear;
+            animation: twinkle 3s infinite ease-in-out;
         }
 
-        @keyframes particleFloat {
-            0% { transform: translateY(100vh) translateX(0) scale(0); opacity: 0; }
-            10% { opacity: 1; transform: translateY(90vh) translateX(10px) scale(1); }
-            90% { opacity: 1; }
-            100% { transform: translateY(-10vh) translateX(-10px) scale(0.5); opacity: 0; }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
         }
 
-        /* Pływające serduszka w tle */
-        .floating-hearts {
+        /* Delikatne serduszka w tle */
+        .bg-hearts {
             position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
             z-index: 2;
         }
 
-        .heart-bg {
+        .bg-heart {
             position: absolute;
-            animation: floatHeart 20s infinite ease-in-out;
-            opacity: 0.4;
-            filter: blur(1px);
+            font-size: 20px;
+            opacity: 0.15;
+            animation: floatUp 20s infinite linear;
         }
 
-        @keyframes floatHeart {
-            0%, 100% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
-            10% { opacity: 0.4; }
-            50% { transform: translateY(50vh) rotate(180deg) scale(1); }
-            90% { opacity: 0.4; }
-            100% { transform: translateY(-10vh) rotate(360deg) scale(0.5); opacity: 0; }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.15; }
+            90% { opacity: 0.15; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
 
-        /* Światełka bokeh */
-        .bokeh {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .bokeh-circle {
-            position: absolute;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,182,193,0.4) 40%, transparent 70%);
-            animation: bokehFloat 25s infinite ease-in-out;
-        }
-
-        @keyframes bokehFloat {
-            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
-            25% { transform: translate(30px, -30px) scale(1.2); opacity: 0.5; }
-            50% { transform: translate(-20px, 20px) scale(0.8); opacity: 0.4; }
-            75% { transform: translate(20px, 10px) scale(1.1); opacity: 0.6; }
-        }
-
-        /* Główny kontener - Glassmorphism Premium */
+        /* Główny kontener */
         .container {
             text-align: center;
             z-index: 10;
-            padding: 60px 80px;
-            background: linear-gradient(135deg, 
-                rgba(255, 255, 255, 0.4) 0%, 
-                rgba(255, 255, 255, 0.2) 50%,
-                rgba(255, 220, 220, 0.3) 100%);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 40px;
+            padding: 50px 70px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
             box-shadow: 
-                0 25px 80px rgba(255, 100, 100, 0.3),
-                0 10px 40px rgba(0, 0, 0, 0.1),
-                inset 0 0 60px rgba(255, 255, 255, 0.3),
-                inset 0 -5px 20px rgba(255, 150, 150, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            animation: containerAppear 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+                0 30px 60px rgba(0, 0, 0, 0.4),
+                0 0 0 1px rgba(255, 255, 255, 0.8),
+                inset 0 0 80px rgba(255, 230, 230, 0.3);
             position: relative;
-            max-width: 700px;
-            overflow: visible;
+            max-width: 600px;
+            animation: containerIn 1s ease-out;
         }
 
-        @keyframes containerAppear {
-            0% {
-                opacity: 0;
-                transform: translateY(100px) scale(0.8) rotateX(20deg);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0) scale(1) rotateX(0deg);
-            }
+        @keyframes containerIn {
+            0% { opacity: 0; transform: translateY(50px) scale(0.9); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* Świecąca obramówka */
+        /* Ozdobna ramka */
         .container::before {
             content: '';
             position: absolute;
-            top: -3px;
-            left: -3px;
-            right: -3px;
-            bottom: -3px;
-            background: linear-gradient(45deg, #ff6b6b, #ffd1ff, #ff9a9e, #ff6b6b, #ffd1ff);
-            background-size: 300% 300%;
-            border-radius: 42px;
-            z-index: -1;
-            animation: borderGlow 5s ease infinite;
-            filter: blur(10px);
-            opacity: 0.7;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid #e8b4b8;
+            border-radius: 22px;
+            pointer-events: none;
         }
 
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Ozdoby - róże i kwiaty */
-        .decoration {
+        /* Ozdoby narożne */
+        .corner {
             position: absolute;
-            font-size: 50px;
-            filter: drop-shadow(0 5px 15px rgba(255, 100, 100, 0.5));
-            z-index: 20;
+            font-size: 35px;
+            filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+        }
+        .corner.tl { top: -15px; left: -15px; }
+        .corner.tr { top: -15px; right: -15px; }
+        .corner.bl { bottom: -15px; left: -15px; }
+        .corner.br { bottom: -15px; right: -15px; }
+
+        /* Tytuł */
+        h1 {
+            font-family: 'Lora', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #c41e3a;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
         }
 
-        .decoration.top-left { 
-            top: -25px; 
-            left: -25px; 
-            animation: decorPulse 3s infinite ease-in-out, decorRotate 10s infinite linear;
-        }
-        .decoration.top-right { 
-            top: -25px; 
-            right: -25px; 
-            animation: decorPulse 3s infinite ease-in-out 0.5s, decorRotate 10s infinite linear reverse;
-        }
-        .decoration.bottom-left { 
-            bottom: -25px; 
-            left: -25px; 
-            animation: decorPulse 3s infinite ease-in-out 1s, decorRotate 10s infinite linear;
-        }
-        .decoration.bottom-right { 
-            bottom: -25px; 
-            right: -25px; 
-            animation: decorPulse 3s infinite ease-in-out 1.5s, decorRotate 10s infinite linear reverse;
+        .subtitle {
+            font-size: 0.95rem;
+            color: #888;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
         }
 
-        @keyframes decorPulse {
+        /* Pytanie */
+        .question {
+            font-family: 'Lora', serif;
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin: 30px 0;
+            line-height: 1.5;
+        }
+
+        .heart-icon {
+            color: #e74c3c;
+            display: inline-block;
+            animation: heartPulse 1s infinite;
+        }
+
+        @keyframes heartPulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.2); }
         }
 
-        @keyframes decorRotate {
-            0% { transform: rotate(-10deg) scale(1); }
-            25% { transform: rotate(5deg) scale(1.1); }
-            50% { transform: rotate(-5deg) scale(1); }
-            75% { transform: rotate(10deg) scale(1.1); }
-            100% { transform: rotate(-10deg) scale(1); }
+        /* PRZYCISKI - NAPRAWIONE */
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+            margin-top: 35px;
+            position: relative;
+            height: 70px;
         }
 
-        /* Dodatkowe ozdoby po bokach */
-        .side-decoration {
+        .btn {
+            padding: 16px 45px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            transition: transform 0.3s, box-shadow 0.3s;
+            letter-spacing: 1px;
+        }
+
+        .btn-yes {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            box-shadow: 0 8px 25px rgba(231, 76, 60, 0.4);
+        }
+
+        .btn-yes:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 35px rgba(231, 76, 60, 0.5);
+        }
+
+        .btn-no {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             position: absolute;
-            font-size: 35px;
-            opacity: 0.8;
-            animation: sideFloat 4s infinite ease-in-out;
+            right: 0;
+            transition: none;
         }
 
-        .side-decoration.left-1 { top: 30%; left: -50px; animation-delay: 0s; }
-        .side-decoration.left-2 { top: 60%; left: -45px; animation-delay: 1s; }
-        .side-decoration.right-1 { top: 30%; right: -50px; animation-delay: 0.5s; }
-        .side-decoration.right-2 { top: 60%; right: -45px; animation-delay: 1.5s; }
-
-        @keyframes sideFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(10deg); }
+        /* Emoji płaczu */
+        .crying {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 180px;
+            z-index: 2000;
+            animation: cryAnim 2s forwards;
         }
 
-        /* Tytuł główny */
-        .title-wrapper {
-            margin-bottom: 20px;
+        @keyframes cryAnim {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.2); }
+            80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
         }
 
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4.5rem;
-            background: linear-gradient(135deg, #c41e3a 0%, #ff6b6b 50%, #c41e3a 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(2px 2px 4px rgba(196, 30, 58, 0.3));
-            margin-bottom: 10px;
-            animation: titleShine 3s infinite;
-            letter-spacing: 2px;
+        /* ===== SUKCES - PO KLIKNIĘCIU TAK ===== */
+        
+        .success-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1a1a2e 0%, #2d132c 50%, #801336 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            animation: successBgIn 1s ease;
         }
 
-        @keyframes titleShine {
-            0%, 100% { filter: drop-shadow(2px 2px 4px rgba(196, 30, 58, 0.3)) brightness(1); }
-            50% { filter: drop-shadow(2px 2px 15px rgba(196, 30, 58, 0.6)) brightness(1.1); }
+        @keyframes successBgIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
         }
 
-        .subtitle {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: #8b4560;
-            letter-spacing: 4px;
-            text-transform: uppercase;
+        .success-box {
+            text-align: center;
+            padding: 60px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            animation: successBoxIn 0.8s ease 0.3s both;
+        }
+
+        @keyframes successBoxIn {
+            0% { opacity: 0; transform: scale(0.5) rotate(-5deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .success-box h2 {
+            font-family: 'Lora', serif;
+            font-size: 2.5rem;
+            color: #c41e3a;
+            margin-bottom: 15px;
+        }
+
+        .success-box p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .btn-magic {
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Nunito', sans-serif;
+            box-shadow: 0 10px 30px rgba(155, 89, 182, 0.4);
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: magicPulse 2s infinite;
+        }
+
+        @keyframes magicPulse {
+            0%, 100% { box-shadow: 0 10px 30px rgba(155, 89, 182, 0.4); }
+            50% { box-shadow: 0 15px 50px rgba(155, 89, 182, 0.6), 0 0 30px rgba(155, 89, 182, 0.3); }
+        }
+
+        .btn-magic:hover {
+            transform: scale(1.1);
+        }
+
+        /* Spadające elementy sukcesu */
+        .falling {
+            position: fixed;
+            top: -50px;
+            font-size: 30px;
+            z-index: 99;
+            pointer-events: none;
+            animation: fall 4s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(110vh) rotate(720deg); }
+        }
+
+        /* ===== ANIMACJA FILMOWA ===== */
+        
+        .cinema {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        /* Scena kosmiczna */
+        .scene-space {
+            position: absolute;
+            width: 100%;
+            height: 300%;
+            top: 0;
+            background: linear-gradient(180deg, 
+                #000000 0%, 
+                #0a0a20 20%, 
+                #1a1a3e 40%,
+                #2e1a47 55%,
+                #4a2c6a 65%,
+                #87CEEB 75%,
+                #b4d7e8 85%,
+                #90EE90 95%,
+                #228B22 100%
+            );
+            animation: cameraDrop 8s ease-in-out forwards;
+        }
+
+        @keyframes cameraDrop {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-66.67%); }
+        }
+
+        /* Gwiazdy w kosmosie */
+        .space-star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 0 10px white;
+        }
+
+        /* Chmury */
+        .cloud {
+            position: absolute;
+            font-size: 80px;
             opacity: 0.9;
         }
 
-        /* Pytanie */
-        .question-wrapper {
-            margin: 40px 0;
-            position: relative;
+        /* Ziemia - polana */
+        .ground {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 35%;
         }
 
-        .question {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 600;
-            color: #8b0000;
-            line-height: 1.4;
-            text-shadow: 0 2px 10px rgba(255, 255, 255, 0.8);
-            animation: questionPulse 2s infinite ease-in-out;
+        .grass {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #90EE90 0%, #228B22 30%, #1a5c1a 100%);
         }
 
-        @keyframes questionPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.02); }
+        .tree {
+            position: absolute;
+            bottom: 50px;
+            font-size: 100px;
         }
 
-        .question-heart {
-            display: inline-block;
+        .bush {
+            position: absolute;
+            bottom: 20px;
+            font-size: 60px;
+        }
+
+        .flower {
+            position: absolute;
+            bottom: 10px;
+            font-size: 30px;
+            animation: sway 2s infinite ease-in-out;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+
+        /* Postaci */
+        .character {
+            position: absolute;
+            font-size: 80px;
+            opacity: 0;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+        }
+
+        .girl {
+            bottom: 100px;
+            left: 35%;
+            transform: translateX(-50%);
+        }
+
+        .boy {
+            bottom: 100px;
+            right: 35%;
+            transform: translateX(50%) scaleX(-1);
+        }
+
+        .cupid {
+            top: 25%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 100px;
+        }
+
+        /* Animacje postaci */
+        .girl.falling-in {
+            animation: girlFall 2s ease-out forwards;
+        }
+
+        @keyframes girlFall {
+            0% { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(-500px) rotate(30deg); 
+            }
+            60% { 
+                transform: translateX(-50%) translateY(30px) rotate(-10deg); 
+            }
+            80% { 
+                transform: translateX(-50%) translateY(-10px) rotate(5deg); 
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) rotate(0deg); 
+            }
+        }
+
+        .girl.dusting {
+            animation: dust 1.5s ease forwards;
+        }
+
+        @keyframes dust {
+            0%, 100% { transform: translateX(-50%) rotate(0deg); }
+            25% { transform: translateX(-50%) rotate(-10deg) translateY(-5px); }
+            50% { transform: translateX(-50%) rotate(10deg) translateY(-5px); }
+            75% { transform: translateX(-50%) rotate(-5deg); }
+        }
+
+        .boy.appearing {
+            animation: boyAppear 1.5s ease forwards;
+        }
+
+        @keyframes boyAppear {
+            0% { 
+                opacity: 0;
+                transform: translateX(100px) scaleX(-1); 
+            }
+            50% { 
+                opacity: 1;
+                transform: translateX(60px) scaleX(-1); 
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(50%) scaleX(-1); 
+            }
+        }
+
+        .cupid.appearing {
+            animation: cupidAppear 1.5s ease forwards;
+        }
+
+        @keyframes cupidAppear {
+            0% { 
+                opacity: 0;
+                transform: translateX(-50%) scale(0); 
+            }
+            50% { 
+                opacity: 1;
+                transform: translateX(-50%) scale(1.3); 
+            }
+            100% { 
+                opacity: 1;
+                transform: translateX(-50%) scale(1); 
+            }
+        }
+
+        /* Bańka Amora */
+        .bubble {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(255,182,193,0.3));
+            border: 3px solid rgba(255,255,255,0.5);
+            opacity: 0;
+            animation: bubblePop 1s ease forwards;
+        }
+
+        @keyframes bubblePop {
+            0% { opacity: 0; transform: translateX(-50%) scale(0); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.2); }
+            80% { opacity: 1; transform: translateX(-50%) scale(1); }
+            100% { opacity: 0; transform: translateX(-50%) scale(2); }
+        }
+
+        /* Strzały */
+        .arrow {
+            position: absolute;
+            font-size: 40px;
+            opacity: 0;
+        }
+
+        .arrow.flying {
+            animation: arrowFly 0.8s ease-out forwards;
+        }
+
+        @keyframes arrowFly {
+            0% { 
+                opacity: 1;
+                transform: translate(0, 0) rotate(45deg); 
+            }
+            100% { 
+                opacity: 1;
+                transform: translate(var(--endX), var(--endY)) rotate(45deg); 
+            }
+        }
+
+        /* Efekt trafienia */
+        .hit-effect {
+            position: absolute;
+            font-size: 50px;
+            opacity: 0;
+            animation: hitPop 0.5s ease forwards;
+        }
+
+        @keyframes hitPop {
+            0% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1.5); }
+            100% { opacity: 0; transform: scale(0.5); }
+        }
+
+        /* Serduszka latające */
+        .love-heart {
+            position: absolute;
+            font-size: 30px;
+            opacity: 0;
+            animation: loveFloat 3s ease forwards;
+        }
+
+        @keyframes loveFloat {
+            0% { 
+                opacity: 0;
+                transform: translateY(0) scale(0); 
+            }
+            20% { 
+                opacity: 1;
+                transform: translateY(-20px) scale(1); 
+            }
+            100% { 
+                opacity: 0;
+                transform: translateY(-150px) scale(0.5); 
+            }
+        }
+
+        /* Przytulanie */
+        .hugging {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 120px;
+            opacity: 0;
+        }
+
+        .hugging.show {
+            animation: hugAppear 1.5s ease forwards;
+        }
+
+        @keyframes hugAppear {
+            0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+            50% { opacity: 1; transform: translateX(-50%) scale(1.1); }
+            100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        }
+
+        /* Ściemnienie końcowe */
+        .fade-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        .fade-overlay.active {
+            animation: fadeToBlack 2s ease forwards;
+        }
+
+        @keyframes fadeToBlack {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Napis końcowy */
+        .end-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 20;
+            opacity: 0;
+        }
+
+        .end-text.show {
+            animation: endTextIn 2s ease forwards;
+        }
+
+        @keyframes endTextIn {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .end-text h1 {
+            font-family: 'Lora', serif;
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 0 30px rgba(255,255,255,0.5);
+            letter-spacing: 3px;
+        }
+
+        .end-text .heart-end {
+            font-size: 60px;
+            margin-top: 30px;
             animation: heartBeat 1s infinite;
         }
 
         @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
-            25% { transform: scale(1.2); }
-            50% { transform: scale(1); }
-            75% { transform: scale(1.2); }
-        }
-
-        /* Kontener przycisków - POPRAWIONE */
-        .buttons {
-            display: flex;
-            flex-direction: row;
-            gap: 40px;
-            justify-content: center;
-            align-items: center;
-            margin-top: 40px;
-            position: relative;
-            min-height: 100px;
-        }
-
-        .btn {
-            padding: 22px 55px;
-            font-size: 1.4rem;
-            font-weight: 600;
-            border: none;
-            border-radius: 60px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            font-family: 'Montserrat', sans-serif;
-            letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-yes {
-            background: linear-gradient(135deg, #ff416c 0%, #ff4b2b 50%, #ff416c 100%);
-            background-size: 200% 200%;
-            color: white;
-            box-shadow: 
-                0 15px 40px rgba(255, 65, 108, 0.5),
-                0 5px 15px rgba(255, 75, 43, 0.3),
-                inset 0 -3px 10px rgba(0, 0, 0, 0.1),
-                inset 0 3px 10px rgba(255, 255, 255, 0.3);
-            animation: yesButtonGlow 2s infinite, yesGradient 3s ease infinite;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes yesGradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes yesButtonGlow {
-            0%, 100% { 
-                box-shadow: 
-                    0 15px 40px rgba(255, 65, 108, 0.5),
-                    0 5px 15px rgba(255, 75, 43, 0.3),
-                    inset 0 -3px 10px rgba(0, 0, 0, 0.1),
-                    inset 0 3px 10px rgba(255, 255, 255, 0.3);
-            }
-            50% { 
-                box-shadow: 
-                    0 20px 60px rgba(255, 65, 108, 0.7),
-                    0 10px 30px rgba(255, 75, 43, 0.5),
-                    0 0 50px rgba(255, 100, 100, 0.4),
-                    inset 0 -3px 10px rgba(0, 0, 0, 0.1),
-                    inset 0 3px 10px rgba(255, 255, 255, 0.3);
-            }
-        }
-
-        .btn-yes:hover {
-            transform: scale(1.15) translateY(-5px);
-            box-shadow: 
-                0 25px 60px rgba(255, 65, 108, 0.6),
-                0 15px 30px rgba(255, 75, 43, 0.4),
-                0 0 80px rgba(255, 100, 100, 0.5);
-        }
-
-        .btn-yes:active {
-            transform: scale(1.1);
-        }
-
-        /* Przycisk NIE - POPRAWIONE - teraz ucieka po całym ekranie */
-        .btn-no {
-            background: linear-gradient(135deg, #a8a8a8 0%, #888888 100%);
-            color: white;
-            box-shadow: 0 10px 30px rgba(100, 100, 100, 0.3);
-            position: fixed;
-            z-index: 1000;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-no:hover {
-            background: linear-gradient(135deg, #888888 0%, #666666 100%);
-        }
-
-        /* Wielkie emoji zapłakane */
-        .crying-emoji {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 250px;
-            z-index: 2000;
-            animation: cryingAnim 2.5s forwards;
-            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.3));
-        }
-
-        @keyframes cryingAnim {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(-20deg); }
-            20% { opacity: 1; transform: translate(-50%, -50%) scale(1.3) rotate(10deg); }
-            40% { transform: translate(-50%, -50%) scale(1) rotate(-5deg); }
-            60% { transform: translate(-50%, -50%) scale(1.1) rotate(5deg); }
-            80% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-10deg); }
-        }
-
-        /* Spadające elementy */
-        .falling-element {
-            position: fixed;
-            top: -60px;
-            z-index: 100;
-            pointer-events: none;
-            animation: falling 5s linear forwards;
-            filter: drop-shadow(0 5px 10px rgba(255, 100, 100, 0.3));
-        }
-
-        @keyframes falling {
-            0% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translateY(110vh) rotate(720deg) scale(0.8); 
-                opacity: 0.8; 
-            }
-        }
-
-        /* Wielkie pulsujące serce */
-        .big-heart {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 350px;
-            z-index: 1000;
-            animation: bigHeartPulse 3s forwards;
-            filter: drop-shadow(0 0 60px rgba(255, 50, 50, 0.8));
-        }
-
-        @keyframes bigHeartPulse {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(-30deg); }
-            15% { opacity: 1; transform: translate(-50%, -50%) scale(1.2) rotate(10deg); }
-            25% { transform: translate(-50%, -50%) scale(0.9) rotate(-5deg); }
-            35% { transform: translate(-50%, -50%) scale(1.15) rotate(5deg); }
-            45% { transform: translate(-50%, -50%) scale(0.95) rotate(-3deg); }
-            55% { transform: translate(-50%, -50%) scale(1.1) rotate(3deg); }
-            70% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(2) rotate(15deg); }
-        }
-
-        /* Chmurka z komunikatem - ULEPSZONA */
-        .speech-bubble {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: linear-gradient(135deg, #ffffff 0%, #fff5f5 50%, #ffe0e0 100%);
-            padding: 50px 70px;
-            border-radius: 40px;
-            box-shadow: 
-                0 30px 80px rgba(255, 100, 100, 0.4),
-                0 15px 40px rgba(0, 0, 0, 0.1),
-                inset 0 0 30px rgba(255, 200, 200, 0.3);
-            z-index: 1001;
-            animation: bubbleAppear 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            text-align: center;
-            border: 3px solid rgba(255, 150, 150, 0.5);
-            max-width: 90vw;
-        }
-
-        .speech-bubble::before {
-            content: '';
-            position: absolute;
-            top: -4px;
-            left: -4px;
-            right: -4px;
-            bottom: -4px;
-            background: linear-gradient(45deg, #ff6b6b, #ffc0cb, #ff69b4, #ff6b6b);
-            background-size: 300% 300%;
-            border-radius: 44px;
-            z-index: -1;
-            animation: borderGlow 3s ease infinite;
-            filter: blur(8px);
-            opacity: 0.6;
-        }
-
-        .speech-bubble::after {
-            content: '';
-            position: absolute;
-            bottom: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 25px solid transparent;
-            border-top-color: #ffe0e0;
-            filter: drop-shadow(0 5px 10px rgba(255, 100, 100, 0.3));
-        }
-
-        .speech-bubble h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            background: linear-gradient(135deg, #c41e3a, #ff6b6b, #c41e3a);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: textPulse 1.5s infinite ease-in-out;
-            margin-bottom: 15px;
-        }
-
-        .speech-bubble .sub-message {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: #8b4560;
-            margin-top: 15px;
-            opacity: 0;
-            animation: subMessageAppear 1s ease forwards 1s;
-        }
-
-        @keyframes subMessageAppear {
-            0% { opacity: 0; transform: translateY(20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes bubbleAppear {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0) rotate(-10deg); }
-            60% { transform: translate(-50%, -50%) scale(1.1) rotate(3deg); }
-            100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
-        }
-
-        @keyframes textPulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-        }
-
-        /* Sparkles */
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            font-size: 24px;
-            animation: sparkleAnim 1.5s forwards;
-            z-index: 500;
-        }
-
-        @keyframes sparkleAnim {
-            0% { opacity: 1; transform: scale(0) rotate(0deg); }
-            50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
-            100% { opacity: 0; transform: scale(0.3) rotate(360deg); }
-        }
-
-        /* Konfetti */
-        .confetti {
-            position: fixed;
-            z-index: 200;
-            animation: confettiFall 4s linear forwards;
-            border-radius: 3px;
-        }
-
-        @keyframes confettiFall {
-            0% { 
-                transform: translateY(0) rotate(0deg) scale(1); 
-                opacity: 1; 
-            }
-            100% { 
-                transform: translateY(100vh) rotate(1080deg) scale(0.5); 
-                opacity: 0.5; 
-            }
-        }
-
-        /* Ukryj główną zawartość po sukcesie */
-        .container.hidden {
-            animation: containerFadeOut 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-
-        @keyframes containerFadeOut {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.8) translateY(-50px); }
+            50% { transform: scale(1.2); }
         }
 
         /* Responsywność */
-        @media (max-width: 768px) {
+        @media (max-width: 650px) {
             .container {
+                padding: 35px 25px;
+                margin: 20px;
+            }
+            
+            h1 { font-size: 1.6rem; }
+            .question { font-size: 1.3rem; }
+            .btn { padding: 14px 30px; font-size: 1rem; }
+            .corner { font-size: 25px; }
+            
+            .buttons-wrapper {
+                flex-direction: column;
+                height: auto;
+                gap: 15px;
+            }
+            
+            .btn-no {
+                position: relative !important;
+                right: auto !important;
+            }
+            
+            .success-box {
                 padding: 40px 30px;
                 margin: 20px;
             }
             
-            h1 { font-size: 3rem; }
-            .question { font-size: 1.5rem; }
+            .success-box h2 { font-size: 1.8rem; }
+            .success-box p { font-size: 1.1rem; }
             
-            .buttons {
-                flex-direction: column;
-                gap: 20px;
-            }
+            .end-text h1 { font-size: 1.8rem; }
+            .end-text .heart-end { font-size: 40px; }
             
-            .btn { 
-                padding: 18px 45px; 
-                font-size: 1.2rem; 
-            }
-            
-            .decoration { font-size: 35px; }
-            .side-decoration { display: none; }
-            .big-heart { font-size: 200px; }
-            
-            .speech-bubble {
-                padding: 30px 40px;
-            }
-            
-            .speech-bubble h2 { font-size: 2.2rem; }
-            .speech-bubble .sub-message { font-size: 1rem; }
-        }
-
-        /* Efekt śladu za myszką */
-        .cursor-trail {
-            position: fixed;
-            pointer-events: none;
-            font-size: 16px;
-            z-index: 9999;
-            animation: trailFade 1s forwards;
-        }
-
-        @keyframes trailFade {
-            0% { opacity: 1; transform: scale(1); }
-            100% { opacity: 0; transform: scale(0.5) translateY(-20px); }
+            .character { font-size: 60px; }
+            .cupid { font-size: 70px; }
+            .tree { font-size: 70px; }
         }
     </style>
 </head>
 <body>
-    <!-- Świecące cząsteczki -->
-    <div class="particles" id="particles"></div>
+    <!-- Gwiazdy w tle -->
+    <div class="stars" id="stars"></div>
     
-    <!-- Światełka bokeh -->
-    <div class="bokeh" id="bokeh"></div>
-
-    <!-- Pływające serduszka w tle -->
-    <div class="floating-hearts" id="floatingHearts"></div>
+    <!-- Delikatne serduszka -->
+    <div class="bg-hearts" id="bgHearts"></div>
 
     <!-- Główny kontener -->
     <div class="container" id="mainContainer">
-        <!-- Ozdoby narożne -->
-        <span class="decoration top-left">🌹</span>
-        <span class="decoration top-right">🌹</span>
-        <span class="decoration bottom-left">💐</span>
-        <span class="decoration bottom-right">💐</span>
-        
-        <!-- Ozdoby boczne -->
-        <span class="side-decoration left-1">🦋</span>
-        <span class="side-decoration left-2">🌸</span>
-        <span class="side-decoration right-1">🦋</span>
-        <span class="side-decoration right-2">🌸</span>
+        <span class="corner tl">🌹</span>
+        <span class="corner tr">🌹</span>
+        <span class="corner bl">💐</span>
+        <span class="corner br">💐</span>
 
-        <div class="title-wrapper">
-            <h1>💕 Moja Jedyna 💕</h1>
-            <p class="subtitle">✨ Specjalnie dla Ciebie ✨</p>
-        </div>
+        <h1>💕 Dla Mojej Jedynej 💕</h1>
+        <p class="subtitle">WALENTYNKI 2025</p>
         
-        <div class="question-wrapper">
-            <p class="question">
-                Czy zostaniesz moją Walentynką? 
-                <span class="question-heart">💖</span>
-            </p>
-        </div>
+        <p class="question">
+            Czy zostaniesz moją Walentynką? <span class="heart-icon">❤️</span>
+        </p>
         
-        <div class="buttons" id="buttonsContainer">
-            <button class="btn btn-yes" onclick="sayYes()">
-                TAK 💖
-            </button>
+        <div class="buttons-wrapper" id="btnWrapper">
+            <button class="btn btn-yes" onclick="sayYes()">TAK 💖</button>
+            <button class="btn btn-no" id="noBtn">NIE 💔</button>
         </div>
     </div>
 
-    <!-- Przycisk NIE - osobno, żeby mógł uciekać po całym ekranie -->
-    <button class="btn btn-no" id="noBtn" onmouseover="runAway()" onclick="sayNo()">
-        NIE 💔
-    </button>
-
     <script>
-        // ===== INICJALIZACJA =====
+        // ===== INICJALIZACJA TŁA =====
         
-        // Pozycjonowanie przycisku NIE na starcie
-        const noBtn = document.getElementById('noBtn');
-        const container = document.getElementById('mainContainer');
-        
-        function initNoButtonPosition() {
-            const containerRect = container.getBoundingClientRect();
-            const yesBtnRect = document.querySelector('.btn-yes').getBoundingClientRect();
-            
-            noBtn.style.top = yesBtnRect.top + 'px';
-            noBtn.style.left = (yesBtnRect.right + 40) + 'px';
-        }
-        
-        window.addEventListener('load', initNoButtonPosition);
-        window.addEventListener('resize', initNoButtonPosition);
-
-        // Tworzenie cząsteczek
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 20 + 's';
-                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
-                container.appendChild(particle);
+        function createStars() {
+            const container = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = (1 + Math.random() * 3) + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(star);
             }
         }
-        createParticles();
+        createStars();
 
-        // Tworzenie bokeh
-        function createBokeh() {
-            const container = document.getElementById('bokeh');
+        function createBgHearts() {
+            const container = document.getElementById('bgHearts');
+            const hearts = ['💕', '💗', '💖', '❤️'];
             for (let i = 0; i < 15; i++) {
-                const circle = document.createElement('div');
-                circle.className = 'bokeh-circle';
-                circle.style.left = Math.random() * 100 + '%';
-                circle.style.top = Math.random() * 100 + '%';
-                circle.style.width = (50 + Math.random() * 150) + 'px';
-                circle.style.height = circle.style.width;
-                circle.style.animationDelay = Math.random() * 10 + 's';
-                circle.style.animationDuration = (20 + Math.random() * 15) + 's';
-                container.appendChild(circle);
-            }
-        }
-        createBokeh();
-
-        // Tworzenie pływających serduszek
-        function createFloatingHearts() {
-            const container = document.getElementById('floatingHearts');
-            const hearts = ['💕', '💗', '💖', '💝', '❤️', '💘', '💓', '💞', '🌸', '🌺'];
-            
-            for (let i = 0; i < 25; i++) {
                 const heart = document.createElement('div');
-                heart.className = 'heart-bg';
+                heart.className = 'bg-heart';
                 heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
                 heart.style.left = Math.random() * 100 + '%';
                 heart.style.animationDelay = Math.random() * 20 + 's';
-                heart.style.animationDuration = (15 + Math.random() * 15) + 's';
-                heart.style.fontSize = (18 + Math.random() * 35) + 'px';
+                heart.style.animationDuration = (15 + Math.random() * 10) + 's';
                 container.appendChild(heart);
             }
         }
-        createFloatingHearts();
+        createBgHearts();
 
-        // ===== PRZYCISK NIE - UCIEKA AGRESYWNIE =====
+        // ===== PRZYCISK NIE - PŁYNNE UCIEKANIE =====
         
+        const noBtn = document.getElementById('noBtn');
+        const btnWrapper = document.getElementById('btnWrapper');
+        let noBtnX = 0;
+        let noBtnY = 0;
         let escapeCount = 0;
-        let lastEscapeTime = 0;
-        
-        function runAway() {
-            const now = Date.now();
-            if (now - lastEscapeTime < 50) return; // Debounce
-            lastEscapeTime = now;
+        let isMobile = 'ontouchstart' in window;
+
+        // Pozycja startowa przycisku NIE
+        function initNoBtn() {
+            const wrapperRect = btnWrapper.getBoundingClientRect();
+            const yesBtn = document.querySelector('.btn-yes');
+            const yesBtnRect = yesBtn.getBoundingClientRect();
             
-            escapeCount++;
+            noBtnX = wrapperRect.width / 2 + 20;
+            noBtnY = 0;
             
-            const btnWidth = noBtn.offsetWidth;
-            const btnHeight = noBtn.offsetHeight;
-            const padding = 20;
-            
-            // Oblicz bezpieczny obszar
-            const maxX = window.innerWidth - btnWidth - padding;
-            const maxY = window.innerHeight - btnHeight - padding;
-            
-            // Losowa pozycja z dala od obecnej
-            let newX, newY;
-            const currentX = noBtn.offsetLeft;
-            const currentY = noBtn.offsetTop;
-            
-            // Upewnij się, że nowa pozycja jest daleko od starej
-            do {
-                newX = padding + Math.random() * (maxX - padding);
-                newY = padding + Math.random() * (maxY - padding);
-            } while (Math.abs(newX - currentX) < 200 && Math.abs(newY - currentY) < 200);
-            
-            // Coraz szybsze ucieczki
-            const speed = Math.max(0.05, 0.2 - escapeCount * 0.02);
-            noBtn.style.transition = `all ${speed}s cubic-bezier(0.25, 0.46, 0.45, 0.94)`;
-            noBtn.style.left = newX + 'px';
-            noBtn.style.top = newY + 'px';
-            
-            // Zmniejsz przycisk z czasem
-            const scale = Math.max(0.6, 1 - escapeCount * 0.03);
-            noBtn.style.transform = `scale(${scale})`;
-            
-            // Zmiana tekstu
-            const texts = [
-                'NIE 💔', 
-                'Niemożliwe! 🙈', 
-                'Na pewno?! 🥺', 
-                'Przemyśl! 💭', 
-                'Nie dam się! 🏃', 
-                'Za wolno! 😜',
-                'Hahaha! 🤣',
-                'Spróbuj! 💨',
-                'Nigdy! 🙅',
-                'Wikusia wybierz TAK! 💕'
-            ];
-            
-            if (escapeCount % 2 === 0) {
-                const textIndex = Math.min(Math.floor(escapeCount / 2), texts.length - 1);
-                noBtn.textContent = texts[textIndex];
-            }
-            
-            // Po wielu próbach przycisk zaczyna migać
-            if (escapeCount > 15) {
-                noBtn.style.animation = 'none';
-                noBtn.style.opacity = Math.random() > 0.3 ? '1' : '0.3';
-            }
+            noBtn.style.position = 'absolute';
+            noBtn.style.left = '50%';
+            noBtn.style.marginLeft = '60px';
+            noBtn.style.top = '50%';
+            noBtn.style.transform = 'translateY(-50%)';
         }
         
-        // Dodatkowa ochrona - uciekaj też przy zbliżeniu myszki
-        document.addEventListener('mousemove', (e) => {
-            if (!noBtn.style.left) return; // Nie zainicjalizowany
-            
-            const btnRect = noBtn.getBoundingClientRect();
-            const btnCenterX = btnRect.left + btnRect.width / 2;
-            const btnCenterY = btnRect.top + btnRect.height / 2;
-            
-            const distance = Math.sqrt(
-                Math.pow(e.clientX - btnCenterX, 2) + 
-                Math.pow(e.clientY - btnCenterY, 2)
-            );
-            
-            // Uciekaj gdy myszka jest blisko (150px)
-            if (distance < 150) {
-                runAway();
-            }
+        window.addEventListener('load', () => {
+            if (!isMobile) initNoBtn();
         });
 
-        // Kliknięcie NIE (gdyby komuś się udało)
-        function sayNo() {
-            const emoji = document.createElement('div');
-            emoji.className = 'crying-emoji';
-            emoji.textContent = '😢';
-            document.body.appendChild(emoji);
-            
-            // Efekt shake
-            document.body.style.animation = 'shake 0.5s';
-            
-            setTimeout(() => {
-                emoji.remove();
-                document.body.style.animation = '';
-                // Reset przycisku
-                setTimeout(initNoButtonPosition, 100);
-            }, 2500);
+        // Desktop - płynne odpychanie przez kursor
+        if (!isMobile) {
+            let targetX = 0;
+            let targetY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let isEscaping = false;
+
+            document.addEventListener('mousemove', (e) => {
+                const btnRect = noBtn.getBoundingClientRect();
+                const btnCenterX = btnRect.left + btnRect.width / 2;
+                const btnCenterY = btnRect.top + btnRect.height / 2;
+                
+                const dx = e.clientX - btnCenterX;
+                const dy = e.clientY - btnCenterY;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                const escapeRadius = 180;
+                
+                if (distance < escapeRadius) {
+                    isEscaping = true;
+                    
+                    // Kierunek ucieczki - przeciwny do kursora
+                    const force = (escapeRadius - distance) / escapeRadius;
+                    const angle = Math.atan2(dy, dx);
+                    
+                    const pushX = -Math.cos(angle) * force * 250;
+                    const pushY = -Math.sin(angle) * force * 250;
+                    
+                    // Granice ekranu
+                    const maxX = window.innerWidth - btnRect.width - 20;
+                    const maxY = window.innerHeight - btnRect.height - 20;
+                    
+                    targetX = Math.max(20, Math.min(maxX, btnRect.left + pushX)) - (window.innerWidth / 2 - btnRect.width / 2);
+                    targetY = Math.max(20, Math.min(maxY, btnRect.top + pushY)) - (window.innerHeight / 2 - btnRect.height / 2);
+                }
+            });
+
+            // Płynna animacja
+            function animateBtn() {
+                if (isEscaping) {
+                    currentX += (targetX - currentX) * 0.15;
+                    currentY += (targetY - currentY) * 0.15;
+                    
+                    noBtn.style.position = 'fixed';
+                    noBtn.style.left = '50%';
+                    noBtn.style.top = '50%';
+                    noBtn.style.marginLeft = '0';
+                    noBtn.style.transform = `translate(calc(-50% + ${currentX}px), calc(-50% + ${currentY}px))`;
+                }
+                requestAnimationFrame(animateBtn);
+            }
+            animateBtn();
         }
 
-        // ===== PRZYCISK TAK - WIELKA CELEBRACJA =====
+        // Mobile - uciekanie przy dotknięciu
+        if (isMobile) {
+            noBtn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                escapeCount++;
+                
+                const padding = 20;
+                const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+                const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+                
+                const newX = padding + Math.random() * (maxX - padding);
+                const newY = padding + Math.random() * (maxY - padding);
+                
+                noBtn.style.position = 'fixed';
+                noBtn.style.transition = 'all 0.3s ease-out';
+                noBtn.style.left = newX + 'px';
+                noBtn.style.top = newY + 'px';
+                noBtn.style.marginLeft = '0';
+                noBtn.style.transform = 'none';
+                
+                const texts = ['NIE 💔', 'Nie! 🙈', 'Hej! 😅', 'Złap! 🏃', 'Haha! 😜'];
+                noBtn.textContent = texts[Math.min(escapeCount - 1, texts.length - 1)];
+            });
+        }
+
+        // Kliknięcie NIE (gdyby się udało)
+        noBtn.addEventListener('click', () => {
+            if (isMobile) return;
+            const cry = document.createElement('div');
+            cry.className = 'crying';
+            cry.textContent = '😢';
+            document.body.appendChild(cry);
+            setTimeout(() => cry.remove(), 2000);
+        });
+
+        // ===== PRZYCISK TAK =====
         
         function sayYes() {
-            // Ukryj przycisk NIE
+            document.getElementById('mainContainer').style.display = 'none';
             noBtn.style.display = 'none';
             
-            // Zmień tło
-            document.body.classList.add('romantic-bg');
-            
-            // Spadające elementy - kwiaty i serduszka
-            const fallingItems = ['🌹', '💕', '💖', '🌸', '💗', '❤️', '🌺', '💝', '🏵️', '💐', '🌷', '💘', '🦋', '✨'];
-            
-            for (let i = 0; i < 150; i++) {
+            // Spadające elementy
+            const items = ['🌹', '💕', '💖', '🌸', '❤️', '💐', '✨'];
+            for (let i = 0; i < 60; i++) {
                 setTimeout(() => {
-                    const element = document.createElement('div');
-                    element.className = 'falling-element';
-                    element.textContent = fallingItems[Math.floor(Math.random() * fallingItems.length)];
-                    element.style.left = Math.random() * 100 + 'vw';
-                    element.style.animationDuration = (3 + Math.random() * 4) + 's';
-                    element.style.fontSize = (25 + Math.random() * 50) + 'px';
-                    document.body.appendChild(element);
-                    
-                    setTimeout(() => element.remove(), 6000);
-                }, i * 40);
+                    const el = document.createElement('div');
+                    el.className = 'falling';
+                    el.textContent = items[Math.floor(Math.random() * items.length)];
+                    el.style.left = Math.random() * 100 + 'vw';
+                    el.style.animationDuration = (3 + Math.random() * 2) + 's';
+                    document.body.appendChild(el);
+                    setTimeout(() => el.remove(), 5000);
+                }, i * 80);
             }
-
-            // Konfetti w kolorach różowych/czerwonych
-            for (let i = 0; i < 200; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.className = 'confetti';
-                    confetti.style.left = Math.random() * 100 + 'vw';
-                    confetti.style.top = '-20px';
-                    
-                    // Kolory walentynkowe
-                    const colors = ['#ff6b6b', '#ff8e8e', '#ffb4b4', '#ffc0cb', '#ff69b4', '#ff1493', '#c41e3a', '#ffd700'];
-                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                    
-                    confetti.style.width = (6 + Math.random() * 12) + 'px';
-                    confetti.style.height = (6 + Math.random() * 12) + 'px';
-                    confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                    document.body.appendChild(confetti);
-                    
-                    setTimeout(() => confetti.remove(), 4000);
-                }, i * 25);
-            }
-
-            // Ukryj główny kontener
+            
+            // Ekran sukcesu
             setTimeout(() => {
-                document.getElementById('mainContainer').classList.add('hidden');
-            }, 600);
-
-            // Wielkie pulsujące serce
-            setTimeout(() => {
-                const bigHeart = document.createElement('div');
-                bigHeart.className = 'big-heart';
-                bigHeart.textContent = '❤️';
-                document.body.appendChild(bigHeart);
-                
-                setTimeout(() => bigHeart.remove(), 3000);
-            }, 900);
-
-            // Chmurka z komunikatem
-            setTimeout(() => {
-                const bubble = document.createElement('div');
-                bubble.className = 'speech-bubble';
-                bubble.innerHTML = `
-                    <h2>DOSKONAŁY WYBÓR WIKUSIA 💖</h2>
-                    <p class="sub-message">Kocham Cię najbardziej na świecie! 💕</p>
+                const success = document.createElement('div');
+                success.className = 'success-container';
+                success.innerHTML = `
+                    <div class="success-box">
+                        <h2>DOSKONAŁY WYBÓR WIKUSIA 💖</h2>
+                        <p>Kocham Cię najbardziej na świecie! 💕</p>
+                        <button class="btn-magic" onclick="startCinema()">✨ To teraz czary ✨</button>
+                    </div>
                 `;
-                document.body.appendChild(bubble);
-
-                // Sparkle efekty
-                setInterval(() => {
-                    const sparkle = document.createElement('div');
-                    sparkle.className = 'sparkle';
-                    sparkle.textContent = ['✨', '💫', '⭐', '💖'][Math.floor(Math.random() * 4)];
-                    sparkle.style.left = (Math.random() * 100) + 'vw';
-                    sparkle.style.top = (Math.random() * 100) + 'vh';
-                    document.body.appendChild(sparkle);
-                    setTimeout(() => sparkle.remove(), 1500);
-                }, 150);
-            }, 4000);
-
-            // Ciągłe spadające serduszka
-            setInterval(() => {
-                const heart = document.createElement('div');
-                heart.className = 'falling-element';
-                heart.textContent = ['💕', '💖', '❤️', '💗', '🌹'][Math.floor(Math.random() * 5)];
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.fontSize = (20 + Math.random() * 30) + 'px';
-                heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-                document.body.appendChild(heart);
-                setTimeout(() => heart.remove(), 7000);
-            }, 250);
+                document.body.appendChild(success);
+            }, 500);
         }
 
-        // Efekt śladu za myszką
-        document.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.85) {
-                const trail = document.createElement('div');
-                trail.className = 'cursor-trail';
-                trail.textContent = ['✨', '💫', '💕', '⭐'][Math.floor(Math.random() * 4)];
-                trail.style.left = e.pageX + 'px';
-                trail.style.top = e.pageY + 'px';
-                document.body.appendChild(trail);
-                setTimeout(() => trail.remove(), 1000);
+        // ===== ANIMACJA FILMOWA =====
+        
+        function startCinema() {
+            document.querySelector('.success-container').remove();
+            
+            // Tworzenie sceny
+            const cinema = document.createElement('div');
+            cinema.className = 'cinema';
+            cinema.innerHTML = `
+                <div class="scene-space" id="sceneSpace"></div>
+                <div class="ground" id="ground" style="opacity: 0;">
+                    <div class="grass"></div>
+                </div>
+                <div class="character girl" id="girl">👩‍🦱</div>
+                <div class="character boy" id="boy">👱‍♂️</div>
+                <div class="cupid character" id="cupid">👼</div>
+                <div class="bubble" id="bubble"></div>
+                <div class="hugging" id="hug">👩‍❤️‍👨</div>
+                <div class="fade-overlay" id="fadeOverlay"></div>
+                <div class="end-text" id="endText">
+                    <h1>DZIĘKUJĘ ZA KOLEJNY<br>WSPANIAŁY ROK</h1>
+                    <div class="heart-end">💕</div>
+                </div>
+            `;
+            document.body.appendChild(cinema);
+            
+            const spaceScene = document.getElementById('sceneSpace');
+            const ground = document.getElementById('ground');
+            
+            // Dodaj gwiazdy do kosmosu
+            for (let i = 0; i < 200; i++) {
+                const star = document.createElement('div');
+                star.className = 'space-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 40 + '%';
+                star.style.width = (1 + Math.random() * 3) + 'px';
+                star.style.height = star.style.width;
+                spaceScene.appendChild(star);
             }
-        });
+            
+            // Dodaj chmury
+            for (let i = 0; i < 8; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.textContent = '☁️';
+                cloud.style.left = Math.random() * 100 + '%';
+                cloud.style.top = (50 + Math.random() * 15) + '%';
+                cloud.style.fontSize = (50 + Math.random() * 80) + 'px';
+                spaceScene.appendChild(cloud);
+            }
+            
+            // Dodaj drzewa i krzewy
+            const trees = ['🌲', '🌳', '🌴'];
+            const positions = [5, 15, 75, 88, 95];
+            positions.forEach(pos => {
+                const tree = document.createElement('div');
+                tree.className = 'tree';
+                tree.textContent = trees[Math.floor(Math.random() * trees.length)];
+                tree.style.left = pos + '%';
+                ground.appendChild(tree);
+            });
+            
+            // Krzewy
+            for (let i = 0; i < 6; i++) {
+                const bush = document.createElement('div');
+                bush.className = 'bush';
+                bush.textContent = '🌿';
+                bush.style.left = (10 + i * 15) + '%';
+                ground.appendChild(bush);
+            }
+            
+            // Kwiatki
+            const flowers = ['🌸', '🌺', '🌼', '🌷', '💮'];
+            for (let i = 0; i < 15; i++) {
+                const flower = document.createElement('div');
+                flower.className = 'flower';
+                flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.animationDelay = Math.random() * 2 + 's';
+                ground.appendChild(flower);
+            }
+            
+            // TIMELINE ANIMACJI
+            const girl = document.getElementById('girl');
+            const boy = document.getElementById('boy');
+            const cupid = document.getElementById('cupid');
+            const bubble = document.getElementById('bubble');
+            const hug = document.getElementById('hug');
+            const fadeOverlay = document.getElementById('fadeOverlay');
+            const endText = document.getElementById('endText');
+            
+            // 0-8s: Kamera leci w dół
+            
+            // 6s: Pokaż ziemię
+            setTimeout(() => {
+                ground.style.transition = 'opacity 2s';
+                ground.style.opacity = '1';
+            }, 6000);
+            
+            // 9s: Dziewczyna spada
+            setTimeout(() => {
+                girl.classList.add('falling-in');
+            }, 9000);
+            
+            // 11s: Otrzepuje się
+            setTimeout(() => {
+                girl.classList.remove('falling-in');
+                girl.style.opacity = '1';
+                girl.classList.add('dusting');
+            }, 11000);
+            
+            // 13s: Chłopak wychodzi
+            setTimeout(() => {
+                boy.classList.add('appearing');
+            }, 13000);
+            
+            // 15s: Bańka się pojawia
+            setTimeout(() => {
+                bubble.style.animation = 'bubblePop 1.5s ease forwards';
+            }, 15000);
+            
+            // 16s: Amor się pojawia
+            setTimeout(() => {
+                cupid.classList.add('appearing');
+            }, 16000);
+            
+            // 17.5s: Strzały lecą
+            setTimeout(() => {
+                // Strzała do dziewczyny
+                const arrow1 = document.createElement('div');
+                arrow1.className = 'arrow';
+                arrow1.textContent = '💘';
+                arrow1.style.top = '30%';
+                arrow1.style.left = '50%';
+                arrow1.style.setProperty('--endX', '-150px');
+                arrow1.style.setProperty('--endY', '200px');
+                arrow1.classList.add('flying');
+                cinema.appendChild(arrow1);
+                
+                // Strzała do chłopaka
+                setTimeout(() => {
+                    const arrow2 = document.createElement('div');
+                    arrow2.className = 'arrow';
+                    arrow2.textContent = '💘';
+                    arrow2.style.top = '30%';
+                    arrow2.style.left = '50%';
+                    arrow2.style.setProperty('--endX', '150px');
+                    arrow2.style.setProperty('--endY', '200px');
+                    arrow2.classList.add('flying');
+                    cinema.appendChild(arrow2);
+                }, 300);
+            }, 17500);
+            
+            // 18.5s: Efekty trafienia + serduszka
+            setTimeout(() => {
+                // Latające serduszka
+                for (let i = 0; i < 30; i++) {
+                    setTimeout(() => {
+                        const heart = document.createElement('div');
+                        heart.className = 'love-heart';
+                        heart.textContent = ['💕', '💖', '❤️', '💗'][Math.floor(Math.random() * 4)];
+                        heart.style.left = (30 + Math.random() * 40) + '%';
+                        heart.style.bottom = '150px';
+                        heart.style.animationDelay = (Math.random() * 0.5) + 's';
+                        cinema.appendChild(heart);
+                        setTimeout(() => heart.remove(), 3500);
+                    }, i * 100);
+                }
+            }, 18500);
+            
+            // 20s: Ukryj postacie osobno, pokaż przytulanie
+            setTimeout(() => {
+                girl.style.transition = 'opacity 0.5s';
+                boy.style.transition = 'opacity 0.5s';
+                girl.style.opacity = '0';
+                boy.style.opacity = '0';
+                cupid.style.transition = 'opacity 1s';
+                cupid.style.opacity = '0';
+                
+                setTimeout(() => {
+                    hug.classList.add('show');
+                }, 500);
+            }, 20000);
+            
+            // 24s: Fade to black
+            setTimeout(() => {
+                fadeOverlay.classList.add('active');
+            }, 24000);
+            
+            // 26s: Napis końcowy
+            setTimeout(() => {
+                endText.classList.add('show');
+            }, 26000);
+        }
     </script>
 </body>
 </html>
